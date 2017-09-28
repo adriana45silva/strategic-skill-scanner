@@ -18,7 +18,6 @@ let middlewares = [];
 
 export default function configureStore(history, state) {
   if (process.env.NODE_ENV != 'production') {
-    console.log('aaaaa');
     middlewares.push(loggerMiddleware);
     return createStore(
       reducers,

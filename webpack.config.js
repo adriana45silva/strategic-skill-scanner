@@ -7,7 +7,6 @@ const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const webpackUglifyJsPlugin = require('webpack-uglify-js-plugin');
 // ------------------------------------------------------------------
 // Configs
 // ------------------------------------------------------------------
@@ -52,7 +51,7 @@ const plugins = () => {
 };
 
 const entries = () => {
-  let entries = [ 'babel-polyfill', 'whatwg-fetch' ];
+  let entries = ['babel-polyfill', 'whatwg-fetch'];
 
   if (process.env.NODE_ENV != 'production') {
     entries.push('react-hot-loader/patch');
@@ -138,7 +137,7 @@ let config = {
       rules: [
         {
           test: /\.jsx?$/,
-          use: [ 'babel-loader' ],
+          use: ['babel-loader'],
           exclude: /node_modules/
         },
         {
@@ -197,7 +196,7 @@ let config = {
       rules: [
         {
           test: /\.jsx?$/,
-          use: [ 'babel-loader' ],
+          use: ['babel-loader'],
           exclude: /node_modules/
         },
         {
