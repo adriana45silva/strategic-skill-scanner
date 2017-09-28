@@ -1,0 +1,80 @@
+{
+  "name": "boilerplate-app-2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "NODE_ENV=development webpack-dev-server --config=webpack.config.js",
+    "build": "NODE_ENV=production webpack"
+  },
+  "lint-staged": {
+    "source/**/*.scss": [
+      "stylelint --syntax=scss",
+      "git add"
+    ],
+    "source/**/*.js": [
+      "eslint",
+      "git add"
+    ],
+    "source/**/*.jsx": [
+      "eslint",
+      "git add"
+    ]
+  },
+  "pre-commit": "lint-staged",
+  "author": "Adriana Silva",
+  "license": "ISC",
+  "dependencies": {
+    "babel-polyfill": "^6.26.0",
+    "path": "^0.12.7",
+    "webpack-dev-server": "^2.7.1",
+    "whatwg-fetch": "^2.0.3"
+  },
+  "devDependencies": {
+    "autoprefixer": "^7.1.4",
+    "babel-core": "^6.26.0",
+    "babel-eslint": "^8.0.0",
+    "babel-loader": "^7.1.2",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-preset-env": "^1.6.0",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-3": "^6.24.1",
+    "babel-register": "^6.26.0",
+    "bowser": "^1.7.3",
+    "classnames": "^2.2.5",
+    "css-loader": "^0.28.7",
+    "eslint": "^4.7.2",
+    "eslint-config-google": "^0.9.1",
+    "eslint-config-prettier": "^2.6.0",
+    "eslint-plugin-compat": "^1.0.4",
+    "eslint-plugin-jsx-a11y": "^6.0.2",
+    "eslint-plugin-prettier": "^2.3.1",
+    "eslint-plugin-react": "^7.4.0",
+    "extract-text-webpack-plugin": "^3.0.0",
+    "html-webpack-plugin": "^2.30.1",
+    "lint-staged": "^4.2.3",
+    "node-sass": "^4.5.3",
+    "normalize.css": "^7.0.0",
+    "postcss-pxtorem": "^4.0.1",
+    "pre-commit": "^1.2.2",
+    "prettier": "^1.7.0",
+    "react": "^15.6.2",
+    "react-dom": "^15.6.2",
+    "react-redux": "^5.0.6",
+    "react-router": "^4.2.0",
+    "react-router-dom": "^4.2.2",
+    "redux": "^3.7.2",
+    "redux-logger": "^3.0.6",
+    "redux-thunk": "^2.2.0",
+    "sass-loader": "^6.0.6",
+    "sass-mediaqueries": "^1.6.1",
+    "script-ext-html-webpack-plugin": "^1.8.5",
+    "style-loader": "^0.18.2",
+    "stylelint": "^8.1.1",
+    "stylelint-config-standard": "^17.0.0",
+    "stylelint-order": "^0.7.0",
+    "svg-inline-loader": "^0.8.0",
+    "webpack": "^3.6.0",
+    "webpack-uglify-js-plugin": "^1.1.9"
+  }
+}
