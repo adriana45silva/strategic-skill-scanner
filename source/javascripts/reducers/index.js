@@ -1,26 +1,18 @@
-const initialState = {
-  opened: false
-};
+// -----------------------------------------------------
+// Imports
+// -----------------------------------------------------
 
-const offCanvas = (state = initialState, action) => {
-  switch (action.type) {
-    case 'OFFCANVAS_OPEN':
-      return {
-        ...state,
-        opened: true
-      };
-      break;
+import { combineReducers } from 'redux';
+import { routerReducer } from 'react-router-redux';
+import userReducer from 'javascripts/reducers/user';
 
-    case 'OFFCANVAS_CLOSE':
-      return {
-        ...state,
-        opened: false
-      };
-      break;
+// -----------------------------------------------------
+// Combine reducers for the application
+// -----------------------------------------------------
 
-    default:
-      return initialState;
-  }
-};
+const reducers = combineReducers({
+  userReducer,
+  routing: routerReducer
+});
 
-export default offCanvas;
+export default reducers;

@@ -1,29 +1,46 @@
-import { createStore, applyMiddleware, combineReducers } from 'redux';
+// -----------------------------------------------------
+// Imports
+// -----------------------------------------------------
+
+import { createStore, applyMiddleware } from 'redux';
 import { createLogger } from 'redux-logger';
 import thunk from 'redux-thunk';
-import { routerReducer } from 'react-router-redux';
 import { routerMiddleware } from 'react-router-redux';
-import testReducer from 'javascripts/reducers/index';
+import createHistory from 'history/createBrowserHistory';
+import storeReducers from 'javascripts/reducers/index';
 
-const loggerMiddleware = createLogger({
-  collapsed: true
-});
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-const reducers = combineReducers({
-  routing: routerReducer,
-  foo: testReducer
-});
+const history = createHistory();
+const RouterMiddleware = routerMiddleware(history);
 
-let middlewares = [];
+let middlewares = [ RouterMiddleware ];
 
-export default function configureStore(history, state) {
-  if (process.env.NODE_ENV != 'production') {
-    middlewares.push(loggerMiddleware);
-    return createStore(
-      reducers,
-      applyMiddleware(thunk, loggerMiddleware, routerMiddleware(history))
-    );
-  } else {
-    return createStore(reducers, applyMiddleware(thunk));
-  }
+if (process.env.NODE_ENV == 'development') {
+  const loggerMiddleware = createLogger({
+    collapsed: true
+  });
+  middlewares.push(loggerMiddleware);
 }
+
+const store = createStore(
+  storeReducers,
+  applyMiddleware(...middlewares, thunk)
+);
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+// simple dispatch to see if reducer is ok
+
+store.dispatch({
+  type: 'ADD_USER',
+  user: [
+    {
+      name: 'foo'
+    }
+  ]
+});
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+export { store, history };

@@ -2,10 +2,14 @@
 // Dependencies
 // ------------------------------------------------------------------
 
-const {resolve} = require('path');
+const { resolve } = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const {pluginsDev, hotLoader, sassLoaderDev} = require('./webpack.config.dev');
-const {sassLoaderProd} = require('./webpack.config.prod');
+const {
+  pluginsDev,
+  hotLoader,
+  sassLoaderDev
+} = require('./webpack.config.dev');
+const { sassLoaderProd } = require('./webpack.config.prod');
 
 // ------------------------------------------------------------------ Configs
 // ------------------------------------------------------------------
@@ -29,7 +33,7 @@ const plugins = () => {
 // ------------------------------------------------------------------
 
 const entries = () => {
-  let entries = ['babel-polyfill', 'whatwg-fetch'];
+  let entries = [ 'babel-polyfill', 'whatwg-fetch' ];
 
   if (process.env.NODE_ENV != 'production') {
     entries.push(hotLoader);
@@ -42,9 +46,7 @@ const entries = () => {
 // ------------------------------------------------------------------
 
 const sassLoader = () => {
-  return process.env.NODE_ENV == 'production'
-    ? sassLoaderProd
-    : sassLoaderDev;
+  return process.env.NODE_ENV == 'production' ? sassLoaderProd : sassLoaderDev;
 };
 
 // ------------------------------------------------------------------
@@ -57,9 +59,10 @@ let config = {
     publicPath: '/'
   },
   context: resolve(__dirname, 'source'),
-  devtool: process.env.NODE_ENV == 'production'
-    ? 'source-map'
-    : 'cheap-module-source-map',
+  devtool:
+    process.env.NODE_ENV == 'production'
+      ? 'source-map'
+      : 'cheap-module-source-map',
   stats: 'errors-only',
   devServer: {
     hot: true,
@@ -76,21 +79,26 @@ let config = {
     rules: [
       {
         test: /\.jsx?$/,
-        use: ['babel-loader'],
+        use: [ 'babel-loader' ],
         exclude: /node_modules/
-      }, {
+      },
+      {
         test: /\.scss$/,
         use: sassLoader()
-      }, {
+      },
+      {
         test: /\.(png|jpe?g|gif|ico)$/,
         use: 'file-loader?name=[path][name].[ext]'
-      }, {
+      },
+      {
         test: /\.(svg)$/i,
         use: 'svg-inline-loader'
-      }, {
+      },
+      {
         test: /\.(mp4|mov|webm|pdf|zip)$/,
         use: 'file-loader?name=[path][name].[ext]'
-      }, {
+      },
+      {
         test: /\.(ttf|eot|otf|woff(2)?)(\w+)?$/,
         use: 'file-loader?name=[path][name].[ext]'
       }
