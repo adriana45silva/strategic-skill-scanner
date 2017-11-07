@@ -18,7 +18,7 @@ class UserList extends React.Component {
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
   static propTypes = {
-    user: PropTypes.string
+    user: PropTypes.array
   };
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

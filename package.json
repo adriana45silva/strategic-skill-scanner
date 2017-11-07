@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "NODE_ENV=development webpack-dev-server --config=webpack.config.js",
     "build": "NODE_ENV=production webpack",
+    "build-sh": "./build.sh",
     "lint-staged": "lint-staged"
   },
   "lint-staged": {
@@ -56,6 +57,7 @@
     "lint-staged": "^4.2.3",
     "node-sass": "^4.5.3",
     "normalize.css": "^7.0.0",
+    "picturefill": "^3.0.2",
     "postcss-pxtorem": "^4.0.1",
     "pre-commit": "^1.2.2",
     "prettier": "^1.7.0",

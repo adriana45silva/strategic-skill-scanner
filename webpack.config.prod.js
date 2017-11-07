@@ -2,6 +2,7 @@
 // Default Dependencies
 // ------------------------------------------------------------------
 
+const webpack = require('webpack');
 let ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 // ------------------------------------------------------------------
