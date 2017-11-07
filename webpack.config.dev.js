@@ -4,7 +4,7 @@
 
 const webpack = require('webpack');
 const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
-
+const { resolve } = require('path');
 // ------------------------------------------------------------------
 
 exports = pluginsDev = () => {
