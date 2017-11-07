@@ -12,7 +12,7 @@ This boilerplate runs with the following versions:
 - Babel presets: `react`, `env`, `stage-3`
 
 
-This boilerplate also has eslint and styletint configuration included!
+This boilerplate also has eslint and styletint configuration included! It runs on precommit and in the editor (vscode).
  
 ### Instructions
 
