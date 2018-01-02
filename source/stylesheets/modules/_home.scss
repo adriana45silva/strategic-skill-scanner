@@ -1,0 +1,52 @@
+.ss {
+  &__main {
+    text-align: center;
+
+    &-steps {
+      text-align: left;
+    }
+
+    &-btn {
+      margin-top: 10px;
+    }
+  }
+
+  &__tabs {
+    padding: 0;
+    margin-top: 30px;
+
+
+    .nav-tabs{
+      display: flex;
+      flex-direction: column;
+      border-bottom: 0;
+    }
+  }
+
+  &__skills{
+    margin: 40px 0;
+
+    ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      text-align: left;
+      padding: 0;
+    }
+
+    &__lvl{
+      display: flex;
+      align-items: baseline;
+
+      p {
+        margin-right: 10px;
+        flex: 1 1 50%;
+      }
+
+      input {
+        flex: 1 1 40%;
+        border: 1px solid black;
+      }
+    }
+  }
+}

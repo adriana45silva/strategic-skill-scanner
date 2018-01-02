@@ -1,6 +1,5 @@
 {
   "stylelint.enable": true,
-  "editor.formatOnSave": true,
   "javascript.format.enable": true,
   "workbench.editor.enablePreview": false,
   "editor.tabSize": 2,
@@ -12,8 +11,11 @@
     "**/.DS_Store": true,
     "node_modules": true
   },
-  "scss.validate": true,
+  "scss.validate": false,
+  "css.validate": false,
   "eslint.autoFixOnSave": true,
   "eslint.run": "onSave",
-  "prettier.singleQuote": true
+  "prettier.singleQuote": true,
+  "prettier.tabWidth": 2,
+  "prettier.eslintIntegration": true
 }
