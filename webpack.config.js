@@ -46,7 +46,9 @@ const entries = () => {
 // ------------------------------------------------------------------
 
 const sassLoader = () => {
-  return process.env.NODE_ENV == 'production' ? sassLoaderProd : sassLoaderDev;
+  return process.env.NODE_ENV == 'production'
+    ? sassLoaderProd()
+    : sassLoaderDev();
 };
 
 // ------------------------------------------------------------------

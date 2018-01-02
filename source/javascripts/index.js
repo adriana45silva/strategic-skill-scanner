@@ -13,6 +13,8 @@ import UserList from 'javascripts/components/userList.jsx';
 import App from './components/base';
 import { Route } from 'react-router';
 
+import 'stylesheets/app';
+
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 const render = Component => {
