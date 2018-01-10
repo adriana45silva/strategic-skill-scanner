@@ -56,7 +56,7 @@ export const INITIAL_STATE = {
     projectManagement: undefined,
     peopleManagement: undefined
   },
-  skillValues: null
+  skillValues: []
 }
 
 

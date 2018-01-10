@@ -35,6 +35,7 @@ class SkillLevel extends Component {
   clearFields(){
     this.props.dispatch(skillActions.clearSkills());
     this.setState({ skillLvl: initialState });
+    
   }
 
   handleChange(event) {

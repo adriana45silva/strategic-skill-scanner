@@ -5,6 +5,7 @@
 import React, { Component } from 'react';
 import Tabs from 'javascripts/components/tabs';
 import SkillLevel from 'javascripts/components/skill-level';
+import ChartContainer from 'javascripts/components/chart-container';
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -49,6 +50,7 @@ export default class Layout extends Component {
 
         <Tabs/>
         <SkillLevel/>
+        <ChartContainer/>
       </div>
     );
   }
