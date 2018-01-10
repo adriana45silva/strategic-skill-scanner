@@ -16,16 +16,14 @@ const RouterMiddleware = routerMiddleware(history);
 
 let middlewares = [ RouterMiddleware ];
 
-if (process.env.NODE_ENV == 'development') {
-  const loggerMiddleware = createLogger({
-    collapsed: true
-  });
-  middlewares.push(loggerMiddleware);
-}
+let  loggerMiddleware = createLogger({
+  collapsed: true
+});
+
 
 const store = createStore(
   storeReducers,
-  applyMiddleware(...middlewares, thunk)
+  applyMiddleware(...middlewares, thunk, process.env.NODE_ENV == 'development' ? loggerMiddleware : null)
 );
 
 

@@ -7,8 +7,9 @@ import { SKILLS as skillItems } from 'javascripts/helpers/constants';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { skillActions } from 'javascripts/actions/index';
-import { clearSkills } from '../actions/skills';
+
 import PropTypes from 'prop-types';
+import { INITIAL_STATE as initialState } from 'javascripts/helpers/constants';
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 class SkillLevel extends Component {
@@ -16,18 +17,7 @@ class SkillLevel extends Component {
   componentWillMount(){
     this.setState({
       skillItems,
-      skillLvl: {
-        criativity: undefined,
-        deskResearch: undefined,
-        client: undefined,
-        analysis: undefined,
-        research: undefined,
-        presentation: undefined,
-        strategicThinking: undefined,
-        relationships: undefined,
-        projectManagement: undefined,
-        peopleManagement: undefined
-      }
+      skillLvl: initialState.skillLvl
     })
   }
 
@@ -36,11 +26,15 @@ class SkillLevel extends Component {
   };
 
   componentDidMount() {
-    // this.props.dispatch(skillActions.clearSkills());
   }
 
   dispatchSkills(){
     this.props.dispatch(skillActions.updateSkills(this.state.skillLvl));
+  }
+
+  clearFields(){
+    this.props.dispatch(skillActions.clearSkills());
+    this.setState({ skillLvl: initialState });
   }
 
   handleChange(event) {
@@ -73,7 +67,7 @@ class SkillLevel extends Component {
             Calcular!
           </button>
 
-          <button className="btn btn-primary ss__main-btn" type="button" onClick={() => this.props.dispatch(clearSkills())}>
+          <button className="btn btn-primary ss__main-btn" type="button" onClick={this.clearFields.bind(this)}>
             limpa
           </button>
         </div>

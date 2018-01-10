@@ -43,5 +43,21 @@ export const SKILLS = [
   },
 ];
 
+export const INITIAL_STATE = {
+  skillLvl: {
+    criativity: undefined,
+    deskResearch: undefined,
+    client: undefined,
+    analysis: undefined,
+    research: undefined,
+    presentation: undefined,
+    strategicThinking: undefined,
+    relationships: undefined,
+    projectManagement: undefined,
+    peopleManagement: undefined
+  },
+  skillValues: null
+}
+
 
 

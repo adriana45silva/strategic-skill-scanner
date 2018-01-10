@@ -1,19 +1,4 @@
-// import { SKILLS as initialState } from 'javascripts/helpers/constants';
-
-const initialState = {
-  skillLvl: {
-    criativity: undefined,
-    deskResearch: undefined,
-    client: undefined,
-    analysis: undefined,
-    research: undefined,
-    presentation: undefined,
-    strategicThinking: undefined,
-    relationships: undefined,
-    projectManagement: undefined,
-    peopleManagement: undefined
-  }
-}
+import { INITIAL_STATE as initialState } from 'javascripts/helpers/constants';
 
 function skillsReducer(state = initialState, action) {
   switch (action.type) {
@@ -26,6 +11,11 @@ function skillsReducer(state = initialState, action) {
     case 'CLEAR_SKILLS':
       return {
         ...initialState
+      };
+      case 'SKILLS_VALUE':
+      return {
+        ...initialState,
+        skillValues: Object.values(action.skillsValues)
       };
       break;
     default:
