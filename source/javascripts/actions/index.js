@@ -2,8 +2,8 @@
 // Actions Imports
 // -----------------------------------------------------
 
-import * as userActions from 'javascripts/actions/users';
+import * as skillActions from 'javascripts/actions/skills';
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-export { userActions };
+export { skillActions };

@@ -28,18 +28,6 @@ const store = createStore(
   applyMiddleware(...middlewares, thunk)
 );
 
-// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-// simple dispatch to see if reducer is ok
-
-store.dispatch({
-  type: 'ADD_USER',
-  user: [
-    {
-      name: 'foo'
-    }
-  ]
-});
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 

@@ -9,7 +9,6 @@ import { ConnectedRouter } from 'react-router-redux';
 import { store, history } from 'javascripts/stores/index.js';
 import { AppContainer } from 'react-hot-loader';
 import { BrowserRouter as Router } from 'react-router-dom';
-import UserList from 'javascripts/components/userList.jsx';
 import App from './components/base';
 import { Route } from 'react-router';
 
@@ -25,7 +24,6 @@ const render = Component => {
           <ConnectedRouter history={history}>
             <section>
               <Route exact path="/" component={App} />
-              <Route path="/userlist" component={UserList} />
             </section>
           </ConnectedRouter>
         </Provider>

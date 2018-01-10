@@ -4,14 +4,14 @@
 
 import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
-import userReducer from 'javascripts/reducers/user';
+import skillsReducer from 'javascripts/reducers/skills';
 
 // -----------------------------------------------------
 // Combine reducers for the application
 // -----------------------------------------------------
 
 const reducers = combineReducers({
-  userReducer,
+  skillsReducer,
   routing: routerReducer
 });
 

@@ -3,7 +3,7 @@
 // -----------------------------------------------------
 
 import React, { Component } from 'react';
-
+import { ROLES as tabItems  } from 'javascripts/helpers/constants';
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 export default class Tabs extends Component {
@@ -11,7 +11,7 @@ export default class Tabs extends Component {
   componentWillMount(){
     this.setState({
       currentTab: null,
-      tabItems: [ 'Estagiário(a)', 'Assistente', 'Supervisor(a)', 'Gerente', 'Diretor(a)' ],
+      tabItems
     })
   }
 
