@@ -26,6 +26,7 @@ class SkillLevel extends Component {
   };
 
   componentDidMount() {
+    // console.log(this.state.skillLvl)
   }
 
   dispatchSkills(){
@@ -34,7 +35,7 @@ class SkillLevel extends Component {
 
   clearFields(){
     this.props.dispatch(skillActions.clearSkills());
-    this.setState({ skillLvl: initialState });
+    this.setState({ ...this.state, skillLvl: initialState.skillLvl });
     
   }
 
