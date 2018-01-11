@@ -70,7 +70,7 @@ class SkillLevel extends Component {
           </button>
 
           <button className="btn btn-primary ss__main-btn" type="button" onClick={this.clearFields.bind(this)}>
-            limpa
+            Limpar campos
           </button>
         </div>
       </div>

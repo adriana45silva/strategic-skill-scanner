@@ -4,9 +4,12 @@
 
 import React, { Component } from 'react';
 import { ROLES as tabItems  } from 'javascripts/helpers/constants';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { skillActions } from 'javascripts/actions/index';
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-export default class Tabs extends Component {
+class Tabs extends Component {
 
   componentWillMount(){
     this.setState({
@@ -15,6 +18,10 @@ export default class Tabs extends Component {
     })
   }
 
+  static propTypes = {
+    dispatch: PropTypes.func
+  };
+
   componentDidMount() {
   }
 
@@ -22,7 +29,7 @@ export default class Tabs extends Component {
     return this.state.tabItems.map((value, index) => {
       return (
         <li className="nav-item" key={index} onClick={this.selectTab.bind(this, index)}>
-          <a className={`nav-link ${this.state.currentTab == index ? 'active' : ''}`} href="#">{value}</a>
+          <a className={`nav-link ${this.state.currentTab == index ? 'active' : ''}`} href="#">{value.label}</a>
         </li>
       )
     })
@@ -33,6 +40,8 @@ export default class Tabs extends Component {
       ...this.state,
       currentTab: tabId
     })
+
+    this.props.dispatch(skillActions.updateTabs(tabId));
   }
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -50,3 +59,17 @@ export default class Tabs extends Component {
     );
   }
 }
+
+const mapStateToProps = store => {
+  return {
+    skillsReducer: store.skillsReducer
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  const boundActionCreators = bindActionCreators(skillActions, dispatch);
+  const allActionProps = { ...boundActionCreators, dispatch };
+  return allActionProps;
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Tabs);

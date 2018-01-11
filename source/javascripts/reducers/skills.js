@@ -20,6 +20,12 @@ function skillsReducer(state = initialState, action) {
         skillValues: Object.values(action.skillsValues)
       };
       break;
+      case 'UPDATE_TAB':
+      return {
+        ...state,
+        currentTab: action.tab
+      };
+      break;
     
     default:
       return state;

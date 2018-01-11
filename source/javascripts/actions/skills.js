@@ -33,3 +33,12 @@ export function skillsValue(skillsValues) {
     skillsValues
   };
 }
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+export function updateTabs(tab){
+  return {
+    type: 'UPDATE_TAB',
+    tab
+  }
+}

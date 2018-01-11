@@ -1,5 +1,32 @@
  
-export const ROLES = [ 'Estagiário(a)', 'Assistente', 'Supervisor(a)', 'Gerente', 'Diretor(a)' ];
+export const ROLES = [
+   {
+     role: 'intern',
+     label: 'Estagiário(a)',
+     data: [ 5, 10, 5, 10, 10, 1, 1, 1, 1, 1 ]
+   },
+   {
+     role: 'assistent',
+     label: 'Assistente',
+     data: [ 5, 10, 5, 10, 10, 5, 5, 5, 5, 1 ]
+   },
+   {
+    role: 'supervisor',
+    label: 'Supervisor(a)',
+    data: [ 10, 5, 5, 5, 10, 5, 10, 5, 5, 5 ]
+  },
+  {
+    role: 'manager',
+    label: 'Gerente',
+    data: [ 10, 1, 5, 1, 5, 10, 10, 5, 5, 5 ]
+  },
+  {
+    role: 'director',
+    label: 'Diretor(a)',
+    data: [ 5, 1, 10, 1, 1, 5, 5, 10, 10, 10 ]
+  }
+  ];
+
 export const SKILLS = [
   {
     skill: 'criativity',
@@ -56,7 +83,8 @@ export const INITIAL_STATE = {
     projectManagement: undefined,
     peopleManagement: undefined
   },
-  skillValues: []
+  skillValues: [],
+  currentTab: null
 }
 
 
