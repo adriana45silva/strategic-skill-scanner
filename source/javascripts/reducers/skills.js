@@ -5,22 +5,53 @@ function skillsReducer(state = initialState, action) {
     case 'UPDATE_SKILLS':
       return {
         ...state,
-        skillLvl: action.skills
+        skillLvl:
+          { ...state.skillLvl, ...action.skills }
       };
       break;
-    case 'CLEAR_SKILLS':
+      case 'CLEAR_SKILLS':
       return {
-        ...initialState
-      };
+        initialState
+      }
+      break;
       case 'SKILLS_VALUE':
       return {
-        ...initialState,
+        ...state,
         skillValues: Object.values(action.skillsValues)
       };
       break;
+    
     default:
       return state;
+    break;
   }
 }
 
 export default skillsReducer;
+
+
+// import { INITIAL_STATE as initialState } from 'javascripts/helpers/constants';
+
+// function skillsReducer(state = initialState, action) {
+//   switch (action.type) {
+//     case 'UPDATE_SKILLS':
+//       return {
+//         ...state,
+//         ...action.skills
+//       };
+//       break;
+//     case 'CLEAR_SKILLS':
+//       return { ...state, ...initialState }
+      
+//       case 'SKILLS_VALUE':
+//       return {
+//         ...state,
+//         skillValues: Object.values(action.skills)
+//       };
+//       break;
+//     default:
+//       return state;
+//   }
+// }
+
+// export default skillsReducer;
