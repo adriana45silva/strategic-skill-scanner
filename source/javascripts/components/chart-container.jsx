@@ -7,6 +7,7 @@ import Chart from 'chart.js';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { SKILLS as skillItems } from 'javascripts/helpers/constants';
+import { ROLES as tabItems  } from 'javascripts/helpers/constants';
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 class ChartContainer extends Component {
@@ -15,33 +16,51 @@ class ChartContainer extends Component {
     this.chart;
   }
 
-  componentWillReceiveProps(nextProps) {
-    // console.log(nextProps.)
+  static propTypes = {
+    skillsValues: PropTypes.array,
+    skills: PropTypes.object
+  };
 
-    if (nextProps.skillsValues){
+  componentWillReceiveProps(nextProps) {
+    
+    if (nextProps.skills.skillsValues){
       this.mountChart(nextProps)
     } else {
       this.chart ? this.chart.destroy() : null
     }
 
+    console.log(this.checkSelectedRole().label)
+
+  }
+  
+
+  componentDidMount(){
     
   }
 
-  static propTypes = {
-    skillsValues: PropTypes.array
-  };
-  
+  checkSelectedRole(){
+    let data, label;
+    return tabItems.filter((value, index) => {
+      if (index == this.props.skills.currentTab){
+        data = value.data;
+        label = value.label;
+        console.log(data, label)
+        return { data, label }
+      }
+    });
+  }
 
   mountChart(props){
+    console.log(this.checkSelectedRole())
     let arr = []
 
     skillItems.forEach(element => {
       arr.push(element.label);
     });
 
-      let options = {
-        percentageInnerCutout: 70
-      };
+    let options = {
+      percentageInnerCutout: 70
+    };
 
     let ctx = document.getElementById('chart').getContext('2d');
 
@@ -59,11 +78,12 @@ class ChartContainer extends Component {
           pointHoverBackgroundColor: 'rgba(33,150,243, 1)'
         },
         {
+          label: 'aaa',
           pointBackgroundColor: 'rgba(230,142,128, 1)',
           borderColor: 'rgba(230,142,128, 1)',
           label: 'bbbb',
           backgroundColor: 'rgba(230,142,128, 0.5)',
-          data : [ 2, 4, 4, 9, 6, 7, 10 ]
+          data : [ 5, 10, 5, 10, 10, 1, 1, 1, 1, 1 ]
         }
       ]
     }
@@ -90,7 +110,7 @@ class ChartContainer extends Component {
 
 const mapStateToProps = store => {
   return {
-    skillsValues: store.skillsReducer.skillValues
+    skills: store.skillsReducer
   };
 };
 

@@ -7,6 +7,7 @@ import { ROLES as tabItems  } from 'javascripts/helpers/constants';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { skillActions } from 'javascripts/actions/index';
+import PropTypes from 'prop-types';
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 class Tabs extends Component {
@@ -29,7 +30,7 @@ class Tabs extends Component {
     return this.state.tabItems.map((value, index) => {
       return (
         <li className="nav-item" key={index} onClick={this.selectTab.bind(this, index)}>
-          <a className={`nav-link ${this.state.currentTab == index ? 'active' : ''}`} href="#">{value.label}</a>
+          <a className={`nav-link ${this.state.currentTab == index ? 'active' : ''}`} >{value.label}</a>
         </li>
       )
     })
