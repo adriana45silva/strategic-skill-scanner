@@ -51,6 +51,35 @@
       }
     }
   }
+
+  &__chart {
+    max-width: 1000px;
+
+    &__container {
+      display: flex;
+      flex-direction: column;
+    }
+
+    &__item {
+      margin-top: 40px;
+      flex: 1 1 50%;
+      max-width: 50%;
+    }
+
+
+
+    @media screen and (min-width: 1024px){
+      &__container {
+        flex-direction: row;
+      }
+
+      &__item {
+        margin-top: 0;
+      }
+    }
+
+
+  }
 }
 
 .d-none {
@@ -58,11 +87,18 @@
 }
 
 @media print {
-  .ss__main__container {
+  .ss__main__container, .btn-print {
     display: none;
   }
 
-  #chart {
+  .user {
+    width: 100%;
+    max-width: 100%;
+
+    canvas {
+      margin: 0 auto;
+    }
+    
     padding: 0;
     margin: auto;
     display: block;
@@ -70,6 +106,26 @@
     width: 800px;
     height: 800px;
     top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+
+  .role {
+    width: 100%;
+    max-width: 100%;
+    
+    canvas {
+      margin: 0 auto;
+    }
+
+    padding: 0;
+    margin: 100px auto 0;
+    display: block;
+    position: absolute;
+    width: 800px;
+    height: 800px;
+    top: 100%;
     bottom: 0;
     left: 0;
     right: 0;

@@ -104,10 +104,6 @@ class SkillLevel extends Component {
           <button className="btn btn-primary ss__main-btn" type="button" onClick={this.dispatchSkills.bind(this)}>
             Calcular!
           </button>
-
-          <button className="btn btn-primary ss__main-btn" type="button" onClick={this.clearFields.bind(this)}>
-            Limpar campos
-          </button>
         </div>
       </div>
     );

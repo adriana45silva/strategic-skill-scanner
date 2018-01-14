@@ -129,23 +129,21 @@ class ChartContainer extends Component {
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
   render() {
-    console.log(this.state.roleSelected.label)
-    console.log(this.props.skills.skillValues )
     return (
-      <div className={`${this.props.skills.skillValues && this.state.roleSelected.label && this.props.skills.skillValues.length ? 'container-fluid ss__tabs' : 'container-fluid ss__tabs d-none'} `}>
-        <div>
-          <div>
+      <div className={`${this.props.skills.skillValues && this.state.roleSelected.label && this.props.skills.skillValues.length ? 'container-fluid ss__tabs ss__chart' : 'container-fluid ss__tabs ss__chart d-none'} `}>
+        <div className="ss__chart__container">
+          <div className="ss__chart__item user">
             <h2>Você</h2>
             <canvas id="userChart" width="500" height="500">
             </canvas>
           </div>
-          <div>
+          <div className="ss__chart__item role">
             <h2> { this.state.roleSelected.label } </h2>
             <canvas id="roleChart" width="500" height="500">
             </canvas>
           </div>
         </div>
-        <button className="btn btn-primary ss__main-btn" type="button" >
+        <button className="btn btn-primary ss__main-btn btn-print" type="button" onClick={() => window.print()} >
           Imprimir gráfico
         </button>
       </div>
