@@ -13,7 +13,12 @@ import { ROLES as tabItems  } from 'javascripts/helpers/constants';
 class ChartContainer extends Component {
 
   componentWillMount(){
-    this.chart;
+    this.userChart;
+    this.roleChart;
+
+    this.setState({
+      roleSelected: ''
+    })
   }
 
   static propTypes = {
@@ -22,15 +27,11 @@ class ChartContainer extends Component {
   };
 
   componentWillReceiveProps(nextProps) {
-    
-    if (nextProps.skills.skillsValues){
+    if (nextProps.skills.skillValues){
       this.mountChart(nextProps)
     } else {
       this.chart ? this.chart.destroy() : null
     }
-
-    console.log(this.checkSelectedRole().label)
-
   }
   
 
@@ -38,20 +39,16 @@ class ChartContainer extends Component {
     
   }
 
-  checkSelectedRole(){
-    let data, label;
-    return tabItems.filter((value, index) => {
-      if (index == this.props.skills.currentTab){
-        data = value.data;
-        label = value.label;
-        console.log(data, label)
-        return { data, label }
+  checkSelectedRole(props){
+    return tabItems.filter((value, index, arr) => {
+      if (index == props.skills.currentTab){
+        this.setState({ roleSelected: value })
+        return value
       }
     });
   }
 
   mountChart(props){
-    console.log(this.checkSelectedRole())
     let arr = []
 
     skillItems.forEach(element => {
@@ -62,47 +59,95 @@ class ChartContainer extends Component {
       percentageInnerCutout: 70
     };
 
-    let ctx = document.getElementById('chart').getContext('2d');
+    let ctxUser = document.getElementById('userChart').getContext('2d');
+    let ctxRole = document.getElementById('roleChart').getContext('2d');
+    let currentTab = this.checkSelectedRole(props);
 
-    let radarData = {
-      labels : arr,
-      datasets : [
+    let foo = props.skills.skillValues
+
+
+    let userData = {
+      labels: arr,
+      datasets: [
         {
-          label: 'Você',
-          pointBackgroundColor: 'rgba(33,150,243, 1)',
-          backgroundColor: 'rgba(33,150,243, 0.5)',
-          fill: true,
-          data : props.skillsValues || this.props.skillsValues,
-          borderWidth: 2,
-          borderColor: 'rgba(33,150,243, 1)',
-          pointHoverBackgroundColor: 'rgba(33,150,243, 1)'
-        },
-        {
-          label: 'aaa',
-          pointBackgroundColor: 'rgba(230,142,128, 1)',
-          borderColor: 'rgba(230,142,128, 1)',
-          label: 'bbbb',
-          backgroundColor: 'rgba(230,142,128, 0.5)',
-          data : [ 5, 10, 5, 10, 10, 1, 1, 1, 1, 1 ]
+          backgroundColor: [
+            'rgba(219, 62, 51, 0.5)',
+            'rgba(209, 32, 89, 0.5)',
+            'rgba(140, 34, 158, 0.5)',
+            'rgba(58, 73, 163, 0.5)',
+            'rgba(30, 169, 190, 0.5)',
+            'rgba(20, 134, 122, 0.5)',
+            'rgba(125, 175, 68, 0.5)',
+            'rgba(184, 197, 53, 0.5)',
+            'rgba(228, 173, 43, 0.5)',
+            'rgba(106, 72, 62, 0.5)'
+          ],
+          data: foo
         }
       ]
     }
 
-    this.chart = new Chart(ctx, {
-      type: 'radar',
-      data: radarData,
-      options
-    });
-  }
+    let roleData = {
+      labels: arr,
+      datasets: [
+        {
+          backgroundColor: [
+            'rgba(219, 62, 51, 0.5)',
+            'rgba(209, 32, 89, 0.5)',
+            'rgba(140, 34, 158, 0.5)',
+            'rgba(58, 73, 163, 0.5)',
+            'rgba(30, 169, 190, 0.5)',
+            'rgba(20, 134, 122, 0.5)',
+            'rgba(125, 175, 68, 0.5)',
+            'rgba(184, 197, 53, 0.5)',
+            'rgba(228, 173, 43, 0.5)',
+            'rgba(106, 72, 62, 0.5)'
+          ],
+          data: currentTab[0].data
+        }
+      ]
+    }
+
+    if (props.skills.skillValues && props.skills.skillValues.length && currentTab[0].data){
+      this.userChart = new Chart(ctxUser,
+        {
+          type: 'polarArea',
+          data: userData,
+          options
+        });
+
+        this.roleChart = new Chart(ctxRole,
+          {
+            type: 'pie',
+            data: roleData,
+            options
+          });
+      }
+    }
 
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
   render() {
+    console.log(this.state.roleSelected.label)
+    console.log(this.props.skills.skillValues )
     return (
-      <div className="container-fluid ss__tabs">
-        <canvas id="chart" width="500" height="500">
-        </canvas>
+      <div className={`${this.props.skills.skillValues && this.state.roleSelected.label && this.props.skills.skillValues.length ? 'container-fluid ss__tabs' : 'container-fluid ss__tabs d-none'} `}>
+        <div>
+          <div>
+            <h2>Você</h2>
+            <canvas id="userChart" width="500" height="500">
+            </canvas>
+          </div>
+          <div>
+            <h2> { this.state.roleSelected.label } </h2>
+            <canvas id="roleChart" width="500" height="500">
+            </canvas>
+          </div>
+        </div>
+        <button className="btn btn-primary ss__main-btn" type="button" >
+          Imprimir gráfico
+        </button>
       </div>
     );
   }
