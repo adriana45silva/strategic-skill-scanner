@@ -45,14 +45,10 @@ class SkillLevel extends Component {
           min: 0,
           max: 10,
         });
-      // debugger
-      // console.log(arrInstances[i][`input${i}`])
-      // arrInstances[i][`input${i}`].destroy()
       if (!apply){
         arrInstances[i][`input${i}`]._value = ''
         arrInstances[i][`input${i}`]._unmaskedValue = ''
         arrInstances[i][`input${i}`].destroy()
-        arrInstances[i][`input${i}`]._onDrop()
         // arrInstances[i][`input${i}`]._value
       }
       console.log(arrInstances[i][`input${i}`])
