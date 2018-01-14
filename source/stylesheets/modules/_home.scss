@@ -2,10 +2,24 @@
   &__main {
     text-align: center;
 
+    @media screen and (min-width: 1024px){
+      max-width: 80%;
+      margin: 0 auto;
+    }
+
     &-steps {
       text-align: left;
       display: flex;
       justify-content: center;
+
+      @media screen and (min-width: 1024px){
+        margin: 0 auto;
+        width: 50%;
+
+        ol {
+          width: 100%;
+        }
+      }
     }
 
     &-btn {
@@ -18,10 +32,17 @@
     margin-top: 30px;
 
 
-    .nav-tabs{
+    .nav-pills{
       display: flex;
       flex-direction: column;
       border-bottom: 0;
+
+      @media screen and (min-width: 1024px){
+        flex-direction: row;
+        justify-content: center;
+        width: 100%;
+        padding: 0;
+      }
     }
   }
 
@@ -34,6 +55,11 @@
       flex-direction: column;
       text-align: left;
       padding: 0;
+
+      @media screen and (min-width: 1024px){
+        width: 50%;
+        margin: 0 auto;
+      }
     }
 
     &__lvl{
@@ -98,7 +124,7 @@
     canvas {
       margin: 0 auto;
     }
-    
+
     padding: 0;
     margin: auto;
     display: block;

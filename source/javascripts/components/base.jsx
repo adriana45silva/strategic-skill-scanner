@@ -40,14 +40,11 @@ export default class Layout extends Component {
 
           <div className="ss__main-steps">
             <ol>
-              <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
-              <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
-              <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+              <li>Escolha o nível hierárquico a ser comparado</li>
+              <li>Preencha os campos conforme sua qualificação nas habilidades</li>
+              <li>Caso quiser, imprima os gráficos :) </li>
             </ol>
           </div>
-          <button className="btn btn-primary ss__main-btn" type="button">
-            Começar!
-          </button>
 
           <Tabs/>
           <SkillLevel/>

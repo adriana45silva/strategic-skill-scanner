@@ -29,8 +29,8 @@ class Tabs extends Component {
   displayTabs() {
     return this.state.tabItems.map((value, index) => {
       return (
-        <li className="nav-item" key={index} onClick={this.selectTab.bind(this, index)}>
-          <a className={`nav-link ${this.state.currentTab == index ? 'active' : ''}`} >{value.label}</a>
+        <li className={`${this.state.currentTab == index ? 'nav-item active' : 'nav-item'}`} key={index} onClick={this.selectTab.bind(this, index)}>
+          <a className={`nav-link`} >{value.label}</a>
         </li>
       )
     })
@@ -50,7 +50,7 @@ class Tabs extends Component {
   render() {
     return (
       <div className="container-fluid ss__tabs">
-        <ul className="nav nav-tabs">
+        <ul className="nav nav-pills">
           {this.displayTabs()}
         </ul>
         <section>
