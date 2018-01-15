@@ -6,7 +6,6 @@ import React, { Component } from 'react';
 import Tabs from 'javascripts/components/tabs';
 import SkillLevel from 'javascripts/components/skill-level';
 import ChartContainer from 'javascripts/components/chart-container';
-import Modal from 'javascripts/components/lightbox';
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -42,8 +41,8 @@ export default class Layout extends Component {
           <div className="ss__main-steps">
             <ol>
               <li>Escolha o nível hierárquico a ser comparado</li>
-              <li>Preencha os campos conforme sua qualificação nas habilidades, com notas de 0 a 10</li>
-              <li>Caso quiser, imprima os gráficos :) </li>
+              <li>Preencha os campos dando notas de 0 a 10 para suas habilidades</li>
+              <li>Caso quiser, imprima os gráficos 😉 </li>
             </ol>
           </div>
 
@@ -51,7 +50,10 @@ export default class Layout extends Component {
           <SkillLevel/>
         </div>
         <ChartContainer/>
-        <Modal/>
+
+        <footer className="ss__footer">
+          <h5>Feito com ❤️  por <a href="https://www.linkedin.com/in/adriana45silva/">Adriana Silva</a> -  {new Date().getFullYear()}</h5>
+        </footer>
       </div>
     );
   }
