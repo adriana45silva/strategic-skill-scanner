@@ -16,7 +16,7 @@ import 'stylesheets/app';
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-const render = Component => {
+const render = function(Component) {
   ReactDOM.render(
     <AppContainer>
       <Router>

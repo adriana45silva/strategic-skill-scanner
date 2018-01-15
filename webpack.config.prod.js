@@ -4,35 +4,27 @@
 
 const webpack = require('webpack');
 let ExtractTextPlugin = require('extract-text-webpack-plugin');
+const { resolve } = require('path');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 // ------------------------------------------------------------------
 
 exports = pluginsProd = () => {
   return [
-    new webpack.optimize.UglifyJsPlugin({
-      minimize: true,
-      beautify: false,
-      mangle: {
-        screw_ie8: true,
-        keep_fnames: true
-      },
-      compress: {
-        screw_ie8: true
-      },
-      comments: false
-    })
+    new UglifyJsPlugin({
+      uglifyOptions: { ecma: 8 }
+    }),
+    new ExtractTextPlugin('styles_[hash].css')
   ];
 };
 
 // ------------------------------------------------------------------
 
 exports = sassLoaderProd = () => {
-  let sassLoaderProd = ExtractTextPlugin.extract({
+  return  ExtractTextPlugin.extract({
     fallback: 'style-loader',
     use: [
-      {
-        loader: 'css-loader'
-      },
+      { loader: 'css-loader' },
       {
         loader: 'sass-loader',
         options: {
@@ -42,15 +34,15 @@ exports = sassLoaderProd = () => {
           ]
         }
       },
-      {
-        loader: 'postcss-loader'
-      }
+      { loader: 'postcss-loader' }
     ]
   });
 
-  return sassLoaderProd;
+  // return sassLoaderProd;
 };
 
 // ------------------------------------------------------------------
 
-return module.exports;
+return (module.exports = {
+  pluginsProd, sassLoaderProd
+});

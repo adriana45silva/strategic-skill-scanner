@@ -9,7 +9,8 @@ const {
   hotLoader,
   sassLoaderDev
 } = require('./webpack.config.dev');
-const { sassLoaderProd } = require('./webpack.config.prod');
+
+const { sassLoaderProd, pluginsProd } = require('./webpack.config.prod');
 
 // ------------------------------------------------------------------ Configs
 // ------------------------------------------------------------------
@@ -46,7 +47,7 @@ const entries = () => {
 // ------------------------------------------------------------------
 
 const sassLoader = () => {
-  return process.env.NODE_ENV == 'production'
+  return process.env.NODE_ENV === 'production'
     ? sassLoaderProd()
     : sassLoaderDev();
 };
@@ -62,10 +63,10 @@ let config = {
   },
   context: resolve(__dirname, 'source'),
   devtool:
-    process.env.NODE_ENV == 'production'
+    process.env.NODE_ENV === 'production'
       ? 'source-map'
       : 'cheap-module-source-map',
-  stats: 'errors-only',
+  stats: 'normal',
   devServer: {
     hot: true,
     host: '0.0.0.0',
@@ -81,7 +82,7 @@ let config = {
     rules: [
       {
         test: /\.jsx?$/,
-        use: [ 'babel-loader' ],
+        use: 'babel-loader',
         exclude: /node_modules/
       },
       {
