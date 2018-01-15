@@ -51,7 +51,10 @@ class SkillLevel extends Component {
   }
 
   dispatchSkills(){
-    this.props.dispatch(skillActions.updateSkills(this.state.skillLvl));
+    if (Object.values(this.state.skillLvl).indexOf(undefined) == -1){
+      this.props.dispatch(skillActions.updateSkills(this.state.skillLvl));
+    }
+    this.props.dispatch(skillActions.renderAlert());
   }
 
   clearFields(){

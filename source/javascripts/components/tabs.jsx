@@ -54,9 +54,6 @@ class Tabs extends Component {
         <ul className="nav nav-pills">
           {this.displayTabs()}
         </ul>
-        <section>
-          {this.state.currentTab == 1 ? 'alo alo': 'tchau tchau'}
-        </section>
       </div>
     );
   }

@@ -100,9 +100,7 @@ class ChartContainer extends Component {
       ]
     }
 
-    // debugger
-
-    if (props.skills.skillValues && props.skills.skillValues.length && currentTab.data){
+    if (props.skills.skillValues && props.skills.skillValues.length > 0 && props.skills.skillValues.indexOf(undefined) == -1 && currentTab.data){
       this.userChart = new Chart(ctxUser,
         {
           type: 'polarArea',
@@ -124,7 +122,7 @@ class ChartContainer extends Component {
 
   render() {
     return (
-      <div className={`${this.props.skills.skillValues && this.props.skills.currentTabLabel && this.props.skills.skillValues.length ? 'container-fluid ss__tabs ss__chart' : 'container-fluid ss__tabs ss__chart d-none'} `}>
+      <div className={`${this.props.skills.skillValues.length && this.props.skills.currentTabLabel && this.props.skills.skillValues.indexOf(undefined) == -1 ? 'container-fluid ss__tabs ss__chart' : 'container-fluid ss__tabs ss__chart d-none'} `}>
         <div className="ss__chart__container">
           <div className="ss__chart__item user">
             <h2>Você</h2>

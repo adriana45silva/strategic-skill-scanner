@@ -6,6 +6,7 @@ import React, { Component } from 'react';
 import Tabs from 'javascripts/components/tabs';
 import SkillLevel from 'javascripts/components/skill-level';
 import ChartContainer from 'javascripts/components/chart-container';
+import Modal from 'javascripts/components/lightbox';
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -50,6 +51,7 @@ export default class Layout extends Component {
           <SkillLevel/>
         </div>
         <ChartContainer/>
+        <Modal/>
       </div>
     );
   }

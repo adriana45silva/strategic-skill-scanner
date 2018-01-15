@@ -2,7 +2,6 @@ const UPDATE_SKILLS = 'UPDATE_SKILLS';
 const CLEAR_SKILLS = 'CLEAR_SKILLS';
 const SKILLS_VALUE = 'SKILLS_VALUE';
 import { ROLES as tabItems  } from 'javascripts/helpers/constants';
-
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 export function updateSkills(skills) {
@@ -56,5 +55,26 @@ export function checkSelectedRole(){
         })
       }
     });
+  }
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+
+export function renderAlert(){
+  return (dispatch, getState) => {
+    if (getState().skillsReducer.currentTab == null && !getState().skillsReducer.skillValues.length){
+      alert('Você precisa selecionar um nível hierárquico e preencher os campos.');
+    } else if (getState().skillsReducer.currentTab == null && (getState().skillsReducer.skillValues.length && getState().skillsReducer.skillValues.indexOf(undefined) == -1)){
+      alert('Você precisa selecionar um nível hierárquico.');
+    } else if (getState().skillsReducer.currentTab != null && (!getState().skillsReducer.skillValues.length || getState().skillsReducer.skillValues.indexOf(undefined) != -1)  ) {
+      alert('Você precisa preencher todos os campos.');
+    } else {
+      return
+    }
+
+    dispatch({
+      type: 'RENDER_ALERT',
+    })
   }
 }
