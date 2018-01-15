@@ -29,6 +29,8 @@
   "dependencies": {
     "babel-polyfill": "^6.26.0",
     "bootstrap": "^3.3.7",
+    "ejs": "^2.5.7",
+    "helmet": "^3.9.0",
     "path": "^0.12.7",
     "webpack-dev-server": "^2.7.1",
     "whatwg-fetch": "^2.0.3"
@@ -47,6 +49,7 @@
     "bowser": "^1.7.3",
     "chart.js": "^2.7.1",
     "classnames": "^2.2.5",
+    "clean-webpack-plugin": "^0.1.17",
     "css-loader": "^0.28.7",
     "eslint": "^4.7.2",
     "eslint-config-google": "^0.9.1",

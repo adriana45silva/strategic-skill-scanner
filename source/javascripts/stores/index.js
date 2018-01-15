@@ -4,7 +4,7 @@
 
 import { createStore, applyMiddleware } from 'redux';
 import { createLogger } from 'redux-logger';
-import thunk from 'redux-thunk';
+import thunkMiddleware from 'redux-thunk';
 import { routerMiddleware } from 'react-router-redux';
 import createHistory from 'history/createBrowserHistory';
 import storeReducers from 'javascripts/reducers/index';
@@ -20,11 +20,21 @@ let  loggerMiddleware = createLogger({
   collapsed: true
 });
 
+let store;
 
-const store = createStore(
-  storeReducers,
-  applyMiddleware(...middlewares, thunk, process.env.NODE_ENV == 'development' ? loggerMiddleware : null)
-);
+if (process.env.NODE_ENV == 'development'){
+  store = createStore(
+    storeReducers,
+    applyMiddleware(...middlewares, thunkMiddleware, loggerMiddleware)
+  );
+} else {
+  store = createStore(
+    storeReducers,
+    applyMiddleware(...middlewares, thunkMiddleware)
+  );
+}
+
+
 
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

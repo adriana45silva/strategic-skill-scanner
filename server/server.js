@@ -12,7 +12,6 @@ const bodyParser = require('body-parser');
 // ---------------------------------------------------
 
 const appRoutes = require('./routes/app');
-const apiRoutes = require('./routes/api');
 
 // ---------------------------------------------------
 // Constants
@@ -30,7 +29,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 app.use('/', appRoutes);
-app.use('/api', apiRoutes);
 
 // ---------------------------------------------------
 // Define template engine

@@ -6,15 +6,18 @@ const webpack = require('webpack');
 let ExtractTextPlugin = require('extract-text-webpack-plugin');
 const { resolve } = require('path');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
-
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 // ------------------------------------------------------------------
 
 exports = pluginsProd = () => {
   return [
-    new UglifyJsPlugin({
-      uglifyOptions: { ecma: 8 }
-    }),
-    new ExtractTextPlugin('styles_[hash].css')
+    new ExtractTextPlugin('styles_[hash].css'),
+    new CleanWebpackPlugin(resolve(__dirname, 'dist')),
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: JSON.stringify('production')
+      }
+    })
   ];
 };
 
