@@ -21,6 +21,12 @@ class SkillLevel extends Component {
     })
   }
 
+  constructor(){
+    super();
+    this.arr = [];
+    this.inputs;
+  }
+
   static propTypes = {
     dispatch: PropTypes.func
   };
@@ -29,30 +35,18 @@ class SkillLevel extends Component {
     this.applyMask(true)
   }
 
-  applyMask(apply){
+  applyMask(){
 
-    let inputs = document.querySelectorAll('.skills-input');
+    this.inputs = document.querySelectorAll('.skills-input');
     
-    let arrInstances = [];
-    inputs.forEach((el, i) => {
-      arrInstances.push({
-        [`input${i}`]: null
-      });
-      arrInstances[i][`input${i}`] = new IMask(
-        el,
-        {
+    this.inputs.forEach((el, i) => {
+      this.arr.push({
+        [`input${i}`]: new IMask(el, {
           mask: Number,
           min: 0,
-          max: 10,
-        });
-      if (!apply){
-        arrInstances[i][`input${i}`]._value = ''
-        arrInstances[i][`input${i}`]._unmaskedValue = ''
-        arrInstances[i][`input${i}`].destroy()
-        // arrInstances[i][`input${i}`]._value
-      }
-      console.log(arrInstances[i][`input${i}`])
-      // console.log(arrInstances[i][`input${i}`]._listeners)
+          max: 10
+        })
+      });
     })
   }
 
@@ -64,15 +58,12 @@ class SkillLevel extends Component {
     this.props.dispatch(skillActions.clearSkills());
     this.setState({ ...this.state, skillLvl: initialState.skillLvl });
 
-
-    document.querySelectorAll('.skills-input').forEach(el => {
-      this.applyMask(false)
-      setTimeout(() => {
-        el.value = '';
-        // this.applyMask(true)
-      }, 300);
-    });
-    
+    this.arr.forEach((el, i) => {
+      el[`input${i}`].el.value = '';
+      el[`input${i}`].masked._value = '';
+      el[`input${i}`].masked._unmaskedValue = '';
+      el[`input${i}`].masked.reset();
+    })
   }
 
   handleChange(event) {
@@ -103,6 +94,9 @@ class SkillLevel extends Component {
         <div>
           <button className="btn btn-primary ss__main-btn" type="button" onClick={this.dispatchSkills.bind(this)}>
             Calcular!
+          </button>
+          <button className="btn btn-primary ss__main-btn" type="button" onClick={this.clearFields.bind(this)}>
+            Limpar
           </button>
         </div>
       </div>
