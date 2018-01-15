@@ -7,7 +7,6 @@ import Chart from 'chart.js';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { SKILLS as skillItems } from 'javascripts/helpers/constants';
-import { ROLES as tabItems  } from 'javascripts/helpers/constants';
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 class ChartContainer extends Component {
@@ -39,15 +38,6 @@ class ChartContainer extends Component {
     
   }
 
-  checkSelectedRole(props){
-    return tabItems.filter((value, index, arr) => {
-      if (index == props.skills.currentTab){
-        this.setState({ roleSelected: value })
-        return value
-      }
-    });
-  }
-
   mountChart(props){
     let arr = []
 
@@ -59,9 +49,11 @@ class ChartContainer extends Component {
       percentageInnerCutout: 70
     };
 
+    
+
     let ctxUser = document.getElementById('userChart').getContext('2d');
     let ctxRole = document.getElementById('roleChart').getContext('2d');
-    let currentTab = this.checkSelectedRole(props);
+    let currentTab = props.skills.currentTabLabel;
 
     let foo = props.skills.skillValues
 
@@ -103,12 +95,14 @@ class ChartContainer extends Component {
             'rgba(228, 173, 43, 0.5)',
             'rgba(106, 72, 62, 0.5)'
           ],
-          data: currentTab[0].data
+          data: currentTab.data
         }
       ]
     }
 
-    if (props.skills.skillValues && props.skills.skillValues.length && currentTab[0].data){
+    // debugger
+
+    if (props.skills.skillValues && props.skills.skillValues.length && currentTab.data){
       this.userChart = new Chart(ctxUser,
         {
           type: 'polarArea',
@@ -130,7 +124,7 @@ class ChartContainer extends Component {
 
   render() {
     return (
-      <div className={`${this.props.skills.skillValues && this.state.roleSelected.label && this.props.skills.skillValues.length ? 'container-fluid ss__tabs ss__chart' : 'container-fluid ss__tabs ss__chart d-none'} `}>
+      <div className={`${this.props.skills.skillValues && this.props.skills.currentTabLabel && this.props.skills.skillValues.length ? 'container-fluid ss__tabs ss__chart' : 'container-fluid ss__tabs ss__chart d-none'} `}>
         <div className="ss__chart__container">
           <div className="ss__chart__item user">
             <h2>Você</h2>
@@ -138,7 +132,7 @@ class ChartContainer extends Component {
             </canvas>
           </div>
           <div className="ss__chart__item role">
-            <h2> { this.state.roleSelected.label } </h2>
+            <h2> { this.props.skills.currentTabLabel ? this.props.skills.currentTabLabel.label : null } </h2>
             <canvas id="roleChart" width="500" height="500">
             </canvas>
           </div>

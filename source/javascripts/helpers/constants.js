@@ -84,7 +84,8 @@ export const INITIAL_STATE = {
     peopleManagement: undefined
   },
   skillValues: [],
-  currentTab: null
+  currentTab: null,
+  currentTabLabel: null
 }
 
 

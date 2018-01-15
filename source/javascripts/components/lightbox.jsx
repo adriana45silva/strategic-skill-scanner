@@ -10,7 +10,7 @@ import { skillActions } from 'javascripts/actions/index';
 import PropTypes from 'prop-types';
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-class Tabs extends Component {
+class Lightbox extends Component {
 
   componentWillMount(){
     this.setState({
@@ -23,27 +23,28 @@ class Tabs extends Component {
     dispatch: PropTypes.func
   };
 
-  componentDidMount() {
-  }
-
-  displayTabs() {
-    return this.state.tabItems.map((value, index) => {
-      return (
-        <li className={`${this.state.currentTab == index ? 'nav-item active' : 'nav-item'}`} key={index} onClick={this.selectTab.bind(this, index)}>
-          <a className={`nav-link`} >{value.label}</a>
-        </li>
-      )
-    })
-  }
-
-  selectTab(tabId){
-    this.setState({
-      ...this.state,
-      currentTab: tabId
-    })
-
-    this.props.dispatch(skillActions.updateTabs(tabId));
-    this.props.dispatch(skillActions.checkSelectedRole());
+  renderLightbox(props){
+    return (
+      <div className="modal fade">
+        <div className="modal-dialog" role="document">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h5 className="modal-title">Modal title</h5>
+              <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div className="modal-body">
+              <p>Modal body text goes here.</p>
+            </div>
+            <div className="modal-footer">
+              <button type="button" className="btn btn-primary">Save changes</button>
+              <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    )
   }
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -74,4 +75,4 @@ const mapDispatchToProps = dispatch => {
   return allActionProps;
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Tabs);
+export default connect(mapStateToProps, mapDispatchToProps)(Lightbox);

@@ -41,7 +41,7 @@ export default class Layout extends Component {
           <div className="ss__main-steps">
             <ol>
               <li>Escolha o nível hierárquico a ser comparado</li>
-              <li>Preencha os campos conforme sua qualificação nas habilidades</li>
+              <li>Preencha os campos conforme sua qualificação nas habilidades, com notas de 0 a 10</li>
               <li>Caso quiser, imprima os gráficos :) </li>
             </ol>
           </div>

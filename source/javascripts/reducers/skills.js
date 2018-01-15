@@ -26,6 +26,12 @@ function skillsReducer(state = initialState, action) {
         currentTab: action.tab
       };
       break;
+      case 'LABEL_CURRENT_TAB':
+      return {
+        ...state,
+        currentTabLabel: action.currentTabLabel
+      };
+      break;
     
     default:
       return state;
