@@ -46,10 +46,13 @@ class ChartContainer extends Component {
     });
 
     let options = {
-      percentageInnerCutout: 70
+      percentageInnerCutout: 70,
+      events: [ 'mousemove' ]
     };
 
-    
+    let userOptions = {
+      startAngle: 3.6290811688020024
+    }
 
     let ctxUser = document.getElementById('userChart').getContext('2d');
     let ctxRole = document.getElementById('roleChart').getContext('2d');
@@ -105,7 +108,7 @@ class ChartContainer extends Component {
         {
           type: 'polarArea',
           data: userData,
-          options
+          options: Object.assign({}, options, userOptions)
         });
 
         this.roleChart = new Chart(ctxRole,
@@ -115,6 +118,8 @@ class ChartContainer extends Component {
             options
           });
       }
+
+      console.log(this.roleChart)
     }
 
 
@@ -122,7 +127,7 @@ class ChartContainer extends Component {
 
   render() {
     return (
-      <div className={`${this.props.skills.skillValues.length && this.props.skills.currentTabLabel && this.props.skills.skillValues.indexOf(undefined) == -1 ? 'container-fluid ss__tabs ss__chart' : 'container-fluid ss__tabs ss__chart d-none'} `}>
+      <div className={`${this.props.skills.skillValues && this.props.skills.skillValues.length && this.props.skills.currentTabLabel && this.props.skills.skillValues.indexOf(undefined) == -1 ? 'container-fluid ss__tabs ss__chart' : 'container-fluid ss__tabs ss__chart d-none'} `}>
         <div className="ss__chart__container">
           <div className="ss__chart__item user">
             <h2>Você</h2>
