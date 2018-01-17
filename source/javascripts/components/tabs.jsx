@@ -20,7 +20,8 @@ class Tabs extends Component {
   }
 
   static propTypes = {
-    dispatch: PropTypes.func
+    dispatch: PropTypes.func,
+    skillsReducer: PropTypes.object
   };
 
   componentDidMount() {
@@ -29,7 +30,7 @@ class Tabs extends Component {
   displayTabs() {
     return this.state.tabItems.map((value, index) => {
       return (
-        <li className={`${this.state.currentTab == index ? 'nav-item active' : 'nav-item'}`} key={index} onClick={this.selectTab.bind(this, index)}>
+        <li className={`${this.props.skillsReducer.currentTab == index ? 'nav-item active' : 'nav-item'}`} key={index} onClick={this.selectTab.bind(this, index)}>
           <a className={`nav-link`} >{value.label}</a>
         </li>
       )
