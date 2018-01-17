@@ -76,6 +76,9 @@
 .ss__footer {
   margin-top: 60px;
   margin-bottom: 30px; }
+  .ss__footer span {
+    display: inline-block;
+    margin: 0 5px; }
 
 .d-none {
   display: none !important; }
@@ -114,4 +117,4 @@
     .role canvas {
       margin: 0 auto; } }
 
-/*# sourceMappingURL=styles_76885607d228e2267787.css.map*/
+/*# sourceMappingURL=styles_2ba0dacd858b2a15cca9.css.map*/

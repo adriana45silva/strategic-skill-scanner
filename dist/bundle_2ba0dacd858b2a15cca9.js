@@ -4676,7 +4676,6 @@ module.exports.easing = __webpack_require__(733);
 module.exports.canvas = __webpack_require__(734);
 module.exports.options = __webpack_require__(735);
 
-
 /***/ }),
 /* 6 */
 /***/ (function(module, exports) {
@@ -4820,13 +4819,12 @@ var helpers = __webpack_require__(5);
 
 module.exports = {
 	/**
-	 * @private
-	 */
-	_set: function(scope, values) {
+  * @private
+  */
+	_set: function _set(scope, values) {
 		return helpers.merge(this[scope] || (this[scope] = {}), values);
 	}
 };
-
 
 /***/ }),
 /* 11 */
@@ -5681,6 +5679,8 @@ module.exports = { debugTool: debugTool };
 "use strict";
 
 
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
 var color = __webpack_require__(255);
 var helpers = __webpack_require__(5);
 
@@ -5711,9 +5711,9 @@ function interpolate(start, view, model, ease) {
 
 		origin = start[key];
 
-		type = typeof target;
+		type = typeof target === 'undefined' ? 'undefined' : _typeof(target);
 
-		if (type === typeof origin) {
+		if (type === (typeof origin === 'undefined' ? 'undefined' : _typeof(origin))) {
 			if (type === 'string') {
 				c0 = color(origin);
 				if (c0.valid) {
@@ -5733,18 +5733,18 @@ function interpolate(start, view, model, ease) {
 	}
 }
 
-var Element = function(configuration) {
+var Element = function Element(configuration) {
 	helpers.extend(this, configuration);
 	this.initialize.apply(this, arguments);
 };
 
 helpers.extend(Element.prototype, {
 
-	initialize: function() {
+	initialize: function initialize() {
 		this.hidden = false;
 	},
 
-	pivot: function() {
+	pivot: function pivot() {
 		var me = this;
 		if (!me._view) {
 			me._view = helpers.clone(me._model);
@@ -5753,7 +5753,7 @@ helpers.extend(Element.prototype, {
 		return me;
 	},
 
-	transition: function(ease) {
+	transition: function transition(ease) {
 		var me = this;
 		var model = me._model;
 		var start = me._start;
@@ -5779,14 +5779,14 @@ helpers.extend(Element.prototype, {
 		return me;
 	},
 
-	tooltipPosition: function() {
+	tooltipPosition: function tooltipPosition() {
 		return {
 			x: this._model.x,
 			y: this._model.y
 		};
 	},
 
-	hasValue: function() {
+	hasValue: function hasValue() {
 		return helpers.isNumber(this._model.x) && helpers.isNumber(this._model.y);
 	}
 });
@@ -5794,7 +5794,6 @@ helpers.extend(Element.prototype, {
 Element.extend = helpers.inherits;
 
 module.exports = Element;
-
 
 /***/ }),
 /* 37 */
@@ -7099,7 +7098,6 @@ module.exports.Arc = __webpack_require__(741);
 module.exports.Line = __webpack_require__(742);
 module.exports.Point = __webpack_require__(743);
 module.exports.Rectangle = __webpack_require__(744);
-
 
 /***/ }),
 /* 51 */
@@ -9366,46 +9364,46 @@ var helpers = __webpack_require__(5);
  */
 module.exports = {
 	/**
-	 * Namespace to hold generators for different types of ticks
-	 * @namespace Chart.Ticks.generators
-	 */
+  * Namespace to hold generators for different types of ticks
+  * @namespace Chart.Ticks.generators
+  */
 	generators: {
 		/**
-		 * Interface for the options provided to the numeric tick generator
-		 * @interface INumericTickGenerationOptions
-		 */
+   * Interface for the options provided to the numeric tick generator
+   * @interface INumericTickGenerationOptions
+   */
 		/**
-		 * The maximum number of ticks to display
-		 * @name INumericTickGenerationOptions#maxTicks
-		 * @type Number
-		 */
+   * The maximum number of ticks to display
+   * @name INumericTickGenerationOptions#maxTicks
+   * @type Number
+   */
 		/**
-		 * The distance between each tick.
-		 * @name INumericTickGenerationOptions#stepSize
-		 * @type Number
-		 * @optional
-		 */
+   * The distance between each tick.
+   * @name INumericTickGenerationOptions#stepSize
+   * @type Number
+   * @optional
+   */
 		/**
-		 * Forced minimum for the ticks. If not specified, the minimum of the data range is used to calculate the tick minimum
-		 * @name INumericTickGenerationOptions#min
-		 * @type Number
-		 * @optional
-		 */
+   * Forced minimum for the ticks. If not specified, the minimum of the data range is used to calculate the tick minimum
+   * @name INumericTickGenerationOptions#min
+   * @type Number
+   * @optional
+   */
 		/**
-		 * The maximum value of the ticks. If not specified, the maximum of the data range is used to calculate the tick maximum
-		 * @name INumericTickGenerationOptions#max
-		 * @type Number
-		 * @optional
-		 */
+   * The maximum value of the ticks. If not specified, the maximum of the data range is used to calculate the tick maximum
+   * @name INumericTickGenerationOptions#max
+   * @type Number
+   * @optional
+   */
 
 		/**
-		 * Generate a set of linear ticks
-		 * @method Chart.Ticks.generators.linear
-		 * @param generationOptions {INumericTickGenerationOptions} the options used to generate the ticks
-		 * @param dataRange {IRange} the range of the data
-		 * @returns {Array<Number>} array of tick values
-		 */
-		linear: function(generationOptions, dataRange) {
+   * Generate a set of linear ticks
+   * @method Chart.Ticks.generators.linear
+   * @param generationOptions {INumericTickGenerationOptions} the options used to generate the ticks
+   * @param dataRange {IRange} the range of the data
+   * @returns {Array<Number>} array of tick values
+   */
+		linear: function linear(generationOptions, dataRange) {
 			var ticks = [];
 			// To get a "nice" value for the tick spacing, we will use the appropriately named
 			// "nice number" algorithm. See http://stackoverflow.com/questions/8506881/nice-label-algorithm-for-charts-with-minimum-ticks
@@ -9441,7 +9439,7 @@ module.exports = {
 			// Put the values into the ticks array
 			ticks.push(generationOptions.min !== undefined ? generationOptions.min : niceMin);
 			for (var j = 1; j < numSpaces; ++j) {
-				ticks.push(niceMin + (j * spacing));
+				ticks.push(niceMin + j * spacing);
 			}
 			ticks.push(generationOptions.max !== undefined ? generationOptions.max : niceMax);
 
@@ -9449,13 +9447,13 @@ module.exports = {
 		},
 
 		/**
-		 * Generate a set of logarithmic ticks
-		 * @method Chart.Ticks.generators.logarithmic
-		 * @param generationOptions {INumericTickGenerationOptions} the options used to generate the ticks
-		 * @param dataRange {IRange} the range of the data
-		 * @returns {Array<Number>} array of tick values
-		 */
-		logarithmic: function(generationOptions, dataRange) {
+   * Generate a set of logarithmic ticks
+   * @method Chart.Ticks.generators.logarithmic
+   * @param generationOptions {INumericTickGenerationOptions} the options used to generate the ticks
+   * @param dataRange {IRange} the range of the data
+   * @returns {Array<Number>} array of tick values
+   */
+		logarithmic: function logarithmic(generationOptions, dataRange) {
 			var ticks = [];
 			var valueOrDefault = helpers.valueOrDefault;
 
@@ -9490,7 +9488,7 @@ module.exports = {
 				}
 
 				tickVal = significand * Math.pow(10, exp);
-			} while (exp < endExp || (exp === endExp && significand < endSignificand));
+			} while (exp < endExp || exp === endExp && significand < endSignificand);
 
 			var lastTick = valueOrDefault(generationOptions.max, tickVal);
 			ticks.push(lastTick);
@@ -9500,29 +9498,29 @@ module.exports = {
 	},
 
 	/**
-	 * Namespace to hold formatters for different types of ticks
-	 * @namespace Chart.Ticks.formatters
-	 */
+  * Namespace to hold formatters for different types of ticks
+  * @namespace Chart.Ticks.formatters
+  */
 	formatters: {
 		/**
-		 * Formatter for value labels
-		 * @method Chart.Ticks.formatters.values
-		 * @param value the value to display
-		 * @return {String|Array} the label to display
-		 */
-		values: function(value) {
+   * Formatter for value labels
+   * @method Chart.Ticks.formatters.values
+   * @param value the value to display
+   * @return {String|Array} the label to display
+   */
+		values: function values(value) {
 			return helpers.isArray(value) ? value : '' + value;
 		},
 
 		/**
-		 * Formatter for linear numeric ticks
-		 * @method Chart.Ticks.formatters.linear
-		 * @param tickValue {Number} the value to be formatted
-		 * @param index {Number} the position of the tickValue parameter in the ticks array
-		 * @param ticks {Array<Number>} the list of ticks being converted
-		 * @return {String} string representation of the tickValue parameter
-		 */
-		linear: function(tickValue, index, ticks) {
+   * Formatter for linear numeric ticks
+   * @method Chart.Ticks.formatters.linear
+   * @param tickValue {Number} the value to be formatted
+   * @param index {Number} the position of the tickValue parameter in the ticks array
+   * @param ticks {Array<Number>} the list of ticks being converted
+   * @return {String} string representation of the tickValue parameter
+   */
+		linear: function linear(tickValue, index, ticks) {
 			// If we have lots of ticks, don't use the ones
 			var delta = ticks.length > 3 ? ticks[2] - ticks[1] : ticks[1] - ticks[0];
 
@@ -9548,8 +9546,8 @@ module.exports = {
 			return tickString;
 		},
 
-		logarithmic: function(tickValue, index, ticks) {
-			var remain = tickValue / (Math.pow(10, Math.floor(helpers.log10(tickValue))));
+		logarithmic: function logarithmic(tickValue, index, ticks) {
+			var remain = tickValue / Math.pow(10, Math.floor(helpers.log10(tickValue)));
 
 			if (tickValue === 0) {
 				return '0';
@@ -9560,7 +9558,6 @@ module.exports = {
 		}
 	}
 };
-
 
 /***/ }),
 /* 86 */
@@ -11111,99 +11108,100 @@ var matchPath = function matchPath(pathname) {
 /**
  * @namespace Chart.helpers
  */
+
 var helpers = {
 	/**
-	 * An empty function that can be used, for example, for optional callback.
-	 */
-	noop: function() {},
+  * An empty function that can be used, for example, for optional callback.
+  */
+	noop: function noop() {},
 
 	/**
-	 * Returns a unique id, sequentially generated from a global variable.
-	 * @returns {Number}
-	 * @function
-	 */
-	uid: (function() {
+  * Returns a unique id, sequentially generated from a global variable.
+  * @returns {Number}
+  * @function
+  */
+	uid: function () {
 		var id = 0;
-		return function() {
+		return function () {
 			return id++;
 		};
-	}()),
+	}(),
 
 	/**
-	 * Returns true if `value` is neither null nor undefined, else returns false.
-	 * @param {*} value - The value to test.
-	 * @returns {Boolean}
-	 * @since 2.7.0
-	 */
-	isNullOrUndef: function(value) {
+  * Returns true if `value` is neither null nor undefined, else returns false.
+  * @param {*} value - The value to test.
+  * @returns {Boolean}
+  * @since 2.7.0
+  */
+	isNullOrUndef: function isNullOrUndef(value) {
 		return value === null || typeof value === 'undefined';
 	},
 
 	/**
-	 * Returns true if `value` is an array, else returns false.
-	 * @param {*} value - The value to test.
-	 * @returns {Boolean}
-	 * @function
-	 */
-	isArray: Array.isArray ? Array.isArray : function(value) {
+  * Returns true if `value` is an array, else returns false.
+  * @param {*} value - The value to test.
+  * @returns {Boolean}
+  * @function
+  */
+	isArray: Array.isArray ? Array.isArray : function (value) {
 		return Object.prototype.toString.call(value) === '[object Array]';
 	},
 
 	/**
-	 * Returns true if `value` is an object (excluding null), else returns false.
-	 * @param {*} value - The value to test.
-	 * @returns {Boolean}
-	 * @since 2.7.0
-	 */
-	isObject: function(value) {
+  * Returns true if `value` is an object (excluding null), else returns false.
+  * @param {*} value - The value to test.
+  * @returns {Boolean}
+  * @since 2.7.0
+  */
+	isObject: function isObject(value) {
 		return value !== null && Object.prototype.toString.call(value) === '[object Object]';
 	},
 
 	/**
-	 * Returns `value` if defined, else returns `defaultValue`.
-	 * @param {*} value - The value to return if defined.
-	 * @param {*} defaultValue - The value to return if `value` is undefined.
-	 * @returns {*}
-	 */
-	valueOrDefault: function(value, defaultValue) {
+  * Returns `value` if defined, else returns `defaultValue`.
+  * @param {*} value - The value to return if defined.
+  * @param {*} defaultValue - The value to return if `value` is undefined.
+  * @returns {*}
+  */
+	valueOrDefault: function valueOrDefault(value, defaultValue) {
 		return typeof value === 'undefined' ? defaultValue : value;
 	},
 
 	/**
-	 * Returns value at the given `index` in array if defined, else returns `defaultValue`.
-	 * @param {Array} value - The array to lookup for value at `index`.
-	 * @param {Number} index - The index in `value` to lookup for value.
-	 * @param {*} defaultValue - The value to return if `value[index]` is undefined.
-	 * @returns {*}
-	 */
-	valueAtIndexOrDefault: function(value, index, defaultValue) {
+  * Returns value at the given `index` in array if defined, else returns `defaultValue`.
+  * @param {Array} value - The array to lookup for value at `index`.
+  * @param {Number} index - The index in `value` to lookup for value.
+  * @param {*} defaultValue - The value to return if `value[index]` is undefined.
+  * @returns {*}
+  */
+	valueAtIndexOrDefault: function valueAtIndexOrDefault(value, index, defaultValue) {
 		return helpers.valueOrDefault(helpers.isArray(value) ? value[index] : value, defaultValue);
 	},
 
 	/**
-	 * Calls `fn` with the given `args` in the scope defined by `thisArg` and returns the
-	 * value returned by `fn`. If `fn` is not a function, this method returns undefined.
-	 * @param {Function} fn - The function to call.
-	 * @param {Array|undefined|null} args - The arguments with which `fn` should be called.
-	 * @param {Object} [thisArg] - The value of `this` provided for the call to `fn`.
-	 * @returns {*}
-	 */
-	callback: function(fn, args, thisArg) {
+  * Calls `fn` with the given `args` in the scope defined by `thisArg` and returns the
+  * value returned by `fn`. If `fn` is not a function, this method returns undefined.
+  * @param {Function} fn - The function to call.
+  * @param {Array|undefined|null} args - The arguments with which `fn` should be called.
+  * @param {Object} [thisArg] - The value of `this` provided for the call to `fn`.
+  * @returns {*}
+  */
+	callback: function callback(fn, args, thisArg) {
 		if (fn && typeof fn.call === 'function') {
 			return fn.apply(thisArg, args);
 		}
 	},
 
 	/**
-	 * Note(SB) for performance sake, this method should only be used when loopable type
-	 * is unknown or in none intensive code (not called often and small loopable). Else
-	 * it's preferable to use a regular for() loop and save extra function calls.
-	 * @param {Object|Array} loopable - The object or array to be iterated.
-	 * @param {Function} fn - The function to call for each item.
-	 * @param {Object} [thisArg] - The value of `this` provided for the call to `fn`.
-	 * @param {Boolean} [reverse] - If true, iterates backward on the loopable.
-	 */
-	each: function(loopable, fn, thisArg, reverse) {
+  * Note(SB) for performance sake, this method should only be used when loopable type
+  * is unknown or in none intensive code (not called often and small loopable). Else
+  * it's preferable to use a regular for() loop and save extra function calls.
+  * @param {Object|Array} loopable - The object or array to be iterated.
+  * @param {Function} fn - The function to call for each item.
+  * @param {Object} [thisArg] - The value of `this` provided for the call to `fn`.
+  * @param {Boolean} [reverse] - If true, iterates backward on the loopable.
+  */
+	each: function each(loopable, fn, thisArg, reverse) {
 		var i, len, keys;
 		if (helpers.isArray(loopable)) {
 			len = loopable.length;
@@ -11226,13 +11224,13 @@ var helpers = {
 	},
 
 	/**
-	 * Returns true if the `a0` and `a1` arrays have the same content, else returns false.
-	 * @see http://stackoverflow.com/a/14853974
-	 * @param {Array} a0 - The array to compare
-	 * @param {Array} a1 - The array to compare
-	 * @returns {Boolean}
-	 */
-	arrayEquals: function(a0, a1) {
+  * Returns true if the `a0` and `a1` arrays have the same content, else returns false.
+  * @see http://stackoverflow.com/a/14853974
+  * @param {Array} a0 - The array to compare
+  * @param {Array} a1 - The array to compare
+  * @returns {Boolean}
+  */
+	arrayEquals: function arrayEquals(a0, a1) {
 		var i, ilen, v0, v1;
 
 		if (!a0 || !a1 || a0.length !== a1.length) {
@@ -11257,11 +11255,11 @@ var helpers = {
 	},
 
 	/**
-	 * Returns a deep copy of `source` without keeping references on objects and arrays.
-	 * @param {*} source - The value to clone.
-	 * @returns {*}
-	 */
-	clone: function(source) {
+  * Returns a deep copy of `source` without keeping references on objects and arrays.
+  * @param {*} source - The value to clone.
+  * @returns {*}
+  */
+	clone: function clone(source) {
 		if (helpers.isArray(source)) {
 			return source.map(helpers.clone);
 		}
@@ -11283,11 +11281,11 @@ var helpers = {
 	},
 
 	/**
-	 * The default merger when Chart.helpers.merge is called without merger option.
-	 * Note(SB): this method is also used by configMerge and scaleMerge as fallback.
-	 * @private
-	 */
-	_merger: function(key, target, source, options) {
+  * The default merger when Chart.helpers.merge is called without merger option.
+  * Note(SB): this method is also used by configMerge and scaleMerge as fallback.
+  * @private
+  */
+	_merger: function _merger(key, target, source, options) {
 		var tval = target[key];
 		var sval = source[key];
 
@@ -11299,10 +11297,10 @@ var helpers = {
 	},
 
 	/**
-	 * Merges source[key] in target[key] only if target[key] is undefined.
-	 * @private
-	 */
-	_mergerIf: function(key, target, source) {
+  * Merges source[key] in target[key] only if target[key] is undefined.
+  * @private
+  */
+	_mergerIf: function _mergerIf(key, target, source) {
 		var tval = target[key];
 		var sval = source[key];
 
@@ -11314,15 +11312,15 @@ var helpers = {
 	},
 
 	/**
-	 * Recursively deep copies `source` properties into `target` with the given `options`.
-	 * IMPORTANT: `target` is not cloned and will be updated with `source` properties.
-	 * @param {Object} target - The target object in which all sources are merged into.
-	 * @param {Object|Array(Object)} source - Object(s) to merge into `target`.
-	 * @param {Object} [options] - Merging options:
-	 * @param {Function} [options.merger] - The merge method (key, target, source, options)
-	 * @returns {Object} The `target` object.
-	 */
-	merge: function(target, source, options) {
+  * Recursively deep copies `source` properties into `target` with the given `options`.
+  * IMPORTANT: `target` is not cloned and will be updated with `source` properties.
+  * @param {Object} target - The target object in which all sources are merged into.
+  * @param {Object|Array(Object)} source - Object(s) to merge into `target`.
+  * @param {Object} [options] - Merging options:
+  * @param {Function} [options.merger] - The merge method (key, target, source, options)
+  * @returns {Object} The `target` object.
+  */
+	merge: function merge(target, source, options) {
 		var sources = helpers.isArray(source) ? source : [source];
 		var ilen = sources.length;
 		var merge, i, keys, klen, k;
@@ -11350,25 +11348,25 @@ var helpers = {
 	},
 
 	/**
-	 * Recursively deep copies `source` properties into `target` *only* if not defined in target.
-	 * IMPORTANT: `target` is not cloned and will be updated with `source` properties.
-	 * @param {Object} target - The target object in which all sources are merged into.
-	 * @param {Object|Array(Object)} source - Object(s) to merge into `target`.
-	 * @returns {Object} The `target` object.
-	 */
-	mergeIf: function(target, source) {
-		return helpers.merge(target, source, {merger: helpers._mergerIf});
+  * Recursively deep copies `source` properties into `target` *only* if not defined in target.
+  * IMPORTANT: `target` is not cloned and will be updated with `source` properties.
+  * @param {Object} target - The target object in which all sources are merged into.
+  * @param {Object|Array(Object)} source - Object(s) to merge into `target`.
+  * @returns {Object} The `target` object.
+  */
+	mergeIf: function mergeIf(target, source) {
+		return helpers.merge(target, source, { merger: helpers._mergerIf });
 	},
 
 	/**
-	 * Applies the contents of two or more objects together into the first object.
-	 * @param {Object} target - The target object in which all objects are merged into.
-	 * @param {Object} arg1 - Object containing additional properties to merge in target.
-	 * @param {Object} argN - Additional objects containing properties to merge in target.
-	 * @returns {Object} The `target` object.
-	 */
-	extend: function(target) {
-		var setFn = function(value, key) {
+  * Applies the contents of two or more objects together into the first object.
+  * @param {Object} target - The target object in which all objects are merged into.
+  * @param {Object} arg1 - Object containing additional properties to merge in target.
+  * @param {Object} argN - Additional objects containing properties to merge in target.
+  * @returns {Object} The `target` object.
+  */
+	extend: function extend(target) {
+		var setFn = function setFn(value, key) {
 			target[key] = value;
 		};
 		for (var i = 1, ilen = arguments.length; i < ilen; ++i) {
@@ -11378,15 +11376,15 @@ var helpers = {
 	},
 
 	/**
-	 * Basic javascript inheritance based on the model created in Backbone.js
-	 */
-	inherits: function(extensions) {
+  * Basic javascript inheritance based on the model created in Backbone.js
+  */
+	inherits: function inherits(extensions) {
 		var me = this;
-		var ChartElement = (extensions && extensions.hasOwnProperty('constructor')) ? extensions.constructor : function() {
+		var ChartElement = extensions && extensions.hasOwnProperty('constructor') ? extensions.constructor : function () {
 			return me.apply(this, arguments);
 		};
 
-		var Surrogate = function() {
+		var Surrogate = function Surrogate() {
 			this.constructor = ChartElement;
 		};
 
@@ -11424,7 +11422,7 @@ helpers.callCallback = helpers.callback;
  * @todo remove at version 3
  * @private
  */
-helpers.indexOf = function(array, item, fromIndex) {
+helpers.indexOf = function (array, item, fromIndex) {
 	return Array.prototype.indexOf.call(array, item, fromIndex);
 };
 
@@ -11445,7 +11443,6 @@ helpers.getValueOrDefault = helpers.valueOrDefault;
  * @private
  */
 helpers.getValueAtIndexOrDefault = helpers.valueAtIndexOrDefault;
-
 
 /***/ }),
 /* 111 */
@@ -22073,7 +22070,7 @@ function parseVisibleItems(chart, handler) {
 function getIntersectItems(chart, position) {
 	var elements = [];
 
-	parseVisibleItems(chart, function(element) {
+	parseVisibleItems(chart, function (element) {
 		if (element.inRange(position.x, position.y)) {
 			elements.push(element);
 		}
@@ -22094,7 +22091,7 @@ function getNearestItems(chart, position, intersect, distanceMetric) {
 	var minDistance = Number.POSITIVE_INFINITY;
 	var nearestItems = [];
 
-	parseVisibleItems(chart, function(element) {
+	parseVisibleItems(chart, function (element) {
 		if (intersect && !element.inRange(position.x, position.y)) {
 			return;
 		}
@@ -22123,7 +22120,7 @@ function getDistanceMetricForAxis(axis) {
 	var useX = axis.indexOf('x') !== -1;
 	var useY = axis.indexOf('y') !== -1;
 
-	return function(pt1, pt2) {
+	return function (pt1, pt2) {
 		var deltaX = useX ? Math.abs(pt1.x - pt2.x) : 0;
 		var deltaY = useY ? Math.abs(pt1.y - pt2.y) : 0;
 		return Math.sqrt(Math.pow(deltaX, 2) + Math.pow(deltaY, 2));
@@ -22142,7 +22139,7 @@ function indexMode(chart, e, options) {
 		return [];
 	}
 
-	chart.data.datasets.forEach(function(dataset, datasetIndex) {
+	chart.data.datasets.forEach(function (dataset, datasetIndex) {
 		if (chart.isDatasetVisible(datasetIndex)) {
 			var meta = chart.getDatasetMeta(datasetIndex);
 			var element = meta.data[items[0]._index];
@@ -22173,11 +22170,11 @@ function indexMode(chart, e, options) {
 module.exports = {
 	// Helper function for different modes
 	modes: {
-		single: function(chart, e) {
+		single: function single(chart, e) {
 			var position = getRelativePosition(e, chart);
 			var elements = [];
 
-			parseVisibleItems(chart, function(element) {
+			parseVisibleItems(chart, function (element) {
 				if (element.inRange(position.x, position.y)) {
 					elements.push(element);
 					return elements;
@@ -22188,35 +22185,35 @@ module.exports = {
 		},
 
 		/**
-		 * @function Chart.Interaction.modes.label
-		 * @deprecated since version 2.4.0
-		 * @todo remove at version 3
-		 * @private
-		 */
+   * @function Chart.Interaction.modes.label
+   * @deprecated since version 2.4.0
+   * @todo remove at version 3
+   * @private
+   */
 		label: indexMode,
 
 		/**
-		 * Returns items at the same index. If the options.intersect parameter is true, we only return items if we intersect something
-		 * If the options.intersect mode is false, we find the nearest item and return the items at the same index as that item
-		 * @function Chart.Interaction.modes.index
-		 * @since v2.4.0
-		 * @param chart {chart} the chart we are returning items from
-		 * @param e {Event} the event we are find things at
-		 * @param options {IInteractionOptions} options to use during interaction
-		 * @return {Chart.Element[]} Array of elements that are under the point. If none are found, an empty array is returned
-		 */
+   * Returns items at the same index. If the options.intersect parameter is true, we only return items if we intersect something
+   * If the options.intersect mode is false, we find the nearest item and return the items at the same index as that item
+   * @function Chart.Interaction.modes.index
+   * @since v2.4.0
+   * @param chart {chart} the chart we are returning items from
+   * @param e {Event} the event we are find things at
+   * @param options {IInteractionOptions} options to use during interaction
+   * @return {Chart.Element[]} Array of elements that are under the point. If none are found, an empty array is returned
+   */
 		index: indexMode,
 
 		/**
-		 * Returns items in the same dataset. If the options.intersect parameter is true, we only return items if we intersect something
-		 * If the options.intersect is false, we find the nearest item and return the items in that dataset
-		 * @function Chart.Interaction.modes.dataset
-		 * @param chart {chart} the chart we are returning items from
-		 * @param e {Event} the event we are find things at
-		 * @param options {IInteractionOptions} options to use during interaction
-		 * @return {Chart.Element[]} Array of elements that are under the point. If none are found, an empty array is returned
-		 */
-		dataset: function(chart, e, options) {
+   * Returns items in the same dataset. If the options.intersect parameter is true, we only return items if we intersect something
+   * If the options.intersect is false, we find the nearest item and return the items in that dataset
+   * @function Chart.Interaction.modes.dataset
+   * @param chart {chart} the chart we are returning items from
+   * @param e {Event} the event we are find things at
+   * @param options {IInteractionOptions} options to use during interaction
+   * @return {Chart.Element[]} Array of elements that are under the point. If none are found, an empty array is returned
+   */
+		dataset: function dataset(chart, e, options) {
 			var position = getRelativePosition(e, chart);
 			options.axis = options.axis || 'xy';
 			var distanceMetric = getDistanceMetricForAxis(options.axis);
@@ -22230,37 +22227,37 @@ module.exports = {
 		},
 
 		/**
-		 * @function Chart.Interaction.modes.x-axis
-		 * @deprecated since version 2.4.0. Use index mode and intersect == true
-		 * @todo remove at version 3
-		 * @private
-		 */
-		'x-axis': function(chart, e) {
-			return indexMode(chart, e, {intersect: false});
+   * @function Chart.Interaction.modes.x-axis
+   * @deprecated since version 2.4.0. Use index mode and intersect == true
+   * @todo remove at version 3
+   * @private
+   */
+		'x-axis': function xAxis(chart, e) {
+			return indexMode(chart, e, { intersect: false });
 		},
 
 		/**
-		 * Point mode returns all elements that hit test based on the event position
-		 * of the event
-		 * @function Chart.Interaction.modes.intersect
-		 * @param chart {chart} the chart we are returning items from
-		 * @param e {Event} the event we are find things at
-		 * @return {Chart.Element[]} Array of elements that are under the point. If none are found, an empty array is returned
-		 */
-		point: function(chart, e) {
+   * Point mode returns all elements that hit test based on the event position
+   * of the event
+   * @function Chart.Interaction.modes.intersect
+   * @param chart {chart} the chart we are returning items from
+   * @param e {Event} the event we are find things at
+   * @return {Chart.Element[]} Array of elements that are under the point. If none are found, an empty array is returned
+   */
+		point: function point(chart, e) {
 			var position = getRelativePosition(e, chart);
 			return getIntersectItems(chart, position);
 		},
 
 		/**
-		 * nearest mode returns the element closest to the point
-		 * @function Chart.Interaction.modes.intersect
-		 * @param chart {chart} the chart we are returning items from
-		 * @param e {Event} the event we are find things at
-		 * @param options {IInteractionOptions} options to use
-		 * @return {Chart.Element[]} Array of elements that are under the point. If none are found, an empty array is returned
-		 */
-		nearest: function(chart, e, options) {
+   * nearest mode returns the element closest to the point
+   * @function Chart.Interaction.modes.intersect
+   * @param chart {chart} the chart we are returning items from
+   * @param e {Event} the event we are find things at
+   * @param options {IInteractionOptions} options to use
+   * @return {Chart.Element[]} Array of elements that are under the point. If none are found, an empty array is returned
+   */
+		nearest: function nearest(chart, e, options) {
 			var position = getRelativePosition(e, chart);
 			options.axis = options.axis || 'xy';
 			var distanceMetric = getDistanceMetricForAxis(options.axis);
@@ -22268,7 +22265,7 @@ module.exports = {
 
 			// We have multiple items at the same distance from the event. Now sort by smallest
 			if (nearestItems.length > 1) {
-				nearestItems.sort(function(a, b) {
+				nearestItems.sort(function (a, b) {
 					var sizeA = a.getArea();
 					var sizeB = b.getArea();
 					var ret = sizeA - sizeB;
@@ -22287,19 +22284,19 @@ module.exports = {
 		},
 
 		/**
-		 * x mode returns the elements that hit-test at the current x coordinate
-		 * @function Chart.Interaction.modes.x
-		 * @param chart {chart} the chart we are returning items from
-		 * @param e {Event} the event we are find things at
-		 * @param options {IInteractionOptions} options to use
-		 * @return {Chart.Element[]} Array of elements that are under the point. If none are found, an empty array is returned
-		 */
-		x: function(chart, e, options) {
+   * x mode returns the elements that hit-test at the current x coordinate
+   * @function Chart.Interaction.modes.x
+   * @param chart {chart} the chart we are returning items from
+   * @param e {Event} the event we are find things at
+   * @param options {IInteractionOptions} options to use
+   * @return {Chart.Element[]} Array of elements that are under the point. If none are found, an empty array is returned
+   */
+		x: function x(chart, e, options) {
 			var position = getRelativePosition(e, chart);
 			var items = [];
 			var intersectsItem = false;
 
-			parseVisibleItems(chart, function(element) {
+			parseVisibleItems(chart, function (element) {
 				if (element.inXRange(position.x)) {
 					items.push(element);
 				}
@@ -22318,19 +22315,19 @@ module.exports = {
 		},
 
 		/**
-		 * y mode returns the elements that hit-test at the current y coordinate
-		 * @function Chart.Interaction.modes.y
-		 * @param chart {chart} the chart we are returning items from
-		 * @param e {Event} the event we are find things at
-		 * @param options {IInteractionOptions} options to use
-		 * @return {Chart.Element[]} Array of elements that are under the point. If none are found, an empty array is returned
-		 */
-		y: function(chart, e, options) {
+   * y mode returns the elements that hit-test at the current y coordinate
+   * @function Chart.Interaction.modes.y
+   * @param chart {chart} the chart we are returning items from
+   * @param e {Event} the event we are find things at
+   * @param options {IInteractionOptions} options to use
+   * @return {Chart.Element[]} Array of elements that are under the point. If none are found, an empty array is returned
+   */
+		y: function y(chart, e, options) {
 			var position = getRelativePosition(e, chart);
 			var items = [];
 			var intersectsItem = false;
 
-			parseVisibleItems(chart, function(element) {
+			parseVisibleItems(chart, function (element) {
 				if (element.inYRange(position.y)) {
 					items.push(element);
 				}
@@ -22349,7 +22346,6 @@ module.exports = {
 		}
 	}
 };
-
 
 /***/ }),
 /* 257 */
@@ -22372,43 +22368,43 @@ var implementation = dom._enabled ? dom : basic;
  */
 module.exports = helpers.extend({
 	/**
-	 * @since 2.7.0
-	 */
-	initialize: function() {},
+  * @since 2.7.0
+  */
+	initialize: function initialize() {},
 
 	/**
-	 * Called at chart construction time, returns a context2d instance implementing
-	 * the [W3C Canvas 2D Context API standard]{@link https://www.w3.org/TR/2dcontext/}.
-	 * @param {*} item - The native item from which to acquire context (platform specific)
-	 * @param {Object} options - The chart options
-	 * @returns {CanvasRenderingContext2D} context2d instance
-	 */
-	acquireContext: function() {},
+  * Called at chart construction time, returns a context2d instance implementing
+  * the [W3C Canvas 2D Context API standard]{@link https://www.w3.org/TR/2dcontext/}.
+  * @param {*} item - The native item from which to acquire context (platform specific)
+  * @param {Object} options - The chart options
+  * @returns {CanvasRenderingContext2D} context2d instance
+  */
+	acquireContext: function acquireContext() {},
 
 	/**
-	 * Called at chart destruction time, releases any resources associated to the context
-	 * previously returned by the acquireContext() method.
-	 * @param {CanvasRenderingContext2D} context - The context2d instance
-	 * @returns {Boolean} true if the method succeeded, else false
-	 */
-	releaseContext: function() {},
+  * Called at chart destruction time, releases any resources associated to the context
+  * previously returned by the acquireContext() method.
+  * @param {CanvasRenderingContext2D} context - The context2d instance
+  * @returns {Boolean} true if the method succeeded, else false
+  */
+	releaseContext: function releaseContext() {},
 
 	/**
-	 * Registers the specified listener on the given chart.
-	 * @param {Chart} chart - Chart from which to listen for event
-	 * @param {String} type - The ({@link IEvent}) type to listen for
-	 * @param {Function} listener - Receives a notification (an object that implements
-	 * the {@link IEvent} interface) when an event of the specified type occurs.
-	 */
-	addEventListener: function() {},
+  * Registers the specified listener on the given chart.
+  * @param {Chart} chart - Chart from which to listen for event
+  * @param {String} type - The ({@link IEvent}) type to listen for
+  * @param {Function} listener - Receives a notification (an object that implements
+  * the {@link IEvent} interface) when an event of the specified type occurs.
+  */
+	addEventListener: function addEventListener() {},
 
 	/**
-	 * Removes the specified listener previously registered with addEventListener.
-	 * @param {Chart} chart -Chart from which to remove the listener
-	 * @param {String} type - The ({@link IEvent}) type to remove
-	 * @param {Function} listener - The listener function to remove from the event target.
-	 */
-	removeEventListener: function() {}
+  * Removes the specified listener previously registered with addEventListener.
+  * @param {Chart} chart -Chart from which to remove the listener
+  * @param {String} type - The ({@link IEvent}) type to remove
+  * @param {Function} listener - The listener function to remove from the event target.
+  */
+	removeEventListener: function removeEventListener() {}
 
 }, implementation);
 
@@ -22430,7 +22426,6 @@ module.exports = helpers.extend({
  * @prop {Number} x - The mouse x position, relative to the canvas (null for incompatible events)
  * @prop {Number} y - The mouse y position, relative to the canvas (null for incompatible events)
  */
-
 
 /***/ }),
 /* 258 */
@@ -54749,7 +54744,13 @@ var Layout = function (_Component) {
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             'h5',
             null,
-            'Feito com \u2764\uFE0F  por ',
+            'Feito com',
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              'span',
+              null,
+              '\uFE0F\uFE0F\uFE0F\uFE0F\uFE0F\u2764\uFE0F'
+            ),
+            ' por ',
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
               'a',
               { href: 'https://www.linkedin.com/in/adriana45silva/' },
@@ -54831,7 +54832,7 @@ var Tabs = function (_Component) {
       return this.state.tabItems.map(function (value, index) {
         return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
           'li',
-          { className: '' + (_this2.state.currentTab == index ? 'nav-item active' : 'nav-item'), key: index, onClick: _this2.selectTab.bind(_this2, index) },
+          { className: '' + (_this2.props.skillsReducer.currentTab == index ? 'nav-item active' : 'nav-item'), key: index, onClick: _this2.selectTab.bind(_this2, index) },
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             'a',
             { className: 'nav-link' },
@@ -54872,7 +54873,8 @@ var Tabs = function (_Component) {
 }(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]);
 
 Tabs.propTypes = {
-  dispatch: __WEBPACK_IMPORTED_MODULE_5_prop_types___default.a.func
+  dispatch: __WEBPACK_IMPORTED_MODULE_5_prop_types___default.a.func,
+  skillsReducer: __WEBPACK_IMPORTED_MODULE_5_prop_types___default.a.object
 };
 
 
@@ -56759,8 +56761,8 @@ g.IMask = IMask;
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_chart_js__ = __webpack_require__(731);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_chart_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_chart_js__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_javascripts_chart_js_src_chart_js__ = __webpack_require__(731);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_javascripts_chart_js_src_chart_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_javascripts_chart_js_src_chart_js__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_redux__ = __webpack_require__(106);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_prop_types__ = __webpack_require__(19);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_prop_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_prop_types__);
@@ -56816,8 +56818,24 @@ var ChartContainer = function (_Component) {
     key: 'componentDidMount',
     value: function componentDidMount() {}
   }, {
+    key: 'calcAngles',
+    value: function calcAngles(constSkillsItems) {
+      var arr = [];
+      var sum = constSkillsItems.reduce(function (prev, next) {
+        return prev + next;
+      });
+      var result = 360 / sum;
+
+      constSkillsItems.forEach(function (el) {
+        arr.push(result * el / 100 * 1.75);
+      });
+      return arr;
+    }
+  }, {
     key: 'mountChart',
     value: function mountChart(props) {
+      var _this2 = this;
+
       var arr = [];
 
       __WEBPACK_IMPORTED_MODULE_4_javascripts_helpers_constants__["c" /* SKILLS */].forEach(function (element) {
@@ -56825,7 +56843,11 @@ var ChartContainer = function (_Component) {
       });
 
       var options = {
-        percentageInnerCutout: 70
+        events: ['mousemove']
+      };
+
+      var userOptions = {
+        customAngles: this.calcAngles(props.skills.currentTabLabel.data)
       };
 
       var ctxUser = document.getElementById('userChart').getContext('2d');
@@ -56850,19 +56872,31 @@ var ChartContainer = function (_Component) {
         }]
       };
 
-      if (props.skills.skillValues && props.skills.skillValues.length > 0 && props.skills.skillValues.indexOf(undefined) == -1 && currentTab.data) {
-        this.userChart = new __WEBPACK_IMPORTED_MODULE_1_chart_js___default.a(ctxUser, {
-          type: 'polarArea',
-          data: userData,
-          options: options
-        });
+      var createCharts = function createCharts(type) {
+        if (props.skills.skillValues && props.skills.skillValues.length > 0 && props.skills.skillValues.indexOf(undefined) == -1 && currentTab.data) {
+          if (type == 'user') {
+            _this2.userChart = new __WEBPACK_IMPORTED_MODULE_1_javascripts_chart_js_src_chart_js___default.a(ctxUser, {
+              type: 'polarArea',
+              data: userData,
+              options: Object.assign({}, options, userOptions)
+            });
+          } else {
+            _this2.roleChart = new __WEBPACK_IMPORTED_MODULE_1_javascripts_chart_js_src_chart_js___default.a(ctxRole, {
+              type: 'pie',
+              data: roleData,
+              options: options
+            });
+          }
+        }
+      };
 
-        this.roleChart = new __WEBPACK_IMPORTED_MODULE_1_chart_js___default.a(ctxRole, {
-          type: 'pie',
-          data: roleData,
-          options: options
-        });
+      if (this.props.skills.currentTabLabel != props.skills.currentTabLabel && this.roleChart) {
+        this.roleChart.destroy();
+        this.userChart.destroy();
       }
+
+      createCharts('user');
+      createCharts();
     }
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -56872,7 +56906,7 @@ var ChartContainer = function (_Component) {
     value: function render() {
       return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
         'div',
-        { className: (this.props.skills.skillValues.length && this.props.skills.currentTabLabel && this.props.skills.skillValues.indexOf(undefined) == -1 ? 'container-fluid ss__tabs ss__chart' : 'container-fluid ss__tabs ss__chart d-none') + ' ' },
+        { className: (this.props.skills.skillValues && this.props.skills.skillValues.length && this.props.skills.currentTabLabel && this.props.skills.skillValues.indexOf(undefined) == -1 ? 'container-fluid ss__tabs ss__chart' : 'container-fluid ss__tabs ss__chart d-none') + ' ' },
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
           'div',
           { className: 'ss__chart__container' },
@@ -56984,11 +57018,7 @@ __webpack_require__(775)(Chart);
 // Loading built-it plugins
 var plugins = [];
 
-plugins.push(
-	__webpack_require__(776)(Chart),
-	__webpack_require__(777)(Chart),
-	__webpack_require__(778)(Chart)
-);
+plugins.push(__webpack_require__(776)(Chart), __webpack_require__(777)(Chart), __webpack_require__(778)(Chart));
 
 Chart.plugins.register(plugins);
 
@@ -56996,7 +57026,7 @@ Chart.platform.initialize();
 
 module.exports = Chart;
 if (typeof window !== 'undefined') {
-	window.Chart = Chart;
+  window.Chart = Chart;
 }
 
 // DEPRECATIONS
@@ -57009,7 +57039,6 @@ if (typeof window !== 'undefined') {
  * @private
  */
 Chart.canvasHelpers = Chart.helpers.canvas;
-
 
 /***/ }),
 /* 732 */
@@ -57053,10 +57082,10 @@ defaults._set('global', {
 	}
 });
 
-module.exports = function() {
+module.exports = function () {
 
 	// Occupy the global variable of Chart, and create a simple base class
-	var Chart = function(item, config) {
+	var Chart = function Chart(item, config) {
 		this.construct(item, config);
 		return this;
 	};
@@ -57065,7 +57094,6 @@ module.exports = function() {
 
 	return Chart;
 };
-
 
 /***/ }),
 /* 733 */
@@ -57082,91 +57110,91 @@ var helpers = __webpack_require__(110);
  * @see http://www.robertpenner.com/easing/
  */
 var effects = {
-	linear: function(t) {
+	linear: function linear(t) {
 		return t;
 	},
 
-	easeInQuad: function(t) {
+	easeInQuad: function easeInQuad(t) {
 		return t * t;
 	},
 
-	easeOutQuad: function(t) {
+	easeOutQuad: function easeOutQuad(t) {
 		return -t * (t - 2);
 	},
 
-	easeInOutQuad: function(t) {
+	easeInOutQuad: function easeInOutQuad(t) {
 		if ((t /= 0.5) < 1) {
 			return 0.5 * t * t;
 		}
-		return -0.5 * ((--t) * (t - 2) - 1);
+		return -0.5 * (--t * (t - 2) - 1);
 	},
 
-	easeInCubic: function(t) {
+	easeInCubic: function easeInCubic(t) {
 		return t * t * t;
 	},
 
-	easeOutCubic: function(t) {
+	easeOutCubic: function easeOutCubic(t) {
 		return (t = t - 1) * t * t + 1;
 	},
 
-	easeInOutCubic: function(t) {
+	easeInOutCubic: function easeInOutCubic(t) {
 		if ((t /= 0.5) < 1) {
 			return 0.5 * t * t * t;
 		}
 		return 0.5 * ((t -= 2) * t * t + 2);
 	},
 
-	easeInQuart: function(t) {
+	easeInQuart: function easeInQuart(t) {
 		return t * t * t * t;
 	},
 
-	easeOutQuart: function(t) {
+	easeOutQuart: function easeOutQuart(t) {
 		return -((t = t - 1) * t * t * t - 1);
 	},
 
-	easeInOutQuart: function(t) {
+	easeInOutQuart: function easeInOutQuart(t) {
 		if ((t /= 0.5) < 1) {
 			return 0.5 * t * t * t * t;
 		}
 		return -0.5 * ((t -= 2) * t * t * t - 2);
 	},
 
-	easeInQuint: function(t) {
+	easeInQuint: function easeInQuint(t) {
 		return t * t * t * t * t;
 	},
 
-	easeOutQuint: function(t) {
+	easeOutQuint: function easeOutQuint(t) {
 		return (t = t - 1) * t * t * t * t + 1;
 	},
 
-	easeInOutQuint: function(t) {
+	easeInOutQuint: function easeInOutQuint(t) {
 		if ((t /= 0.5) < 1) {
 			return 0.5 * t * t * t * t * t;
 		}
 		return 0.5 * ((t -= 2) * t * t * t * t + 2);
 	},
 
-	easeInSine: function(t) {
+	easeInSine: function easeInSine(t) {
 		return -Math.cos(t * (Math.PI / 2)) + 1;
 	},
 
-	easeOutSine: function(t) {
+	easeOutSine: function easeOutSine(t) {
 		return Math.sin(t * (Math.PI / 2));
 	},
 
-	easeInOutSine: function(t) {
+	easeInOutSine: function easeInOutSine(t) {
 		return -0.5 * (Math.cos(Math.PI * t) - 1);
 	},
 
-	easeInExpo: function(t) {
-		return (t === 0) ? 0 : Math.pow(2, 10 * (t - 1));
+	easeInExpo: function easeInExpo(t) {
+		return t === 0 ? 0 : Math.pow(2, 10 * (t - 1));
 	},
 
-	easeOutExpo: function(t) {
-		return (t === 1) ? 1 : -Math.pow(2, -10 * t) + 1;
+	easeOutExpo: function easeOutExpo(t) {
+		return t === 1 ? 1 : -Math.pow(2, -10 * t) + 1;
 	},
 
-	easeInOutExpo: function(t) {
+	easeInOutExpo: function easeInOutExpo(t) {
 		if (t === 0) {
 			return 0;
 		}
@@ -57179,25 +57207,25 @@ var effects = {
 		return 0.5 * (-Math.pow(2, -10 * --t) + 2);
 	},
 
-	easeInCirc: function(t) {
+	easeInCirc: function easeInCirc(t) {
 		if (t >= 1) {
 			return t;
 		}
 		return -(Math.sqrt(1 - t * t) - 1);
 	},
 
-	easeOutCirc: function(t) {
+	easeOutCirc: function easeOutCirc(t) {
 		return Math.sqrt(1 - (t = t - 1) * t);
 	},
 
-	easeInOutCirc: function(t) {
+	easeInOutCirc: function easeInOutCirc(t) {
 		if ((t /= 0.5) < 1) {
 			return -0.5 * (Math.sqrt(1 - t * t) - 1);
 		}
 		return 0.5 * (Math.sqrt(1 - (t -= 2) * t) + 1);
 	},
 
-	easeInElastic: function(t) {
+	easeInElastic: function easeInElastic(t) {
 		var s = 1.70158;
 		var p = 0;
 		var a = 1;
@@ -57219,7 +57247,7 @@ var effects = {
 		return -(a * Math.pow(2, 10 * (t -= 1)) * Math.sin((t - s) * (2 * Math.PI) / p));
 	},
 
-	easeOutElastic: function(t) {
+	easeOutElastic: function easeOutElastic(t) {
 		var s = 1.70158;
 		var p = 0;
 		var a = 1;
@@ -57241,7 +57269,7 @@ var effects = {
 		return a * Math.pow(2, -10 * t) * Math.sin((t - s) * (2 * Math.PI) / p) + 1;
 	},
 
-	easeInOutElastic: function(t) {
+	easeInOutElastic: function easeInOutElastic(t) {
 		var s = 1.70158;
 		var p = 0;
 		var a = 1;
@@ -57265,42 +57293,42 @@ var effects = {
 		}
 		return a * Math.pow(2, -10 * (t -= 1)) * Math.sin((t - s) * (2 * Math.PI) / p) * 0.5 + 1;
 	},
-	easeInBack: function(t) {
+	easeInBack: function easeInBack(t) {
 		var s = 1.70158;
 		return t * t * ((s + 1) * t - s);
 	},
 
-	easeOutBack: function(t) {
+	easeOutBack: function easeOutBack(t) {
 		var s = 1.70158;
 		return (t = t - 1) * t * ((s + 1) * t + s) + 1;
 	},
 
-	easeInOutBack: function(t) {
+	easeInOutBack: function easeInOutBack(t) {
 		var s = 1.70158;
 		if ((t /= 0.5) < 1) {
-			return 0.5 * (t * t * (((s *= (1.525)) + 1) * t - s));
+			return 0.5 * (t * t * (((s *= 1.525) + 1) * t - s));
 		}
-		return 0.5 * ((t -= 2) * t * (((s *= (1.525)) + 1) * t + s) + 2);
+		return 0.5 * ((t -= 2) * t * (((s *= 1.525) + 1) * t + s) + 2);
 	},
 
-	easeInBounce: function(t) {
+	easeInBounce: function easeInBounce(t) {
 		return 1 - effects.easeOutBounce(1 - t);
 	},
 
-	easeOutBounce: function(t) {
-		if (t < (1 / 2.75)) {
+	easeOutBounce: function easeOutBounce(t) {
+		if (t < 1 / 2.75) {
 			return 7.5625 * t * t;
 		}
-		if (t < (2 / 2.75)) {
-			return 7.5625 * (t -= (1.5 / 2.75)) * t + 0.75;
+		if (t < 2 / 2.75) {
+			return 7.5625 * (t -= 1.5 / 2.75) * t + 0.75;
 		}
-		if (t < (2.5 / 2.75)) {
-			return 7.5625 * (t -= (2.25 / 2.75)) * t + 0.9375;
+		if (t < 2.5 / 2.75) {
+			return 7.5625 * (t -= 2.25 / 2.75) * t + 0.9375;
 		}
-		return 7.5625 * (t -= (2.625 / 2.75)) * t + 0.984375;
+		return 7.5625 * (t -= 2.625 / 2.75) * t + 0.984375;
 	},
 
-	easeInOutBounce: function(t) {
+	easeInOutBounce: function easeInOutBounce(t) {
 		if (t < 0.5) {
 			return effects.easeInBounce(t * 2) * 0.5;
 		}
@@ -57323,13 +57351,14 @@ module.exports = {
  */
 helpers.easingEffects = effects;
 
-
 /***/ }),
 /* 734 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
 var helpers = __webpack_require__(110);
 
@@ -57338,25 +57367,25 @@ var helpers = __webpack_require__(110);
  */
 var exports = module.exports = {
 	/**
-	 * Clears the entire canvas associated to the given `chart`.
-	 * @param {Chart} chart - The chart for which to clear the canvas.
-	 */
-	clear: function(chart) {
+  * Clears the entire canvas associated to the given `chart`.
+  * @param {Chart} chart - The chart for which to clear the canvas.
+  */
+	clear: function clear(chart) {
 		chart.ctx.clearRect(0, 0, chart.width, chart.height);
 	},
 
 	/**
-	 * Creates a "path" for a rectangle with rounded corners at position (x, y) with a
-	 * given size (width, height) and the same `radius` for all corners.
-	 * @param {CanvasRenderingContext2D} ctx - The canvas 2D Context.
-	 * @param {Number} x - The x axis of the coordinate for the rectangle starting point.
-	 * @param {Number} y - The y axis of the coordinate for the rectangle starting point.
-	 * @param {Number} width - The rectangle's width.
-	 * @param {Number} height - The rectangle's height.
-	 * @param {Number} radius - The rounded amount (in pixels) for the four corners.
-	 * @todo handle `radius` as top-left, top-right, bottom-right, bottom-left array/object?
-	 */
-	roundedRect: function(ctx, x, y, width, height, radius) {
+  * Creates a "path" for a rectangle with rounded corners at position (x, y) with a
+  * given size (width, height) and the same `radius` for all corners.
+  * @param {CanvasRenderingContext2D} ctx - The canvas 2D Context.
+  * @param {Number} x - The x axis of the coordinate for the rectangle starting point.
+  * @param {Number} y - The y axis of the coordinate for the rectangle starting point.
+  * @param {Number} width - The rectangle's width.
+  * @param {Number} height - The rectangle's height.
+  * @param {Number} radius - The rounded amount (in pixels) for the four corners.
+  * @todo handle `radius` as top-left, top-right, bottom-right, bottom-left array/object?
+  */
+	roundedRect: function roundedRect(ctx, x, y, width, height, radius) {
 		if (radius) {
 			var rx = Math.min(radius, width / 2);
 			var ry = Math.min(radius, height / 2);
@@ -57375,10 +57404,10 @@ var exports = module.exports = {
 		}
 	},
 
-	drawPoint: function(ctx, style, radius, x, y) {
+	drawPoint: function drawPoint(ctx, style, radius, x, y) {
 		var type, edgeLength, xOffset, yOffset, height, size;
 
-		if (style && typeof style === 'object') {
+		if (style && (typeof style === 'undefined' ? 'undefined' : _typeof(style)) === 'object') {
 			type = style.toString();
 			if (type === '[object HTMLImageElement]' || type === '[object HTMLCanvasElement]') {
 				ctx.drawImage(style, x - style.width / 2, y - style.height / 2, style.width, style.height);
@@ -57391,112 +57420,112 @@ var exports = module.exports = {
 		}
 
 		switch (style) {
-		// Default includes circle
-		default:
-			ctx.beginPath();
-			ctx.arc(x, y, radius, 0, Math.PI * 2);
-			ctx.closePath();
-			ctx.fill();
-			break;
-		case 'triangle':
-			ctx.beginPath();
-			edgeLength = 3 * radius / Math.sqrt(3);
-			height = edgeLength * Math.sqrt(3) / 2;
-			ctx.moveTo(x - edgeLength / 2, y + height / 3);
-			ctx.lineTo(x + edgeLength / 2, y + height / 3);
-			ctx.lineTo(x, y - 2 * height / 3);
-			ctx.closePath();
-			ctx.fill();
-			break;
-		case 'rect':
-			size = 1 / Math.SQRT2 * radius;
-			ctx.beginPath();
-			ctx.fillRect(x - size, y - size, 2 * size, 2 * size);
-			ctx.strokeRect(x - size, y - size, 2 * size, 2 * size);
-			break;
-		case 'rectRounded':
-			var offset = radius / Math.SQRT2;
-			var leftX = x - offset;
-			var topY = y - offset;
-			var sideSize = Math.SQRT2 * radius;
-			ctx.beginPath();
-			this.roundedRect(ctx, leftX, topY, sideSize, sideSize, radius / 2);
-			ctx.closePath();
-			ctx.fill();
-			break;
-		case 'rectRot':
-			size = 1 / Math.SQRT2 * radius;
-			ctx.beginPath();
-			ctx.moveTo(x - size, y);
-			ctx.lineTo(x, y + size);
-			ctx.lineTo(x + size, y);
-			ctx.lineTo(x, y - size);
-			ctx.closePath();
-			ctx.fill();
-			break;
-		case 'cross':
-			ctx.beginPath();
-			ctx.moveTo(x, y + radius);
-			ctx.lineTo(x, y - radius);
-			ctx.moveTo(x - radius, y);
-			ctx.lineTo(x + radius, y);
-			ctx.closePath();
-			break;
-		case 'crossRot':
-			ctx.beginPath();
-			xOffset = Math.cos(Math.PI / 4) * radius;
-			yOffset = Math.sin(Math.PI / 4) * radius;
-			ctx.moveTo(x - xOffset, y - yOffset);
-			ctx.lineTo(x + xOffset, y + yOffset);
-			ctx.moveTo(x - xOffset, y + yOffset);
-			ctx.lineTo(x + xOffset, y - yOffset);
-			ctx.closePath();
-			break;
-		case 'star':
-			ctx.beginPath();
-			ctx.moveTo(x, y + radius);
-			ctx.lineTo(x, y - radius);
-			ctx.moveTo(x - radius, y);
-			ctx.lineTo(x + radius, y);
-			xOffset = Math.cos(Math.PI / 4) * radius;
-			yOffset = Math.sin(Math.PI / 4) * radius;
-			ctx.moveTo(x - xOffset, y - yOffset);
-			ctx.lineTo(x + xOffset, y + yOffset);
-			ctx.moveTo(x - xOffset, y + yOffset);
-			ctx.lineTo(x + xOffset, y - yOffset);
-			ctx.closePath();
-			break;
-		case 'line':
-			ctx.beginPath();
-			ctx.moveTo(x - radius, y);
-			ctx.lineTo(x + radius, y);
-			ctx.closePath();
-			break;
-		case 'dash':
-			ctx.beginPath();
-			ctx.moveTo(x, y);
-			ctx.lineTo(x + radius, y);
-			ctx.closePath();
-			break;
+			// Default includes circle
+			default:
+				ctx.beginPath();
+				ctx.arc(x, y, radius, 0, Math.PI * 2);
+				ctx.closePath();
+				ctx.fill();
+				break;
+			case 'triangle':
+				ctx.beginPath();
+				edgeLength = 3 * radius / Math.sqrt(3);
+				height = edgeLength * Math.sqrt(3) / 2;
+				ctx.moveTo(x - edgeLength / 2, y + height / 3);
+				ctx.lineTo(x + edgeLength / 2, y + height / 3);
+				ctx.lineTo(x, y - 2 * height / 3);
+				ctx.closePath();
+				ctx.fill();
+				break;
+			case 'rect':
+				size = 1 / Math.SQRT2 * radius;
+				ctx.beginPath();
+				ctx.fillRect(x - size, y - size, 2 * size, 2 * size);
+				ctx.strokeRect(x - size, y - size, 2 * size, 2 * size);
+				break;
+			case 'rectRounded':
+				var offset = radius / Math.SQRT2;
+				var leftX = x - offset;
+				var topY = y - offset;
+				var sideSize = Math.SQRT2 * radius;
+				ctx.beginPath();
+				this.roundedRect(ctx, leftX, topY, sideSize, sideSize, radius / 2);
+				ctx.closePath();
+				ctx.fill();
+				break;
+			case 'rectRot':
+				size = 1 / Math.SQRT2 * radius;
+				ctx.beginPath();
+				ctx.moveTo(x - size, y);
+				ctx.lineTo(x, y + size);
+				ctx.lineTo(x + size, y);
+				ctx.lineTo(x, y - size);
+				ctx.closePath();
+				ctx.fill();
+				break;
+			case 'cross':
+				ctx.beginPath();
+				ctx.moveTo(x, y + radius);
+				ctx.lineTo(x, y - radius);
+				ctx.moveTo(x - radius, y);
+				ctx.lineTo(x + radius, y);
+				ctx.closePath();
+				break;
+			case 'crossRot':
+				ctx.beginPath();
+				xOffset = Math.cos(Math.PI / 4) * radius;
+				yOffset = Math.sin(Math.PI / 4) * radius;
+				ctx.moveTo(x - xOffset, y - yOffset);
+				ctx.lineTo(x + xOffset, y + yOffset);
+				ctx.moveTo(x - xOffset, y + yOffset);
+				ctx.lineTo(x + xOffset, y - yOffset);
+				ctx.closePath();
+				break;
+			case 'star':
+				ctx.beginPath();
+				ctx.moveTo(x, y + radius);
+				ctx.lineTo(x, y - radius);
+				ctx.moveTo(x - radius, y);
+				ctx.lineTo(x + radius, y);
+				xOffset = Math.cos(Math.PI / 4) * radius;
+				yOffset = Math.sin(Math.PI / 4) * radius;
+				ctx.moveTo(x - xOffset, y - yOffset);
+				ctx.lineTo(x + xOffset, y + yOffset);
+				ctx.moveTo(x - xOffset, y + yOffset);
+				ctx.lineTo(x + xOffset, y - yOffset);
+				ctx.closePath();
+				break;
+			case 'line':
+				ctx.beginPath();
+				ctx.moveTo(x - radius, y);
+				ctx.lineTo(x + radius, y);
+				ctx.closePath();
+				break;
+			case 'dash':
+				ctx.beginPath();
+				ctx.moveTo(x, y);
+				ctx.lineTo(x + radius, y);
+				ctx.closePath();
+				break;
 		}
 
 		ctx.stroke();
 	},
 
-	clipArea: function(ctx, area) {
+	clipArea: function clipArea(ctx, area) {
 		ctx.save();
 		ctx.beginPath();
 		ctx.rect(area.left, area.top, area.right - area.left, area.bottom - area.top);
 		ctx.clip();
 	},
 
-	unclipArea: function(ctx) {
+	unclipArea: function unclipArea(ctx) {
 		ctx.restore();
 	},
 
-	lineTo: function(ctx, previous, target, flip) {
+	lineTo: function lineTo(ctx, previous, target, flip) {
 		if (target.steppedLine) {
-			if ((target.steppedLine === 'after' && !flip) || (target.steppedLine !== 'after' && flip)) {
+			if (target.steppedLine === 'after' && !flip || target.steppedLine !== 'after' && flip) {
 				ctx.lineTo(previous.x, target.y);
 			} else {
 				ctx.lineTo(target.x, previous.y);
@@ -57510,13 +57539,7 @@ var exports = module.exports = {
 			return;
 		}
 
-		ctx.bezierCurveTo(
-			flip ? previous.controlPointPreviousX : previous.controlPointNextX,
-			flip ? previous.controlPointPreviousY : previous.controlPointNextY,
-			flip ? target.controlPointNextX : target.controlPointPreviousX,
-			flip ? target.controlPointNextY : target.controlPointPreviousY,
-			target.x,
-			target.y);
+		ctx.bezierCurveTo(flip ? previous.controlPointPreviousX : previous.controlPointNextX, flip ? previous.controlPointPreviousY : previous.controlPointNextY, flip ? target.controlPointNextX : target.controlPointPreviousX, flip ? target.controlPointNextY : target.controlPointPreviousY, target.x, target.y);
 	}
 };
 
@@ -57538,12 +57561,11 @@ helpers.clear = exports.clear;
  * @todo remove at version 3
  * @private
  */
-helpers.drawRoundedRectangle = function(ctx) {
+helpers.drawRoundedRectangle = function (ctx) {
 	ctx.beginPath();
 	exports.roundedRect.apply(exports, arguments);
 	ctx.closePath();
 };
-
 
 /***/ }),
 /* 735 */
@@ -57560,14 +57582,14 @@ var helpers = __webpack_require__(110);
  */
 module.exports = {
 	/**
-	 * Converts the given line height `value` in pixels for a specific font `size`.
-	 * @param {Number|String} value - The lineHeight to parse (eg. 1.6, '14px', '75%', '1.6em').
-	 * @param {Number} size - The font size (in pixels) used to resolve relative `value`.
-	 * @returns {Number} The effective line height in pixels (size * 1.2 if value is invalid).
-	 * @see https://developer.mozilla.org/en-US/docs/Web/CSS/line-height
-	 * @since 2.7.0
-	 */
-	toLineHeight: function(value, size) {
+  * Converts the given line height `value` in pixels for a specific font `size`.
+  * @param {Number|String} value - The lineHeight to parse (eg. 1.6, '14px', '75%', '1.6em').
+  * @param {Number} size - The font size (in pixels) used to resolve relative `value`.
+  * @returns {Number} The effective line height in pixels (size * 1.2 if value is invalid).
+  * @see https://developer.mozilla.org/en-US/docs/Web/CSS/line-height
+  * @since 2.7.0
+  */
+	toLineHeight: function toLineHeight(value, size) {
 		var matches = ('' + value).match(/^(normal|(\d+(?:\.\d+)?)(px|em|%)?)$/);
 		if (!matches || matches[1] === 'normal') {
 			return size * 1.2;
@@ -57576,26 +57598,26 @@ module.exports = {
 		value = +matches[2];
 
 		switch (matches[3]) {
-		case 'px':
-			return value;
-		case '%':
-			value /= 100;
-			break;
-		default:
-			break;
+			case 'px':
+				return value;
+			case '%':
+				value /= 100;
+				break;
+			default:
+				break;
 		}
 
 		return size * value;
 	},
 
 	/**
-	 * Converts the given value into a padding object with pre-computed width/height.
-	 * @param {Number|Object} value - If a number, set the value to all TRBL component,
-	 *  else, if and object, use defined properties and sets undefined ones to 0.
-	 * @returns {Object} The padding values (top, right, bottom, left, width, height)
-	 * @since 2.7.0
-	 */
-	toPadding: function(value) {
+  * Converts the given value into a padding object with pre-computed width/height.
+  * @param {Number|Object} value - If a number, set the value to all TRBL component,
+  *  else, if and object, use defined properties and sets undefined ones to 0.
+  * @returns {Object} The padding values (top, right, bottom, left, width, height)
+  * @since 2.7.0
+  */
+	toPadding: function toPadding(value) {
 		var t, r, b, l;
 
 		if (helpers.isObject(value)) {
@@ -57618,15 +57640,15 @@ module.exports = {
 	},
 
 	/**
-	 * Evaluates the given `inputs` sequentially and returns the first defined value.
-	 * @param {Array[]} inputs - An array of values, falling back to the last value.
-	 * @param {Object} [context] - If defined and the current value is a function, the value
-	 * is called with `context` as first argument and the result becomes the new input.
-	 * @param {Number} [index] - If defined and the current value is an array, the value
-	 * at `index` become the new input.
-	 * @since 2.7.0
-	 */
-	resolve: function(inputs, context, index) {
+  * Evaluates the given `inputs` sequentially and returns the first defined value.
+  * @param {Array[]} inputs - An array of values, falling back to the last value.
+  * @param {Object} [context] - If defined and the current value is a function, the value
+  * is called with `context` as first argument and the result becomes the new input.
+  * @param {Number} [index] - If defined and the current value is an array, the value
+  * at `index` become the new input.
+  * @since 2.7.0
+  */
+	resolve: function resolve(inputs, context, index) {
 		var i, ilen, value;
 
 		for (i = 0, ilen = inputs.length; i < ilen; ++i) {
@@ -57647,7 +57669,6 @@ module.exports = {
 	}
 };
 
-
 /***/ }),
 /* 736 */
 /***/ (function(module, exports, __webpack_require__) {
@@ -57661,13 +57682,13 @@ var color = __webpack_require__(255);
 var defaults = __webpack_require__(10);
 var helpers = __webpack_require__(5);
 
-module.exports = function(Chart) {
+module.exports = function (Chart) {
 
 	// -- Basic js utility methods
 
-	helpers.configMerge = function(/* objects ... */) {
+	helpers.configMerge = function () /* objects ... */{
 		return helpers.merge(helpers.clone(arguments[0]), [].slice.call(arguments, 1), {
-			merger: function(key, target, source, options) {
+			merger: function merger(key, target, source, options) {
 				var tval = target[key] || {};
 				var sval = source[key];
 
@@ -57684,9 +57705,9 @@ module.exports = function(Chart) {
 		});
 	};
 
-	helpers.scaleMerge = function(/* objects ... */) {
+	helpers.scaleMerge = function () /* objects ... */{
 		return helpers.merge(helpers.clone(arguments[0]), [].slice.call(arguments, 1), {
-			merger: function(key, target, source, options) {
+			merger: function merger(key, target, source, options) {
 				if (key === 'xAxes' || key === 'yAxes') {
 					var slen = source[key].length;
 					var i, type, scale;
@@ -57703,7 +57724,7 @@ module.exports = function(Chart) {
 							target[key].push({});
 						}
 
-						if (!target[key][i].type || (scale.type && scale.type !== target[key][i].type)) {
+						if (!target[key][i].type || scale.type && scale.type !== target[key][i].type) {
 							// new/untyped scale or type changed: let's apply the new defaults
 							// then merge source scale to correctly overwrite the defaults.
 							helpers.merge(target[key][i], [Chart.scaleService.getScaleDefaults(type), scale]);
@@ -57719,13 +57740,13 @@ module.exports = function(Chart) {
 		});
 	};
 
-	helpers.where = function(collection, filterCallback) {
+	helpers.where = function (collection, filterCallback) {
 		if (helpers.isArray(collection) && Array.prototype.filter) {
 			return collection.filter(filterCallback);
 		}
 		var filtered = [];
 
-		helpers.each(collection, function(item) {
+		helpers.each(collection, function (item) {
 			if (filterCallback(item)) {
 				filtered.push(item);
 			}
@@ -57733,20 +57754,18 @@ module.exports = function(Chart) {
 
 		return filtered;
 	};
-	helpers.findIndex = Array.prototype.findIndex ?
-		function(array, callback, scope) {
-			return array.findIndex(callback, scope);
-		} :
-		function(array, callback, scope) {
-			scope = scope === undefined ? array : scope;
-			for (var i = 0, ilen = array.length; i < ilen; ++i) {
-				if (callback.call(scope, array[i], i, array)) {
-					return i;
-				}
+	helpers.findIndex = Array.prototype.findIndex ? function (array, callback, scope) {
+		return array.findIndex(callback, scope);
+	} : function (array, callback, scope) {
+		scope = scope === undefined ? array : scope;
+		for (var i = 0, ilen = array.length; i < ilen; ++i) {
+			if (callback.call(scope, array[i], i, array)) {
+				return i;
 			}
-			return -1;
-		};
-	helpers.findNextWhere = function(arrayToSearch, filterCallback, startIndex) {
+		}
+		return -1;
+	};
+	helpers.findNextWhere = function (arrayToSearch, filterCallback, startIndex) {
 		// Default to start of the array
 		if (helpers.isNullOrUndef(startIndex)) {
 			startIndex = -1;
@@ -57758,7 +57777,7 @@ module.exports = function(Chart) {
 			}
 		}
 	};
-	helpers.findPreviousWhere = function(arrayToSearch, filterCallback, startIndex) {
+	helpers.findPreviousWhere = function (arrayToSearch, filterCallback, startIndex) {
 		// Default to end of the array
 		if (helpers.isNullOrUndef(startIndex)) {
 			startIndex = arrayToSearch.length;
@@ -57772,65 +57791,61 @@ module.exports = function(Chart) {
 	};
 
 	// -- Math methods
-	helpers.isNumber = function(n) {
+	helpers.isNumber = function (n) {
 		return !isNaN(parseFloat(n)) && isFinite(n);
 	};
-	helpers.almostEquals = function(x, y, epsilon) {
+	helpers.almostEquals = function (x, y, epsilon) {
 		return Math.abs(x - y) < epsilon;
 	};
-	helpers.almostWhole = function(x, epsilon) {
+	helpers.almostWhole = function (x, epsilon) {
 		var rounded = Math.round(x);
-		return (((rounded - epsilon) < x) && ((rounded + epsilon) > x));
+		return rounded - epsilon < x && rounded + epsilon > x;
 	};
-	helpers.max = function(array) {
-		return array.reduce(function(max, value) {
+	helpers.max = function (array) {
+		return array.reduce(function (max, value) {
 			if (!isNaN(value)) {
 				return Math.max(max, value);
 			}
 			return max;
 		}, Number.NEGATIVE_INFINITY);
 	};
-	helpers.min = function(array) {
-		return array.reduce(function(min, value) {
+	helpers.min = function (array) {
+		return array.reduce(function (min, value) {
 			if (!isNaN(value)) {
 				return Math.min(min, value);
 			}
 			return min;
 		}, Number.POSITIVE_INFINITY);
 	};
-	helpers.sign = Math.sign ?
-		function(x) {
-			return Math.sign(x);
-		} :
-		function(x) {
-			x = +x; // convert to a number
-			if (x === 0 || isNaN(x)) {
-				return x;
-			}
-			return x > 0 ? 1 : -1;
-		};
-	helpers.log10 = Math.log10 ?
-		function(x) {
-			return Math.log10(x);
-		} :
-		function(x) {
-			return Math.log(x) / Math.LN10;
-		};
-	helpers.toRadians = function(degrees) {
+	helpers.sign = Math.sign ? function (x) {
+		return Math.sign(x);
+	} : function (x) {
+		x = +x; // convert to a number
+		if (x === 0 || isNaN(x)) {
+			return x;
+		}
+		return x > 0 ? 1 : -1;
+	};
+	helpers.log10 = Math.log10 ? function (x) {
+		return Math.log10(x);
+	} : function (x) {
+		return Math.log(x) / Math.LN10;
+	};
+	helpers.toRadians = function (degrees) {
 		return degrees * (Math.PI / 180);
 	};
-	helpers.toDegrees = function(radians) {
+	helpers.toDegrees = function (radians) {
 		return radians * (180 / Math.PI);
 	};
 	// Gets the angle from vertical upright to the point about a centre.
-	helpers.getAngleFromPoint = function(centrePoint, anglePoint) {
+	helpers.getAngleFromPoint = function (centrePoint, anglePoint) {
 		var distanceFromXCenter = anglePoint.x - centrePoint.x;
 		var distanceFromYCenter = anglePoint.y - centrePoint.y;
 		var radialDistanceFromCenter = Math.sqrt(distanceFromXCenter * distanceFromXCenter + distanceFromYCenter * distanceFromYCenter);
 
 		var angle = Math.atan2(distanceFromYCenter, distanceFromXCenter);
 
-		if (angle < (-0.5 * Math.PI)) {
+		if (angle < -0.5 * Math.PI) {
 			angle += 2.0 * Math.PI; // make sure the returned angle is in the range of (-PI/2, 3PI/2]
 		}
 
@@ -57839,13 +57854,13 @@ module.exports = function(Chart) {
 			distance: radialDistanceFromCenter
 		};
 	};
-	helpers.distanceBetweenPoints = function(pt1, pt2) {
+	helpers.distanceBetweenPoints = function (pt1, pt2) {
 		return Math.sqrt(Math.pow(pt2.x - pt1.x, 2) + Math.pow(pt2.y - pt1.y, 2));
 	};
-	helpers.aliasPixel = function(pixelWidth) {
-		return (pixelWidth % 2 === 0) ? 0 : 0.5;
+	helpers.aliasPixel = function (pixelWidth) {
+		return pixelWidth % 2 === 0 ? 0 : 0.5;
 	};
-	helpers.splineCurve = function(firstPoint, middlePoint, afterPoint, t) {
+	helpers.splineCurve = function (firstPoint, middlePoint, afterPoint, t) {
 		// Props to Rob Spencer at scaled innovation for his post on splining between points
 		// http://scaledinnovation.com/analytics/splines/aboutSplines.html
 
@@ -57880,13 +57895,13 @@ module.exports = function(Chart) {
 		};
 	};
 	helpers.EPSILON = Number.EPSILON || 1e-14;
-	helpers.splineCurveMonotone = function(points) {
+	helpers.splineCurveMonotone = function (points) {
 		// This function calculates Bézier control points in a similar way than |splineCurve|,
 		// but preserves monotonicity of the provided data and ensures no local extremums are added
 		// between the dataset discrete points due to the interpolation.
 		// See : https://en.wikipedia.org/wiki/Monotone_cubic_interpolation
 
-		var pointsWithTangents = (points || []).map(function(point) {
+		var pointsWithTangents = (points || []).map(function (point) {
 			return {
 				model: point._model,
 				deltaK: 0,
@@ -57906,7 +57921,7 @@ module.exports = function(Chart) {
 			pointBefore = i > 0 ? pointsWithTangents[i - 1] : null;
 			pointAfter = i < pointsLen - 1 ? pointsWithTangents[i + 1] : null;
 			if (pointAfter && !pointAfter.model.skip) {
-				var slopeDeltaX = (pointAfter.model.x - pointCurrent.model.x);
+				var slopeDeltaX = pointAfter.model.x - pointCurrent.model.x;
 
 				// In the case of two points that appear at the same x pixel, slopeDeltaX is 0
 				pointCurrent.deltaK = slopeDeltaX !== 0 ? (pointAfter.model.y - pointCurrent.model.y) / slopeDeltaX : 0;
@@ -57971,20 +57986,20 @@ module.exports = function(Chart) {
 			}
 		}
 	};
-	helpers.nextItem = function(collection, index, loop) {
+	helpers.nextItem = function (collection, index, loop) {
 		if (loop) {
 			return index >= collection.length - 1 ? collection[0] : collection[index + 1];
 		}
 		return index >= collection.length - 1 ? collection[collection.length - 1] : collection[index + 1];
 	};
-	helpers.previousItem = function(collection, index, loop) {
+	helpers.previousItem = function (collection, index, loop) {
 		if (loop) {
 			return index <= 0 ? collection[collection.length - 1] : collection[index - 1];
 		}
 		return index <= 0 ? collection[0] : collection[index - 1];
 	};
 	// Implementation of the nice number algorithm used in determining where axis labels will go
-	helpers.niceNum = function(range, round) {
+	helpers.niceNum = function (range, round) {
 		var exponent = Math.floor(helpers.log10(range));
 		var fraction = range / Math.pow(10, exponent);
 		var niceFraction;
@@ -58012,23 +58027,18 @@ module.exports = function(Chart) {
 		return niceFraction * Math.pow(10, exponent);
 	};
 	// Request animation polyfill - http://www.paulirish.com/2011/requestanimationframe-for-smart-animating/
-	helpers.requestAnimFrame = (function() {
+	helpers.requestAnimFrame = function () {
 		if (typeof window === 'undefined') {
-			return function(callback) {
+			return function (callback) {
 				callback();
 			};
 		}
-		return window.requestAnimationFrame ||
-			window.webkitRequestAnimationFrame ||
-			window.mozRequestAnimationFrame ||
-			window.oRequestAnimationFrame ||
-			window.msRequestAnimationFrame ||
-			function(callback) {
-				return window.setTimeout(callback, 1000 / 60);
-			};
-	}());
+		return window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame || function (callback) {
+			return window.setTimeout(callback, 1000 / 60);
+		};
+	}();
 	// -- DOM methods
-	helpers.getRelativePosition = function(evt, chart) {
+	helpers.getRelativePosition = function (evt, chart) {
 		var mouseX, mouseY;
 		var e = evt.originalEvent || evt;
 		var canvas = evt.currentTarget || evt.srcElement;
@@ -58038,7 +58048,6 @@ module.exports = function(Chart) {
 		if (touches && touches.length > 0) {
 			mouseX = touches[0].clientX;
 			mouseY = touches[0].clientY;
-
 		} else {
 			mouseX = e.clientX;
 			mouseY = e.clientY;
@@ -58056,14 +58065,13 @@ module.exports = function(Chart) {
 
 		// We divide by the current device pixel ratio, because the canvas is scaled up by that amount in each direction. However
 		// the backend model is in unscaled coordinates. Since we are going to deal with our model coordinates, we go back here
-		mouseX = Math.round((mouseX - boundingRect.left - paddingLeft) / (width) * canvas.width / chart.currentDevicePixelRatio);
-		mouseY = Math.round((mouseY - boundingRect.top - paddingTop) / (height) * canvas.height / chart.currentDevicePixelRatio);
+		mouseX = Math.round((mouseX - boundingRect.left - paddingLeft) / width * canvas.width / chart.currentDevicePixelRatio);
+		mouseY = Math.round((mouseY - boundingRect.top - paddingTop) / height * canvas.height / chart.currentDevicePixelRatio);
 
 		return {
 			x: mouseX,
 			y: mouseY
 		};
-
 	};
 
 	// Private helper function to convert max-width/max-height values that may be percentages into a number
@@ -58084,9 +58092,9 @@ module.exports = function(Chart) {
 	}
 
 	/**
-	 * Returns if the given value contains an effective constraint.
-	 * @private
-	 */
+  * Returns if the given value contains an effective constraint.
+  * @private
+  */
 	function isConstrainedValue(value) {
 		return value !== undefined && value !== null && value !== 'none';
 	}
@@ -58106,22 +58114,20 @@ module.exports = function(Chart) {
 		var infinity = Number.POSITIVE_INFINITY;
 
 		if (hasCNode || hasCContainer) {
-			return Math.min(
-				hasCNode ? parseMaxStyle(constrainedNode, domNode, percentageProperty) : infinity,
-				hasCContainer ? parseMaxStyle(constrainedContainer, parentNode, percentageProperty) : infinity);
+			return Math.min(hasCNode ? parseMaxStyle(constrainedNode, domNode, percentageProperty) : infinity, hasCContainer ? parseMaxStyle(constrainedContainer, parentNode, percentageProperty) : infinity);
 		}
 
 		return 'none';
 	}
 	// returns Number or undefined if no constraint
-	helpers.getConstraintWidth = function(domNode) {
+	helpers.getConstraintWidth = function (domNode) {
 		return getConstraintDimension(domNode, 'max-width', 'clientWidth');
 	};
 	// returns Number or undefined if no constraint
-	helpers.getConstraintHeight = function(domNode) {
+	helpers.getConstraintHeight = function (domNode) {
 		return getConstraintDimension(domNode, 'max-height', 'clientHeight');
 	};
-	helpers.getMaximumWidth = function(domNode) {
+	helpers.getMaximumWidth = function (domNode) {
 		var container = domNode.parentNode;
 		if (!container) {
 			return domNode.clientWidth;
@@ -58133,7 +58139,7 @@ module.exports = function(Chart) {
 		var cw = helpers.getConstraintWidth(domNode);
 		return isNaN(cw) ? w : Math.min(w, cw);
 	};
-	helpers.getMaximumHeight = function(domNode) {
+	helpers.getMaximumHeight = function (domNode) {
 		var container = domNode.parentNode;
 		if (!container) {
 			return domNode.clientHeight;
@@ -58145,12 +58151,10 @@ module.exports = function(Chart) {
 		var ch = helpers.getConstraintHeight(domNode);
 		return isNaN(ch) ? h : Math.min(h, ch);
 	};
-	helpers.getStyle = function(el, property) {
-		return el.currentStyle ?
-			el.currentStyle[property] :
-			document.defaultView.getComputedStyle(el, null).getPropertyValue(property);
+	helpers.getStyle = function (el, property) {
+		return el.currentStyle ? el.currentStyle[property] : document.defaultView.getComputedStyle(el, null).getPropertyValue(property);
 	};
-	helpers.retinaScale = function(chart, forceRatio) {
+	helpers.retinaScale = function (chart, forceRatio) {
 		var pixelRatio = chart.currentDevicePixelRatio = forceRatio || window.devicePixelRatio || 1;
 		if (pixelRatio === 1) {
 			return;
@@ -58171,10 +58175,10 @@ module.exports = function(Chart) {
 		canvas.style.width = width + 'px';
 	};
 	// -- Canvas methods
-	helpers.fontString = function(pixelSize, fontStyle, fontFamily) {
+	helpers.fontString = function (pixelSize, fontStyle, fontFamily) {
 		return fontStyle + ' ' + pixelSize + 'px ' + fontFamily;
 	};
-	helpers.longestText = function(ctx, font, arrayOfThings, cache) {
+	helpers.longestText = function (ctx, font, arrayOfThings, cache) {
 		cache = cache || {};
 		var data = cache.data = cache.data || {};
 		var gc = cache.garbageCollect = cache.garbageCollect || [];
@@ -58187,14 +58191,14 @@ module.exports = function(Chart) {
 
 		ctx.font = font;
 		var longest = 0;
-		helpers.each(arrayOfThings, function(thing) {
+		helpers.each(arrayOfThings, function (thing) {
 			// Undefined strings and arrays should not be measured
 			if (thing !== undefined && thing !== null && helpers.isArray(thing) !== true) {
 				longest = helpers.measureText(ctx, data, gc, longest, thing);
 			} else if (helpers.isArray(thing)) {
 				// if it is an array lets measure each element
 				// to do maybe simplify this function a bit so we can do this more recursively?
-				helpers.each(thing, function(nestedThing) {
+				helpers.each(thing, function (nestedThing) {
 					// Undefined strings and arrays should not be measured
 					if (nestedThing !== undefined && nestedThing !== null && !helpers.isArray(nestedThing)) {
 						longest = helpers.measureText(ctx, data, gc, longest, nestedThing);
@@ -58212,7 +58216,7 @@ module.exports = function(Chart) {
 		}
 		return longest;
 	};
-	helpers.measureText = function(ctx, data, gc, longest, string) {
+	helpers.measureText = function (ctx, data, gc, longest, string) {
 		var textWidth = data[string];
 		if (!textWidth) {
 			textWidth = data[string] = ctx.measureText(string).width;
@@ -58223,9 +58227,9 @@ module.exports = function(Chart) {
 		}
 		return longest;
 	};
-	helpers.numberOfLabelLines = function(arrayOfThings) {
+	helpers.numberOfLabelLines = function (arrayOfThings) {
 		var numberOfLines = 1;
-		helpers.each(arrayOfThings, function(thing) {
+		helpers.each(arrayOfThings, function (thing) {
 			if (helpers.isArray(thing)) {
 				if (thing.length > numberOfLines) {
 					numberOfLines = thing.length;
@@ -58235,28 +58239,23 @@ module.exports = function(Chart) {
 		return numberOfLines;
 	};
 
-	helpers.color = !color ?
-		function(value) {
-			console.error('Color.js not found!');
-			return value;
-		} :
-		function(value) {
-			/* global CanvasGradient */
-			if (value instanceof CanvasGradient) {
-				value = defaults.global.defaultColor;
-			}
+	helpers.color = !color ? function (value) {
+		console.error('Color.js not found!');
+		return value;
+	} : function (value) {
+		/* global CanvasGradient */
+		if (value instanceof CanvasGradient) {
+			value = defaults.global.defaultColor;
+		}
 
-			return color(value);
-		};
+		return color(value);
+	};
 
-	helpers.getHoverColor = function(colorValue) {
+	helpers.getHoverColor = function (colorValue) {
 		/* global CanvasPattern */
-		return (colorValue instanceof CanvasPattern) ?
-			colorValue :
-			helpers.color(colorValue).saturate(0.5).darken(0.1).rgbString();
+		return colorValue instanceof CanvasPattern ? colorValue : helpers.color(colorValue).saturate(0.5).darken(0.1).rgbString();
 	};
 };
-
 
 /***/ }),
 /* 737 */
@@ -59467,21 +59466,21 @@ defaults._set('global', {
 });
 
 module.exports = Element.extend({
-	inLabelRange: function(mouseX) {
+	inLabelRange: function inLabelRange(mouseX) {
 		var vm = this._view;
 
 		if (vm) {
-			return (Math.pow(mouseX - vm.x, 2) < Math.pow(vm.radius + vm.hoverRadius, 2));
+			return Math.pow(mouseX - vm.x, 2) < Math.pow(vm.radius + vm.hoverRadius, 2);
 		}
 		return false;
 	},
 
-	inRange: function(chartX, chartY) {
+	inRange: function inRange(chartX, chartY) {
 		var vm = this._view;
 
 		if (vm) {
-			var pointRelativePosition = helpers.getAngleFromPoint(vm, {x: chartX, y: chartY});
-			var	angle = pointRelativePosition.angle;
+			var pointRelativePosition = helpers.getAngleFromPoint(vm, { x: chartX, y: chartY });
+			var angle = pointRelativePosition.angle;
 			var distance = pointRelativePosition.distance;
 
 			// Sanitise angle range
@@ -59498,15 +59497,15 @@ module.exports = Element.extend({
 			}
 
 			// Check if within the range of the open/close angle
-			var betweenAngles = (angle >= startAngle && angle <= endAngle);
-			var withinRadius = (distance >= vm.innerRadius && distance <= vm.outerRadius);
+			var betweenAngles = angle >= startAngle && angle <= endAngle;
+			var withinRadius = distance >= vm.innerRadius && distance <= vm.outerRadius;
 
-			return (betweenAngles && withinRadius);
+			return betweenAngles && withinRadius;
 		}
 		return false;
 	},
 
-	getCenterPoint: function() {
+	getCenterPoint: function getCenterPoint() {
 		var vm = this._view;
 		var halfAngle = (vm.startAngle + vm.endAngle) / 2;
 		var halfRadius = (vm.innerRadius + vm.outerRadius) / 2;
@@ -59516,23 +59515,23 @@ module.exports = Element.extend({
 		};
 	},
 
-	getArea: function() {
+	getArea: function getArea() {
 		var vm = this._view;
 		return Math.PI * ((vm.endAngle - vm.startAngle) / (2 * Math.PI)) * (Math.pow(vm.outerRadius, 2) - Math.pow(vm.innerRadius, 2));
 	},
 
-	tooltipPosition: function() {
+	tooltipPosition: function tooltipPosition() {
 		var vm = this._view;
-		var centreAngle = vm.startAngle + ((vm.endAngle - vm.startAngle) / 2);
+		var centreAngle = vm.startAngle + (vm.endAngle - vm.startAngle) / 2;
 		var rangeFromCentre = (vm.outerRadius - vm.innerRadius) / 2 + vm.innerRadius;
 
 		return {
-			x: vm.x + (Math.cos(centreAngle) * rangeFromCentre),
-			y: vm.y + (Math.sin(centreAngle) * rangeFromCentre)
+			x: vm.x + Math.cos(centreAngle) * rangeFromCentre,
+			y: vm.y + Math.sin(centreAngle) * rangeFromCentre
 		};
 	},
 
-	draw: function() {
+	draw: function draw() {
 		var ctx = this._chart.ctx;
 		var vm = this._view;
 		var sA = vm.startAngle;
@@ -59557,7 +59556,6 @@ module.exports = Element.extend({
 		}
 	}
 });
-
 
 /***/ }),
 /* 742 */
@@ -59584,13 +59582,13 @@ defaults._set('global', {
 			borderDashOffset: 0.0,
 			borderJoinStyle: 'miter',
 			capBezierPoints: true,
-			fill: true, // do we fill in the area between the line and its base axis
+			fill: true // do we fill in the area between the line and its base axis
 		}
 	}
 });
 
 module.exports = Element.extend({
-	draw: function() {
+	draw: function draw() {
 		var me = this;
 		var vm = me._view;
 		var ctx = me._chart.ctx;
@@ -59639,7 +59637,7 @@ module.exports = Element.extend({
 				previous = lastDrawnIndex === -1 ? previous : points[lastDrawnIndex];
 
 				if (!currentVM.skip) {
-					if ((lastDrawnIndex !== (index - 1) && !spanGaps) || lastDrawnIndex === -1) {
+					if (lastDrawnIndex !== index - 1 && !spanGaps || lastDrawnIndex === -1) {
 						// There was a gap and this is the first point after the gap
 						ctx.moveTo(currentVM.x, currentVM.y);
 					} else {
@@ -59655,7 +59653,6 @@ module.exports = Element.extend({
 		ctx.restore();
 	}
 });
-
 
 /***/ }),
 /* 743 */
@@ -59688,25 +59685,25 @@ defaults._set('global', {
 
 function xRange(mouseX) {
 	var vm = this._view;
-	return vm ? (Math.pow(mouseX - vm.x, 2) < Math.pow(vm.radius + vm.hitRadius, 2)) : false;
+	return vm ? Math.pow(mouseX - vm.x, 2) < Math.pow(vm.radius + vm.hitRadius, 2) : false;
 }
 
 function yRange(mouseY) {
 	var vm = this._view;
-	return vm ? (Math.pow(mouseY - vm.y, 2) < Math.pow(vm.radius + vm.hitRadius, 2)) : false;
+	return vm ? Math.pow(mouseY - vm.y, 2) < Math.pow(vm.radius + vm.hitRadius, 2) : false;
 }
 
 module.exports = Element.extend({
-	inRange: function(mouseX, mouseY) {
+	inRange: function inRange(mouseX, mouseY) {
 		var vm = this._view;
-		return vm ? ((Math.pow(mouseX - vm.x, 2) + Math.pow(mouseY - vm.y, 2)) < Math.pow(vm.hitRadius + vm.radius, 2)) : false;
+		return vm ? Math.pow(mouseX - vm.x, 2) + Math.pow(mouseY - vm.y, 2) < Math.pow(vm.hitRadius + vm.radius, 2) : false;
 	},
 
 	inLabelRange: xRange,
 	inXRange: xRange,
 	inYRange: yRange,
 
-	getCenterPoint: function() {
+	getCenterPoint: function getCenterPoint() {
 		var vm = this._view;
 		return {
 			x: vm.x,
@@ -59714,11 +59711,11 @@ module.exports = Element.extend({
 		};
 	},
 
-	getArea: function() {
+	getArea: function getArea() {
 		return Math.PI * Math.pow(this._view.radius, 2);
 	},
 
-	tooltipPosition: function() {
+	tooltipPosition: function tooltipPosition() {
 		var vm = this._view;
 		return {
 			x: vm.x,
@@ -59727,7 +59724,7 @@ module.exports = Element.extend({
 		};
 	},
 
-	draw: function(chartArea) {
+	draw: function draw(chartArea) {
 		var vm = this._view;
 		var model = this._model;
 		var ctx = this._chart.ctx;
@@ -59749,7 +59746,7 @@ module.exports = Element.extend({
 
 		// Cliping for Points.
 		// going out from inner charArea?
-		if ((chartArea !== undefined) && ((model.x < chartArea.left) || (chartArea.right * errMargin < model.x) || (model.y < chartArea.top) || (chartArea.bottom * errMargin < model.y))) {
+		if (chartArea !== undefined && (model.x < chartArea.left || chartArea.right * errMargin < model.x || model.y < chartArea.top || chartArea.bottom * errMargin < model.y)) {
 			// Point fade out
 			if (model.x < chartArea.left) {
 				ratio = (x - model.x) / (chartArea.left - model.x);
@@ -59768,7 +59765,6 @@ module.exports = Element.extend({
 		helpers.canvas.drawPoint(ctx, pointStyle, radius, x, y);
 	}
 });
-
 
 /***/ }),
 /* 744 */
@@ -59830,7 +59826,7 @@ function getBarBounds(bar) {
 }
 
 module.exports = Element.extend({
-	draw: function() {
+	draw: function draw() {
 		var ctx = this._chart.ctx;
 		var vm = this._view;
 		var left, right, top, bottom, signX, signY, borderSkipped;
@@ -59888,12 +59884,7 @@ module.exports = Element.extend({
 		// Corner points, from bottom-left to bottom-right clockwise
 		// | 1 2 |
 		// | 0 3 |
-		var corners = [
-			[left, bottom],
-			[left, top],
-			[right, top],
-			[right, bottom]
-		];
+		var corners = [[left, bottom], [left, top], [right, top], [right, bottom]];
 
 		// Find first (starting) corner with fallback to 'bottom'
 		var borders = ['bottom', 'left', 'top', 'right'];
@@ -59921,12 +59912,12 @@ module.exports = Element.extend({
 		}
 	},
 
-	height: function() {
+	height: function height() {
 		var vm = this._view;
 		return vm.base - vm.y;
 	},
 
-	inRange: function(mouseX, mouseY) {
+	inRange: function inRange(mouseX, mouseY) {
 		var inRange = false;
 
 		if (this._view) {
@@ -59937,7 +59928,7 @@ module.exports = Element.extend({
 		return inRange;
 	},
 
-	inLabelRange: function(mouseX, mouseY) {
+	inLabelRange: function inLabelRange(mouseX, mouseY) {
 		var me = this;
 		if (!me._view) {
 			return false;
@@ -59955,17 +59946,17 @@ module.exports = Element.extend({
 		return inRange;
 	},
 
-	inXRange: function(mouseX) {
+	inXRange: function inXRange(mouseX) {
 		var bounds = getBarBounds(this);
 		return mouseX >= bounds.left && mouseX <= bounds.right;
 	},
 
-	inYRange: function(mouseY) {
+	inYRange: function inYRange(mouseY) {
 		var bounds = getBarBounds(this);
 		return mouseY >= bounds.top && mouseY <= bounds.bottom;
 	},
 
-	getCenterPoint: function() {
+	getCenterPoint: function getCenterPoint() {
 		var vm = this._view;
 		var x, y;
 		if (isVertical(this)) {
@@ -59976,15 +59967,15 @@ module.exports = Element.extend({
 			y = vm.y;
 		}
 
-		return {x: x, y: y};
+		return { x: x, y: y };
 	},
 
-	getArea: function() {
+	getArea: function getArea() {
 		var vm = this._view;
 		return vm.width * Math.abs(vm.y - vm.base);
 	},
 
-	tooltipPosition: function() {
+	tooltipPosition: function tooltipPosition() {
 		var vm = this._view;
 		return {
 			x: vm.x,
@@ -59992,7 +59983,6 @@ module.exports = Element.extend({
 		};
 	}
 });
-
 
 /***/ }),
 /* 745 */
@@ -60004,7 +59994,7 @@ module.exports = Element.extend({
  */
 
 module.exports = {
-	acquireContext: function(item) {
+	acquireContext: function acquireContext(item) {
 		if (item && item.canvas) {
 			// Support for any object associated to a canvas (including a context2d)
 			item = item.canvas;
@@ -60013,7 +60003,6 @@ module.exports = {
 		return item && item.getContext('2d') || null;
 	}
 };
-
 
 /***/ }),
 /* 746 */
@@ -60126,11 +60115,11 @@ function initCanvas(canvas, config) {
  * https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener#Safely_detecting_option_support
  * @private
  */
-var supportsEventListenerOptions = (function() {
+var supportsEventListenerOptions = function () {
 	var supports = false;
 	try {
 		var options = Object.defineProperty({}, 'passive', {
-			get: function() {
+			get: function get() {
 				supports = true;
 			}
 		});
@@ -60139,17 +60128,17 @@ var supportsEventListenerOptions = (function() {
 		// continue regardless of error
 	}
 	return supports;
-}());
+}();
 
 // Default passive to true as expected by Chrome for 'touchstart' and 'touchend' events.
 // https://github.com/chartjs/Chart.js/issues/4287
-var eventListenerOptions = supportsEventListenerOptions ? {passive: true} : false;
+var eventListenerOptions = supportsEventListenerOptions ? { passive: true } : false;
 
-function addEventListener(node, type, listener) {
+function _addEventListener(node, type, listener) {
 	node.addEventListener(type, listener, eventListenerOptions);
 }
 
-function removeEventListener(node, type, listener) {
+function _removeEventListener(node, type, listener) {
 	node.removeEventListener(type, listener, eventListenerOptions);
 }
 
@@ -60159,7 +60148,7 @@ function createEvent(type, chart, x, y, nativeEvent) {
 		chart: chart,
 		native: nativeEvent || null,
 		x: x !== undefined ? x : null,
-		y: y !== undefined ? y : null,
+		y: y !== undefined ? y : null
 	};
 }
 
@@ -60173,13 +60162,13 @@ function throttled(fn, thisArg) {
 	var ticking = false;
 	var args = [];
 
-	return function() {
+	return function () {
 		args = Array.prototype.slice.call(arguments);
 		thisArg = thisArg || this;
 
 		if (!ticking) {
 			ticking = true;
-			helpers.requestAnimFrame.call(window, function() {
+			helpers.requestAnimFrame.call(window, function () {
 				ticking = false;
 				fn.apply(thisArg, args);
 			});
@@ -60192,55 +60181,28 @@ function createResizer(handler) {
 	var resizer = document.createElement('div');
 	var cls = CSS_PREFIX + 'size-monitor';
 	var maxSize = 1000000;
-	var style =
-		'position:absolute;' +
-		'left:0;' +
-		'top:0;' +
-		'right:0;' +
-		'bottom:0;' +
-		'overflow:hidden;' +
-		'pointer-events:none;' +
-		'visibility:hidden;' +
-		'z-index:-1;';
+	var style = 'position:absolute;' + 'left:0;' + 'top:0;' + 'right:0;' + 'bottom:0;' + 'overflow:hidden;' + 'pointer-events:none;' + 'visibility:hidden;' + 'z-index:-1;';
 
 	resizer.style.cssText = style;
 	resizer.className = cls;
-	resizer.innerHTML =
-		'<div class="' + cls + '-expand" style="' + style + '">' +
-			'<div style="' +
-				'position:absolute;' +
-				'width:' + maxSize + 'px;' +
-				'height:' + maxSize + 'px;' +
-				'left:0;' +
-				'top:0">' +
-			'</div>' +
-		'</div>' +
-		'<div class="' + cls + '-shrink" style="' + style + '">' +
-			'<div style="' +
-				'position:absolute;' +
-				'width:200%;' +
-				'height:200%;' +
-				'left:0; ' +
-				'top:0">' +
-			'</div>' +
-		'</div>';
+	resizer.innerHTML = '<div class="' + cls + '-expand" style="' + style + '">' + '<div style="' + 'position:absolute;' + 'width:' + maxSize + 'px;' + 'height:' + maxSize + 'px;' + 'left:0;' + 'top:0">' + '</div>' + '</div>' + '<div class="' + cls + '-shrink" style="' + style + '">' + '<div style="' + 'position:absolute;' + 'width:200%;' + 'height:200%;' + 'left:0; ' + 'top:0">' + '</div>' + '</div>';
 
 	var expand = resizer.childNodes[0];
 	var shrink = resizer.childNodes[1];
 
-	resizer._reset = function() {
+	resizer._reset = function () {
 		expand.scrollLeft = maxSize;
 		expand.scrollTop = maxSize;
 		shrink.scrollLeft = maxSize;
 		shrink.scrollTop = maxSize;
 	};
-	var onScroll = function() {
+	var onScroll = function onScroll() {
 		resizer._reset();
 		handler();
 	};
 
-	addEventListener(expand, 'scroll', onScroll.bind(expand, 'expand'));
-	addEventListener(shrink, 'scroll', onScroll.bind(shrink, 'shrink'));
+	_addEventListener(expand, 'scroll', onScroll.bind(expand, 'expand'));
+	_addEventListener(shrink, 'scroll', onScroll.bind(shrink, 'shrink'));
 
 	return resizer;
 }
@@ -60248,14 +60210,14 @@ function createResizer(handler) {
 // https://davidwalsh.name/detect-node-insertion
 function watchForRender(node, handler) {
 	var expando = node[EXPANDO_KEY] || (node[EXPANDO_KEY] = {});
-	var proxy = expando.renderProxy = function(e) {
+	var proxy = expando.renderProxy = function (e) {
 		if (e.animationName === CSS_RENDER_ANIMATION) {
 			handler();
 		}
 	};
 
-	helpers.each(ANIMATION_START_EVENTS, function(type) {
-		addEventListener(node, type, proxy);
+	helpers.each(ANIMATION_START_EVENTS, function (type) {
+		_addEventListener(node, type, proxy);
 	});
 
 	// #4737: Chrome might skip the CSS animation when the CSS_RENDER_MONITOR class
@@ -60273,8 +60235,8 @@ function unwatchForRender(node) {
 	var proxy = expando.renderProxy;
 
 	if (proxy) {
-		helpers.each(ANIMATION_START_EVENTS, function(type) {
-			removeEventListener(node, type, proxy);
+		helpers.each(ANIMATION_START_EVENTS, function (type) {
+			_removeEventListener(node, type, proxy);
 		});
 
 		delete expando.renderProxy;
@@ -60287,7 +60249,7 @@ function addResizeListener(node, listener, chart) {
 	var expando = node[EXPANDO_KEY] || (node[EXPANDO_KEY] = {});
 
 	// Let's keep track of this added resizer and thus avoid DOM query when removing it.
-	var resizer = expando.resizer = createResizer(throttled(function() {
+	var resizer = expando.resizer = createResizer(throttled(function () {
 		if (expando.resizer) {
 			return listener(createEvent('resize', chart));
 		}
@@ -60295,7 +60257,7 @@ function addResizeListener(node, listener, chart) {
 
 	// The resizer needs to be attached to the node parent, so we first need to be
 	// sure that `node` is attached to the DOM before injecting the resizer element.
-	watchForRender(node, function() {
+	watchForRender(node, function () {
 		if (expando.resizer) {
 			var container = node.parentNode;
 			if (container && container !== resizer.parentNode) {
@@ -60335,28 +60297,22 @@ function injectCSS(platform, css) {
 
 module.exports = {
 	/**
-	 * This property holds whether this platform is enabled for the current environment.
-	 * Currently used by platform.js to select the proper implementation.
-	 * @private
-	 */
+  * This property holds whether this platform is enabled for the current environment.
+  * Currently used by platform.js to select the proper implementation.
+  * @private
+  */
 	_enabled: typeof window !== 'undefined' && typeof document !== 'undefined',
 
-	initialize: function() {
+	initialize: function initialize() {
 		var keyframes = 'from{opacity:0.99}to{opacity:1}';
 
 		injectCSS(this,
-			// DOM rendering detection
-			// https://davidwalsh.name/detect-node-insertion
-			'@-webkit-keyframes ' + CSS_RENDER_ANIMATION + '{' + keyframes + '}' +
-			'@keyframes ' + CSS_RENDER_ANIMATION + '{' + keyframes + '}' +
-			'.' + CSS_RENDER_MONITOR + '{' +
-				'-webkit-animation:' + CSS_RENDER_ANIMATION + ' 0.001s;' +
-				'animation:' + CSS_RENDER_ANIMATION + ' 0.001s;' +
-			'}'
-		);
+		// DOM rendering detection
+		// https://davidwalsh.name/detect-node-insertion
+		'@-webkit-keyframes ' + CSS_RENDER_ANIMATION + '{' + keyframes + '}' + '@keyframes ' + CSS_RENDER_ANIMATION + '{' + keyframes + '}' + '.' + CSS_RENDER_MONITOR + '{' + '-webkit-animation:' + CSS_RENDER_ANIMATION + ' 0.001s;' + 'animation:' + CSS_RENDER_ANIMATION + ' 0.001s;' + '}');
 	},
 
-	acquireContext: function(item, config) {
+	acquireContext: function acquireContext(item, config) {
 		if (typeof item === 'string') {
 			item = document.getElementById(item);
 		} else if (item.length) {
@@ -60389,14 +60345,14 @@ module.exports = {
 		return null;
 	},
 
-	releaseContext: function(context) {
+	releaseContext: function releaseContext(context) {
 		var canvas = context.canvas;
 		if (!canvas[EXPANDO_KEY]) {
 			return;
 		}
 
 		var initial = canvas[EXPANDO_KEY].initial;
-		['height', 'width'].forEach(function(prop) {
+		['height', 'width'].forEach(function (prop) {
 			var value = initial[prop];
 			if (helpers.isNullOrUndef(value)) {
 				canvas.removeAttribute(prop);
@@ -60405,7 +60361,7 @@ module.exports = {
 			}
 		});
 
-		helpers.each(initial.style || {}, function(value, key) {
+		helpers.each(initial.style || {}, function (value, key) {
 			canvas.style[key] = value;
 		});
 
@@ -60418,7 +60374,7 @@ module.exports = {
 		delete canvas[EXPANDO_KEY];
 	},
 
-	addEventListener: function(chart, type, listener) {
+	addEventListener: function addEventListener(chart, type, listener) {
 		var canvas = chart.canvas;
 		if (type === 'resize') {
 			// Note: the resize event is not supported on all browsers.
@@ -60428,14 +60384,14 @@ module.exports = {
 
 		var expando = listener[EXPANDO_KEY] || (listener[EXPANDO_KEY] = {});
 		var proxies = expando.proxies || (expando.proxies = {});
-		var proxy = proxies[chart.id + '_' + type] = function(event) {
+		var proxy = proxies[chart.id + '_' + type] = function (event) {
 			listener(fromNativeEvent(event, chart));
 		};
 
-		addEventListener(canvas, type, proxy);
+		_addEventListener(canvas, type, proxy);
 	},
 
-	removeEventListener: function(chart, type, listener) {
+	removeEventListener: function removeEventListener(chart, type, listener) {
 		var canvas = chart.canvas;
 		if (type === 'resize') {
 			// Note: the resize event is not supported on all browsers.
@@ -60450,7 +60406,7 @@ module.exports = {
 			return;
 		}
 
-		removeEventListener(canvas, type, proxy);
+		_removeEventListener(canvas, type, proxy);
 	}
 };
 
@@ -60465,7 +60421,7 @@ module.exports = {
  * @todo remove at version 3
  * @private
  */
-helpers.addEvent = addEventListener;
+helpers.addEvent = _addEventListener;
 
 /**
  * Provided for backward compatibility, use EventTarget.removeEventListener instead.
@@ -60476,8 +60432,7 @@ helpers.addEvent = addEventListener;
  * @todo remove at version 3
  * @private
  */
-helpers.removeEvent = removeEventListener;
-
+helpers.removeEvent = _removeEventListener;
 
 /***/ }),
 /* 747 */
@@ -60494,35 +60449,35 @@ defaults._set('global', {
 	plugins: {}
 });
 
-module.exports = function(Chart) {
+module.exports = function (Chart) {
 
 	/**
-	 * The plugin service singleton
-	 * @namespace Chart.plugins
-	 * @since 2.1.0
-	 */
+  * The plugin service singleton
+  * @namespace Chart.plugins
+  * @since 2.1.0
+  */
 	Chart.plugins = {
 		/**
-		 * Globally registered plugins.
-		 * @private
-		 */
+   * Globally registered plugins.
+   * @private
+   */
 		_plugins: [],
 
 		/**
-		 * This identifier is used to invalidate the descriptors cache attached to each chart
-		 * when a global plugin is registered or unregistered. In this case, the cache ID is
-		 * incremented and descriptors are regenerated during following API calls.
-		 * @private
-		 */
+   * This identifier is used to invalidate the descriptors cache attached to each chart
+   * when a global plugin is registered or unregistered. In this case, the cache ID is
+   * incremented and descriptors are regenerated during following API calls.
+   * @private
+   */
 		_cacheId: 0,
 
 		/**
-		 * Registers the given plugin(s) if not already registered.
-		 * @param {Array|Object} plugins plugin instance(s).
-		 */
-		register: function(plugins) {
+   * Registers the given plugin(s) if not already registered.
+   * @param {Array|Object} plugins plugin instance(s).
+   */
+		register: function register(plugins) {
 			var p = this._plugins;
-			([]).concat(plugins).forEach(function(plugin) {
+			[].concat(plugins).forEach(function (plugin) {
 				if (p.indexOf(plugin) === -1) {
 					p.push(plugin);
 				}
@@ -60532,12 +60487,12 @@ module.exports = function(Chart) {
 		},
 
 		/**
-		 * Unregisters the given plugin(s) only if registered.
-		 * @param {Array|Object} plugins plugin instance(s).
-		 */
-		unregister: function(plugins) {
+   * Unregisters the given plugin(s) only if registered.
+   * @param {Array|Object} plugins plugin instance(s).
+   */
+		unregister: function unregister(plugins) {
 			var p = this._plugins;
-			([]).concat(plugins).forEach(function(plugin) {
+			[].concat(plugins).forEach(function (plugin) {
 				var idx = p.indexOf(plugin);
 				if (idx !== -1) {
 					p.splice(idx, 1);
@@ -60548,42 +60503,42 @@ module.exports = function(Chart) {
 		},
 
 		/**
-		 * Remove all registered plugins.
-		 * @since 2.1.5
-		 */
-		clear: function() {
+   * Remove all registered plugins.
+   * @since 2.1.5
+   */
+		clear: function clear() {
 			this._plugins = [];
 			this._cacheId++;
 		},
 
 		/**
-		 * Returns the number of registered plugins?
-		 * @returns {Number}
-		 * @since 2.1.5
-		 */
-		count: function() {
+   * Returns the number of registered plugins?
+   * @returns {Number}
+   * @since 2.1.5
+   */
+		count: function count() {
 			return this._plugins.length;
 		},
 
 		/**
-		 * Returns all registered plugin instances.
-		 * @returns {Array} array of plugin objects.
-		 * @since 2.1.5
-		 */
-		getAll: function() {
+   * Returns all registered plugin instances.
+   * @returns {Array} array of plugin objects.
+   * @since 2.1.5
+   */
+		getAll: function getAll() {
 			return this._plugins;
 		},
 
 		/**
-		 * Calls enabled plugins for `chart` on the specified hook and with the given args.
-		 * This method immediately returns as soon as a plugin explicitly returns false. The
-		 * returned value can be used, for instance, to interrupt the current action.
-		 * @param {Object} chart - The chart instance for which plugins should be called.
-		 * @param {String} hook - The name of the plugin method to call (e.g. 'beforeUpdate').
-		 * @param {Array} [args] - Extra arguments to apply to the hook call.
-		 * @returns {Boolean} false if any of the plugins return false, else returns true.
-		 */
-		notify: function(chart, hook, args) {
+   * Calls enabled plugins for `chart` on the specified hook and with the given args.
+   * This method immediately returns as soon as a plugin explicitly returns false. The
+   * returned value can be used, for instance, to interrupt the current action.
+   * @param {Object} chart - The chart instance for which plugins should be called.
+   * @param {String} hook - The name of the plugin method to call (e.g. 'beforeUpdate').
+   * @param {Array} [args] - Extra arguments to apply to the hook call.
+   * @returns {Boolean} false if any of the plugins return false, else returns true.
+   */
+		notify: function notify(chart, hook, args) {
 			var descriptors = this.descriptors(chart);
 			var ilen = descriptors.length;
 			var i, descriptor, plugin, params, method;
@@ -60605,11 +60560,11 @@ module.exports = function(Chart) {
 		},
 
 		/**
-		 * Returns descriptors of enabled plugins for the given chart.
-		 * @returns {Array} [{ plugin, options }]
-		 * @private
-		 */
-		descriptors: function(chart) {
+   * Returns descriptors of enabled plugins for the given chart.
+   * @returns {Array} [{ plugin, options }]
+   * @private
+   */
+		descriptors: function descriptors(chart) {
 			var cache = chart._plugins || (chart._plugins = {});
 			if (cache.id === this._cacheId) {
 				return cache.descriptors;
@@ -60617,10 +60572,10 @@ module.exports = function(Chart) {
 
 			var plugins = [];
 			var descriptors = [];
-			var config = (chart && chart.config) || {};
-			var options = (config.options && config.options.plugins) || {};
+			var config = chart && chart.config || {};
+			var options = config.options && config.options.plugins || {};
 
-			this._plugins.concat(config.plugins || []).forEach(function(plugin) {
+			this._plugins.concat(config.plugins || []).forEach(function (plugin) {
 				var idx = plugins.indexOf(plugin);
 				if (idx !== -1) {
 					return;
@@ -60650,175 +60605,175 @@ module.exports = function(Chart) {
 	};
 
 	/**
-	 * Plugin extension hooks.
-	 * @interface IPlugin
-	 * @since 2.1.0
-	 */
+  * Plugin extension hooks.
+  * @interface IPlugin
+  * @since 2.1.0
+  */
 	/**
-	 * @method IPlugin#beforeInit
-	 * @desc Called before initializing `chart`.
-	 * @param {Chart.Controller} chart - The chart instance.
-	 * @param {Object} options - The plugin options.
-	 */
+  * @method IPlugin#beforeInit
+  * @desc Called before initializing `chart`.
+  * @param {Chart.Controller} chart - The chart instance.
+  * @param {Object} options - The plugin options.
+  */
 	/**
-	 * @method IPlugin#afterInit
-	 * @desc Called after `chart` has been initialized and before the first update.
-	 * @param {Chart.Controller} chart - The chart instance.
-	 * @param {Object} options - The plugin options.
-	 */
+  * @method IPlugin#afterInit
+  * @desc Called after `chart` has been initialized and before the first update.
+  * @param {Chart.Controller} chart - The chart instance.
+  * @param {Object} options - The plugin options.
+  */
 	/**
-	 * @method IPlugin#beforeUpdate
-	 * @desc Called before updating `chart`. If any plugin returns `false`, the update
-	 * is cancelled (and thus subsequent render(s)) until another `update` is triggered.
-	 * @param {Chart.Controller} chart - The chart instance.
-	 * @param {Object} options - The plugin options.
-	 * @returns {Boolean} `false` to cancel the chart update.
-	 */
+  * @method IPlugin#beforeUpdate
+  * @desc Called before updating `chart`. If any plugin returns `false`, the update
+  * is cancelled (and thus subsequent render(s)) until another `update` is triggered.
+  * @param {Chart.Controller} chart - The chart instance.
+  * @param {Object} options - The plugin options.
+  * @returns {Boolean} `false` to cancel the chart update.
+  */
 	/**
-	 * @method IPlugin#afterUpdate
-	 * @desc Called after `chart` has been updated and before rendering. Note that this
-	 * hook will not be called if the chart update has been previously cancelled.
-	 * @param {Chart.Controller} chart - The chart instance.
-	 * @param {Object} options - The plugin options.
-	 */
+  * @method IPlugin#afterUpdate
+  * @desc Called after `chart` has been updated and before rendering. Note that this
+  * hook will not be called if the chart update has been previously cancelled.
+  * @param {Chart.Controller} chart - The chart instance.
+  * @param {Object} options - The plugin options.
+  */
 	/**
-	 * @method IPlugin#beforeDatasetsUpdate
+  * @method IPlugin#beforeDatasetsUpdate
  	 * @desc Called before updating the `chart` datasets. If any plugin returns `false`,
-	 * the datasets update is cancelled until another `update` is triggered.
-	 * @param {Chart.Controller} chart - The chart instance.
-	 * @param {Object} options - The plugin options.
-	 * @returns {Boolean} false to cancel the datasets update.
-	 * @since version 2.1.5
-	 */
+  * the datasets update is cancelled until another `update` is triggered.
+  * @param {Chart.Controller} chart - The chart instance.
+  * @param {Object} options - The plugin options.
+  * @returns {Boolean} false to cancel the datasets update.
+  * @since version 2.1.5
+  */
 	/**
-	 * @method IPlugin#afterDatasetsUpdate
-	 * @desc Called after the `chart` datasets have been updated. Note that this hook
-	 * will not be called if the datasets update has been previously cancelled.
-	 * @param {Chart.Controller} chart - The chart instance.
-	 * @param {Object} options - The plugin options.
-	 * @since version 2.1.5
-	 */
+  * @method IPlugin#afterDatasetsUpdate
+  * @desc Called after the `chart` datasets have been updated. Note that this hook
+  * will not be called if the datasets update has been previously cancelled.
+  * @param {Chart.Controller} chart - The chart instance.
+  * @param {Object} options - The plugin options.
+  * @since version 2.1.5
+  */
 	/**
-	 * @method IPlugin#beforeDatasetUpdate
+  * @method IPlugin#beforeDatasetUpdate
  	 * @desc Called before updating the `chart` dataset at the given `args.index`. If any plugin
-	 * returns `false`, the datasets update is cancelled until another `update` is triggered.
-	 * @param {Chart} chart - The chart instance.
-	 * @param {Object} args - The call arguments.
-	 * @param {Number} args.index - The dataset index.
-	 * @param {Object} args.meta - The dataset metadata.
-	 * @param {Object} options - The plugin options.
-	 * @returns {Boolean} `false` to cancel the chart datasets drawing.
-	 */
+  * returns `false`, the datasets update is cancelled until another `update` is triggered.
+  * @param {Chart} chart - The chart instance.
+  * @param {Object} args - The call arguments.
+  * @param {Number} args.index - The dataset index.
+  * @param {Object} args.meta - The dataset metadata.
+  * @param {Object} options - The plugin options.
+  * @returns {Boolean} `false` to cancel the chart datasets drawing.
+  */
 	/**
-	 * @method IPlugin#afterDatasetUpdate
+  * @method IPlugin#afterDatasetUpdate
  	 * @desc Called after the `chart` datasets at the given `args.index` has been updated. Note
-	 * that this hook will not be called if the datasets update has been previously cancelled.
-	 * @param {Chart} chart - The chart instance.
-	 * @param {Object} args - The call arguments.
-	 * @param {Number} args.index - The dataset index.
-	 * @param {Object} args.meta - The dataset metadata.
-	 * @param {Object} options - The plugin options.
-	 */
+  * that this hook will not be called if the datasets update has been previously cancelled.
+  * @param {Chart} chart - The chart instance.
+  * @param {Object} args - The call arguments.
+  * @param {Number} args.index - The dataset index.
+  * @param {Object} args.meta - The dataset metadata.
+  * @param {Object} options - The plugin options.
+  */
 	/**
-	 * @method IPlugin#beforeLayout
-	 * @desc Called before laying out `chart`. If any plugin returns `false`,
-	 * the layout update is cancelled until another `update` is triggered.
-	 * @param {Chart.Controller} chart - The chart instance.
-	 * @param {Object} options - The plugin options.
-	 * @returns {Boolean} `false` to cancel the chart layout.
-	 */
+  * @method IPlugin#beforeLayout
+  * @desc Called before laying out `chart`. If any plugin returns `false`,
+  * the layout update is cancelled until another `update` is triggered.
+  * @param {Chart.Controller} chart - The chart instance.
+  * @param {Object} options - The plugin options.
+  * @returns {Boolean} `false` to cancel the chart layout.
+  */
 	/**
-	 * @method IPlugin#afterLayout
-	 * @desc Called after the `chart` has been layed out. Note that this hook will not
-	 * be called if the layout update has been previously cancelled.
-	 * @param {Chart.Controller} chart - The chart instance.
-	 * @param {Object} options - The plugin options.
-	 */
+  * @method IPlugin#afterLayout
+  * @desc Called after the `chart` has been layed out. Note that this hook will not
+  * be called if the layout update has been previously cancelled.
+  * @param {Chart.Controller} chart - The chart instance.
+  * @param {Object} options - The plugin options.
+  */
 	/**
-	 * @method IPlugin#beforeRender
-	 * @desc Called before rendering `chart`. If any plugin returns `false`,
-	 * the rendering is cancelled until another `render` is triggered.
-	 * @param {Chart.Controller} chart - The chart instance.
-	 * @param {Object} options - The plugin options.
-	 * @returns {Boolean} `false` to cancel the chart rendering.
-	 */
+  * @method IPlugin#beforeRender
+  * @desc Called before rendering `chart`. If any plugin returns `false`,
+  * the rendering is cancelled until another `render` is triggered.
+  * @param {Chart.Controller} chart - The chart instance.
+  * @param {Object} options - The plugin options.
+  * @returns {Boolean} `false` to cancel the chart rendering.
+  */
 	/**
-	 * @method IPlugin#afterRender
-	 * @desc Called after the `chart` has been fully rendered (and animation completed). Note
-	 * that this hook will not be called if the rendering has been previously cancelled.
-	 * @param {Chart.Controller} chart - The chart instance.
-	 * @param {Object} options - The plugin options.
-	 */
+  * @method IPlugin#afterRender
+  * @desc Called after the `chart` has been fully rendered (and animation completed). Note
+  * that this hook will not be called if the rendering has been previously cancelled.
+  * @param {Chart.Controller} chart - The chart instance.
+  * @param {Object} options - The plugin options.
+  */
 	/**
-	 * @method IPlugin#beforeDraw
-	 * @desc Called before drawing `chart` at every animation frame specified by the given
-	 * easing value. If any plugin returns `false`, the frame drawing is cancelled until
-	 * another `render` is triggered.
-	 * @param {Chart.Controller} chart - The chart instance.
-	 * @param {Number} easingValue - The current animation value, between 0.0 and 1.0.
-	 * @param {Object} options - The plugin options.
-	 * @returns {Boolean} `false` to cancel the chart drawing.
-	 */
+  * @method IPlugin#beforeDraw
+  * @desc Called before drawing `chart` at every animation frame specified by the given
+  * easing value. If any plugin returns `false`, the frame drawing is cancelled until
+  * another `render` is triggered.
+  * @param {Chart.Controller} chart - The chart instance.
+  * @param {Number} easingValue - The current animation value, between 0.0 and 1.0.
+  * @param {Object} options - The plugin options.
+  * @returns {Boolean} `false` to cancel the chart drawing.
+  */
 	/**
-	 * @method IPlugin#afterDraw
-	 * @desc Called after the `chart` has been drawn for the specific easing value. Note
-	 * that this hook will not be called if the drawing has been previously cancelled.
-	 * @param {Chart.Controller} chart - The chart instance.
-	 * @param {Number} easingValue - The current animation value, between 0.0 and 1.0.
-	 * @param {Object} options - The plugin options.
-	 */
+  * @method IPlugin#afterDraw
+  * @desc Called after the `chart` has been drawn for the specific easing value. Note
+  * that this hook will not be called if the drawing has been previously cancelled.
+  * @param {Chart.Controller} chart - The chart instance.
+  * @param {Number} easingValue - The current animation value, between 0.0 and 1.0.
+  * @param {Object} options - The plugin options.
+  */
 	/**
-	 * @method IPlugin#beforeDatasetsDraw
+  * @method IPlugin#beforeDatasetsDraw
  	 * @desc Called before drawing the `chart` datasets. If any plugin returns `false`,
-	 * the datasets drawing is cancelled until another `render` is triggered.
-	 * @param {Chart.Controller} chart - The chart instance.
-	 * @param {Number} easingValue - The current animation value, between 0.0 and 1.0.
-	 * @param {Object} options - The plugin options.
-	 * @returns {Boolean} `false` to cancel the chart datasets drawing.
-	 */
+  * the datasets drawing is cancelled until another `render` is triggered.
+  * @param {Chart.Controller} chart - The chart instance.
+  * @param {Number} easingValue - The current animation value, between 0.0 and 1.0.
+  * @param {Object} options - The plugin options.
+  * @returns {Boolean} `false` to cancel the chart datasets drawing.
+  */
 	/**
-	 * @method IPlugin#afterDatasetsDraw
-	 * @desc Called after the `chart` datasets have been drawn. Note that this hook
-	 * will not be called if the datasets drawing has been previously cancelled.
-	 * @param {Chart.Controller} chart - The chart instance.
-	 * @param {Number} easingValue - The current animation value, between 0.0 and 1.0.
-	 * @param {Object} options - The plugin options.
-	 */
+  * @method IPlugin#afterDatasetsDraw
+  * @desc Called after the `chart` datasets have been drawn. Note that this hook
+  * will not be called if the datasets drawing has been previously cancelled.
+  * @param {Chart.Controller} chart - The chart instance.
+  * @param {Number} easingValue - The current animation value, between 0.0 and 1.0.
+  * @param {Object} options - The plugin options.
+  */
 	/**
-	 * @method IPlugin#beforeDatasetDraw
+  * @method IPlugin#beforeDatasetDraw
  	 * @desc Called before drawing the `chart` dataset at the given `args.index` (datasets
-	 * are drawn in the reverse order). If any plugin returns `false`, the datasets drawing
-	 * is cancelled until another `render` is triggered.
-	 * @param {Chart} chart - The chart instance.
-	 * @param {Object} args - The call arguments.
-	 * @param {Number} args.index - The dataset index.
-	 * @param {Object} args.meta - The dataset metadata.
-	 * @param {Number} args.easingValue - The current animation value, between 0.0 and 1.0.
-	 * @param {Object} options - The plugin options.
-	 * @returns {Boolean} `false` to cancel the chart datasets drawing.
-	 */
+  * are drawn in the reverse order). If any plugin returns `false`, the datasets drawing
+  * is cancelled until another `render` is triggered.
+  * @param {Chart} chart - The chart instance.
+  * @param {Object} args - The call arguments.
+  * @param {Number} args.index - The dataset index.
+  * @param {Object} args.meta - The dataset metadata.
+  * @param {Number} args.easingValue - The current animation value, between 0.0 and 1.0.
+  * @param {Object} options - The plugin options.
+  * @returns {Boolean} `false` to cancel the chart datasets drawing.
+  */
 	/**
-	 * @method IPlugin#afterDatasetDraw
+  * @method IPlugin#afterDatasetDraw
  	 * @desc Called after the `chart` datasets at the given `args.index` have been drawn
-	 * (datasets are drawn in the reverse order). Note that this hook will not be called
-	 * if the datasets drawing has been previously cancelled.
-	 * @param {Chart} chart - The chart instance.
-	 * @param {Object} args - The call arguments.
-	 * @param {Number} args.index - The dataset index.
-	 * @param {Object} args.meta - The dataset metadata.
-	 * @param {Number} args.easingValue - The current animation value, between 0.0 and 1.0.
-	 * @param {Object} options - The plugin options.
-	 */
+  * (datasets are drawn in the reverse order). Note that this hook will not be called
+  * if the datasets drawing has been previously cancelled.
+  * @param {Chart} chart - The chart instance.
+  * @param {Object} args - The call arguments.
+  * @param {Number} args.index - The dataset index.
+  * @param {Object} args.meta - The dataset metadata.
+  * @param {Number} args.easingValue - The current animation value, between 0.0 and 1.0.
+  * @param {Object} options - The plugin options.
+  */
 	/**
   	 * @method IPlugin#beforeTooltipDraw
-	 * @desc Called before drawing the `tooltip`. If any plugin returns `false`,
-	 * the tooltip drawing is cancelled until another `render` is triggered.
-	 * @param {Chart} chart - The chart instance.
-	 * @param {Object} args - The call arguments.
-	 * @param {Object} args.tooltip - The tooltip.
-	 * @param {Number} args.easingValue - The current animation value, between 0.0 and 1.0.
-	 * @param {Object} options - The plugin options.
-	 * @returns {Boolean} `false` to cancel the chart tooltip drawing.
+  * @desc Called before drawing the `tooltip`. If any plugin returns `false`,
+  * the tooltip drawing is cancelled until another `render` is triggered.
+  * @param {Chart} chart - The chart instance.
+  * @param {Object} args - The call arguments.
+  * @param {Object} args.tooltip - The tooltip.
+  * @param {Number} args.easingValue - The current animation value, between 0.0 and 1.0.
+  * @param {Object} options - The plugin options.
+  * @returns {Boolean} `false` to cancel the chart tooltip drawing.
   	 */
 	/**
  	 * @method IPlugin#afterTooltipDraw
@@ -60827,59 +60782,58 @@ module.exports = function(Chart) {
  	 * @param {Chart} chart - The chart instance.
  	 * @param {Object} args - The call arguments.
  	 * @param {Object} args.tooltip - The tooltip.
-	 * @param {Number} args.easingValue - The current animation value, between 0.0 and 1.0.
+  * @param {Number} args.easingValue - The current animation value, between 0.0 and 1.0.
  	 * @param {Object} options - The plugin options.
  	 */
 	/**
-	 * @method IPlugin#beforeEvent
+  * @method IPlugin#beforeEvent
  	 * @desc Called before processing the specified `event`. If any plugin returns `false`,
-	 * the event will be discarded.
-	 * @param {Chart.Controller} chart - The chart instance.
-	 * @param {IEvent} event - The event object.
-	 * @param {Object} options - The plugin options.
-	 */
+  * the event will be discarded.
+  * @param {Chart.Controller} chart - The chart instance.
+  * @param {IEvent} event - The event object.
+  * @param {Object} options - The plugin options.
+  */
 	/**
-	 * @method IPlugin#afterEvent
-	 * @desc Called after the `event` has been consumed. Note that this hook
-	 * will not be called if the `event` has been previously discarded.
-	 * @param {Chart.Controller} chart - The chart instance.
-	 * @param {IEvent} event - The event object.
-	 * @param {Object} options - The plugin options.
-	 */
+  * @method IPlugin#afterEvent
+  * @desc Called after the `event` has been consumed. Note that this hook
+  * will not be called if the `event` has been previously discarded.
+  * @param {Chart.Controller} chart - The chart instance.
+  * @param {IEvent} event - The event object.
+  * @param {Object} options - The plugin options.
+  */
 	/**
-	 * @method IPlugin#resize
-	 * @desc Called after the chart as been resized.
-	 * @param {Chart.Controller} chart - The chart instance.
-	 * @param {Number} size - The new canvas display size (eq. canvas.style width & height).
-	 * @param {Object} options - The plugin options.
-	 */
+  * @method IPlugin#resize
+  * @desc Called after the chart as been resized.
+  * @param {Chart.Controller} chart - The chart instance.
+  * @param {Number} size - The new canvas display size (eq. canvas.style width & height).
+  * @param {Object} options - The plugin options.
+  */
 	/**
-	 * @method IPlugin#destroy
-	 * @desc Called after the chart as been destroyed.
-	 * @param {Chart.Controller} chart - The chart instance.
-	 * @param {Object} options - The plugin options.
-	 */
+  * @method IPlugin#destroy
+  * @desc Called after the chart as been destroyed.
+  * @param {Chart.Controller} chart - The chart instance.
+  * @param {Object} options - The plugin options.
+  */
 
 	/**
-	 * Provided for backward compatibility, use Chart.plugins instead
-	 * @namespace Chart.pluginService
-	 * @deprecated since version 2.1.5
-	 * @todo remove at version 3
-	 * @private
-	 */
+  * Provided for backward compatibility, use Chart.plugins instead
+  * @namespace Chart.pluginService
+  * @deprecated since version 2.1.5
+  * @todo remove at version 3
+  * @private
+  */
 	Chart.pluginService = Chart.plugins;
 
 	/**
-	 * Provided for backward compatibility, inheriting from Chart.PlugingBase has no
-	 * effect, instead simply create/register plugins via plain JavaScript objects.
-	 * @interface Chart.PluginBase
-	 * @deprecated since version 2.5.0
-	 * @todo remove at version 3
-	 * @private
-	 */
+  * Provided for backward compatibility, inheriting from Chart.PlugingBase has no
+  * effect, instead simply create/register plugins via plain JavaScript objects.
+  * @interface Chart.PluginBase
+  * @deprecated since version 2.5.0
+  * @todo remove at version 3
+  * @private
+  */
 	Chart.PluginBase = Element.extend({});
 };
-
 
 /***/ }),
 /* 748 */
@@ -60902,7 +60856,7 @@ defaults._set('global', {
 	}
 });
 
-module.exports = function(Chart) {
+module.exports = function (Chart) {
 
 	Chart.Animation = Element.extend({
 		chart: null, // the animation associated chart instance
@@ -60912,7 +60866,7 @@ module.exports = function(Chart) {
 		render: null, // render function used by the animation service
 
 		onAnimationProgress: null, // user specified callback to fire on each step of the animation
-		onAnimationComplete: null, // user specified callback to fire when the animation finishes
+		onAnimationComplete: null // user specified callback to fire when the animation finishes
 	});
 
 	Chart.animationService = {
@@ -60922,12 +60876,12 @@ module.exports = function(Chart) {
 		request: null,
 
 		/**
-		 * @param {Chart} chart - The chart to animate.
-		 * @param {Chart.Animation} animation - The animation that we will animate.
-		 * @param {Number} duration - The animation duration in ms.
-		 * @param {Boolean} lazy - if true, the chart is not marked as animating to enable more responsive interactions
-		 */
-		addAnimation: function(chart, animation, duration, lazy) {
+   * @param {Chart} chart - The chart to animate.
+   * @param {Chart.Animation} animation - The animation that we will animate.
+   * @param {Number} duration - The animation duration in ms.
+   * @param {Boolean} lazy - if true, the chart is not marked as animating to enable more responsive interactions
+   */
+		addAnimation: function addAnimation(chart, animation, duration, lazy) {
 			var animations = this.animations;
 			var i, ilen;
 
@@ -60952,8 +60906,8 @@ module.exports = function(Chart) {
 			}
 		},
 
-		cancelAnimation: function(chart) {
-			var index = helpers.findIndex(this.animations, function(animation) {
+		cancelAnimation: function cancelAnimation(chart) {
+			var index = helpers.findIndex(this.animations, function (animation) {
 				return animation.chart === chart;
 			});
 
@@ -60963,13 +60917,13 @@ module.exports = function(Chart) {
 			}
 		},
 
-		requestAnimationFrame: function() {
+		requestAnimationFrame: function requestAnimationFrame() {
 			var me = this;
 			if (me.request === null) {
 				// Skip animation frame requests until the active one is executed.
 				// This can happen when processing mouse events, e.g. 'mousemove'
 				// and 'mouseout' events will trigger multiple renders.
-				me.request = helpers.requestAnimFrame.call(window, function() {
+				me.request = helpers.requestAnimFrame.call(window, function () {
 					me.request = null;
 					me.startDigest();
 				});
@@ -60977,9 +60931,9 @@ module.exports = function(Chart) {
 		},
 
 		/**
-		 * @private
-		 */
-		startDigest: function() {
+   * @private
+   */
+		startDigest: function startDigest() {
 			var me = this;
 			var startTime = Date.now();
 			var framesToDrop = 0;
@@ -61002,9 +60956,9 @@ module.exports = function(Chart) {
 		},
 
 		/**
-		 * @private
-		 */
-		advance: function(count) {
+   * @private
+   */
+		advance: function advance(count) {
 			var animations = this.animations;
 			var animation, chart;
 			var i = 0;
@@ -61031,34 +60985,32 @@ module.exports = function(Chart) {
 	};
 
 	/**
-	 * Provided for backward compatibility, use Chart.Animation instead
-	 * @prop Chart.Animation#animationObject
-	 * @deprecated since version 2.6.0
-	 * @todo remove at version 3
-	 */
+  * Provided for backward compatibility, use Chart.Animation instead
+  * @prop Chart.Animation#animationObject
+  * @deprecated since version 2.6.0
+  * @todo remove at version 3
+  */
 	Object.defineProperty(Chart.Animation.prototype, 'animationObject', {
-		get: function() {
+		get: function get() {
 			return this;
 		}
 	});
 
 	/**
-	 * Provided for backward compatibility, use Chart.Animation#chart instead
-	 * @prop Chart.Animation#chartInstance
-	 * @deprecated since version 2.6.0
-	 * @todo remove at version 3
-	 */
+  * Provided for backward compatibility, use Chart.Animation#chart instead
+  * @prop Chart.Animation#chartInstance
+  * @deprecated since version 2.6.0
+  * @todo remove at version 3
+  */
 	Object.defineProperty(Chart.Animation.prototype, 'chartInstance', {
-		get: function() {
+		get: function get() {
 			return this.chart;
 		},
-		set: function(value) {
+		set: function set(value) {
 			this.chart = value;
 		}
 	});
-
 };
-
 
 /***/ }),
 /* 749 */
@@ -61067,12 +61019,14 @@ module.exports = function(Chart) {
 "use strict";
 
 
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
 var defaults = __webpack_require__(10);
 var helpers = __webpack_require__(5);
 var Interaction = __webpack_require__(256);
 var platform = __webpack_require__(257);
 
-module.exports = function(Chart) {
+module.exports = function (Chart) {
 	var plugins = Chart.plugins;
 
 	// Create a dictionary of chart types, to allow for extension of existing types
@@ -61086,8 +61040,8 @@ module.exports = function(Chart) {
 	Chart.controllers = {};
 
 	/**
-	 * Initializes the given config with global and chart default values.
-	 */
+  * Initializes the given config with global and chart default values.
+  */
 	function initConfig(config) {
 		config = config || {};
 
@@ -61097,18 +61051,15 @@ module.exports = function(Chart) {
 		data.datasets = data.datasets || [];
 		data.labels = data.labels || [];
 
-		config.options = helpers.configMerge(
-			defaults.global,
-			defaults[config.type],
-			config.options || {});
+		config.options = helpers.configMerge(defaults.global, defaults[config.type], config.options || {});
 
 		return config;
 	}
 
 	/**
-	 * Updates the config of the chart
-	 * @param chart {Chart} chart to update the options for
-	 */
+  * Updates the config of the chart
+  * @param chart {Chart} chart to update the options for
+  */
 	function updateConfig(chart) {
 		var newOptions = chart.options;
 
@@ -61116,7 +61067,7 @@ module.exports = function(Chart) {
 		if (newOptions.scale) {
 			chart.scale.options = newOptions.scale;
 		} else if (newOptions.scales) {
-			newOptions.scales.xAxes.concat(newOptions.scales.yAxes).forEach(function(scaleOptions) {
+			newOptions.scales.xAxes.concat(newOptions.scales.yAxes).forEach(function (scaleOptions) {
 				chart.scales[scaleOptions.id].options = scaleOptions;
 			});
 		}
@@ -61129,11 +61080,11 @@ module.exports = function(Chart) {
 		return position === 'top' || position === 'bottom';
 	}
 
-	helpers.extend(Chart.prototype, /** @lends Chart */ {
+	helpers.extend(Chart.prototype, /** @lends Chart */{
 		/**
-		 * @private
-		 */
-		construct: function(item, config) {
+   * @private
+   */
+		construct: function construct(item, config) {
 			var me = this;
 
 			config = initConfig(config);
@@ -61154,13 +61105,13 @@ module.exports = function(Chart) {
 			me._bufferedRender = false;
 
 			/**
-			 * Provided for backward compatibility, Chart and Chart.Controller have been merged,
-			 * the "instance" still need to be defined since it might be called from plugins.
-			 * @prop Chart#chart
-			 * @deprecated since version 2.6.0
-			 * @todo remove at version 3
-			 * @private
-			 */
+    * Provided for backward compatibility, Chart and Chart.Controller have been merged,
+    * the "instance" still need to be defined since it might be called from plugins.
+    * @prop Chart#chart
+    * @deprecated since version 2.6.0
+    * @todo remove at version 3
+    * @private
+    */
 			me.chart = me;
 			me.controller = me; // chart.chart.controller #inception
 
@@ -61169,10 +61120,10 @@ module.exports = function(Chart) {
 
 			// Define alias to the config data: `chart.data === chart.config.data`
 			Object.defineProperty(me, 'data', {
-				get: function() {
+				get: function get() {
 					return me.config.data;
 				},
-				set: function(value) {
+				set: function set(value) {
 					me.config.data = value;
 				}
 			});
@@ -61191,9 +61142,9 @@ module.exports = function(Chart) {
 		},
 
 		/**
-		 * @private
-		 */
-		initialize: function() {
+   * @private
+   */
+		initialize: function initialize() {
 			var me = this;
 
 			// Before init plugin notification
@@ -61219,22 +61170,22 @@ module.exports = function(Chart) {
 			return me;
 		},
 
-		clear: function() {
+		clear: function clear() {
 			helpers.canvas.clear(this);
 			return this;
 		},
 
-		stop: function() {
+		stop: function stop() {
 			// Stops any current animation loop occurring
 			Chart.animationService.cancelAnimation(this);
 			return this;
 		},
 
-		resize: function(silent) {
+		resize: function resize(silent) {
 			var me = this;
 			var options = me.options;
 			var canvas = me.canvas;
-			var aspectRatio = (options.maintainAspectRatio && me.aspectRatio) || null;
+			var aspectRatio = options.maintainAspectRatio && me.aspectRatio || null;
 
 			// the canvas render width and height will be casted to integers so make sure that
 			// the canvas display style uses the same integer values to avoid blurring effect.
@@ -61256,7 +61207,7 @@ module.exports = function(Chart) {
 
 			if (!silent) {
 				// Notify any plugins about the resize
-				var newSize = {width: newWidth, height: newHeight};
+				var newSize = { width: newWidth, height: newHeight };
 				plugins.notify(me, 'resize', [newSize]);
 
 				// Notify of resize
@@ -61269,17 +61220,17 @@ module.exports = function(Chart) {
 			}
 		},
 
-		ensureScalesHaveIDs: function() {
+		ensureScalesHaveIDs: function ensureScalesHaveIDs() {
 			var options = this.options;
 			var scalesOptions = options.scales || {};
 			var scaleOptions = options.scale;
 
-			helpers.each(scalesOptions.xAxes, function(xAxisOptions, index) {
-				xAxisOptions.id = xAxisOptions.id || ('x-axis-' + index);
+			helpers.each(scalesOptions.xAxes, function (xAxisOptions, index) {
+				xAxisOptions.id = xAxisOptions.id || 'x-axis-' + index;
 			});
 
-			helpers.each(scalesOptions.yAxes, function(yAxisOptions, index) {
-				yAxisOptions.id = yAxisOptions.id || ('y-axis-' + index);
+			helpers.each(scalesOptions.yAxes, function (yAxisOptions, index) {
+				yAxisOptions.id = yAxisOptions.id || 'y-axis-' + index;
 			});
 
 			if (scaleOptions) {
@@ -61288,23 +61239,20 @@ module.exports = function(Chart) {
 		},
 
 		/**
-		 * Builds a map of scale ID to scale object for future lookup.
-		 */
-		buildScales: function() {
+   * Builds a map of scale ID to scale object for future lookup.
+   */
+		buildScales: function buildScales() {
 			var me = this;
 			var options = me.options;
 			var scales = me.scales = {};
 			var items = [];
 
 			if (options.scales) {
-				items = items.concat(
-					(options.scales.xAxes || []).map(function(xAxisOptions) {
-						return {options: xAxisOptions, dtype: 'category', dposition: 'bottom'};
-					}),
-					(options.scales.yAxes || []).map(function(yAxisOptions) {
-						return {options: yAxisOptions, dtype: 'linear', dposition: 'left'};
-					})
-				);
+				items = items.concat((options.scales.xAxes || []).map(function (xAxisOptions) {
+					return { options: xAxisOptions, dtype: 'category', dposition: 'bottom' };
+				}), (options.scales.yAxes || []).map(function (yAxisOptions) {
+					return { options: yAxisOptions, dtype: 'linear', dposition: 'left' };
+				}));
 			}
 
 			if (options.scale) {
@@ -61316,7 +61264,7 @@ module.exports = function(Chart) {
 				});
 			}
 
-			helpers.each(items, function(item) {
+			helpers.each(items, function (item) {
 				var scaleOptions = item.options;
 				var scaleType = helpers.valueOrDefault(scaleOptions.type, item.dtype);
 				var scaleClass = Chart.scaleService.getScaleConstructor(scaleType);
@@ -61349,12 +61297,12 @@ module.exports = function(Chart) {
 			Chart.scaleService.addScalesToLayout(this);
 		},
 
-		buildOrUpdateControllers: function() {
+		buildOrUpdateControllers: function buildOrUpdateControllers() {
 			var me = this;
 			var types = [];
 			var newControllers = [];
 
-			helpers.each(me.data.datasets, function(dataset, datasetIndex) {
+			helpers.each(me.data.datasets, function (dataset, datasetIndex) {
 				var meta = me.getDatasetMeta(datasetIndex);
 				var type = dataset.type || me.config.type;
 
@@ -61383,28 +61331,28 @@ module.exports = function(Chart) {
 		},
 
 		/**
-		 * Reset the elements of all datasets
-		 * @private
-		 */
-		resetElements: function() {
+   * Reset the elements of all datasets
+   * @private
+   */
+		resetElements: function resetElements() {
 			var me = this;
-			helpers.each(me.data.datasets, function(dataset, datasetIndex) {
+			helpers.each(me.data.datasets, function (dataset, datasetIndex) {
 				me.getDatasetMeta(datasetIndex).controller.reset();
 			}, me);
 		},
 
 		/**
-		* Resets the chart back to it's state before the initial animation
-		*/
-		reset: function() {
+  * Resets the chart back to it's state before the initial animation
+  */
+		reset: function reset() {
 			this.resetElements();
 			this.tooltip.initialize();
 		},
 
-		update: function(config) {
+		update: function update(config) {
 			var me = this;
 
-			if (!config || typeof config !== 'object') {
+			if (!config || (typeof config === 'undefined' ? 'undefined' : _typeof(config)) !== 'object') {
 				// backwards compatibility
 				config = {
 					duration: config,
@@ -61425,14 +61373,14 @@ module.exports = function(Chart) {
 			var newControllers = me.buildOrUpdateControllers();
 
 			// Make sure all dataset controllers have correct meta data counts
-			helpers.each(me.data.datasets, function(dataset, datasetIndex) {
+			helpers.each(me.data.datasets, function (dataset, datasetIndex) {
 				me.getDatasetMeta(datasetIndex).controller.buildOrUpdateElements();
 			}, me);
 
 			me.updateLayout();
 
 			// Can only reset the new controllers after the scales have been updated
-			helpers.each(newControllers, function(controller) {
+			helpers.each(newControllers, function (controller) {
 				controller.reset();
 			});
 
@@ -61461,11 +61409,11 @@ module.exports = function(Chart) {
 		},
 
 		/**
-		 * Updates the chart layout unless a plugin returns `false` to the `beforeLayout`
-		 * hook, in which case, plugins will not be called on `afterLayout`.
-		 * @private
-		 */
-		updateLayout: function() {
+   * Updates the chart layout unless a plugin returns `false` to the `beforeLayout`
+   * hook, in which case, plugins will not be called on `afterLayout`.
+   * @private
+   */
+		updateLayout: function updateLayout() {
 			var me = this;
 
 			if (plugins.notify(me, 'beforeLayout') === false) {
@@ -61475,22 +61423,22 @@ module.exports = function(Chart) {
 			Chart.layoutService.update(this, this.width, this.height);
 
 			/**
-			 * Provided for backward compatibility, use `afterLayout` instead.
-			 * @method IPlugin#afterScaleUpdate
-			 * @deprecated since version 2.5.0
-			 * @todo remove at version 3
-			 * @private
-			 */
+    * Provided for backward compatibility, use `afterLayout` instead.
+    * @method IPlugin#afterScaleUpdate
+    * @deprecated since version 2.5.0
+    * @todo remove at version 3
+    * @private
+    */
 			plugins.notify(me, 'afterScaleUpdate');
 			plugins.notify(me, 'afterLayout');
 		},
 
 		/**
-		 * Updates all datasets unless a plugin returns `false` to the `beforeDatasetsUpdate`
-		 * hook, in which case, plugins will not be called on `afterDatasetsUpdate`.
-		 * @private
-		 */
-		updateDatasets: function() {
+   * Updates all datasets unless a plugin returns `false` to the `beforeDatasetsUpdate`
+   * hook, in which case, plugins will not be called on `afterDatasetsUpdate`.
+   * @private
+   */
+		updateDatasets: function updateDatasets() {
 			var me = this;
 
 			if (plugins.notify(me, 'beforeDatasetsUpdate') === false) {
@@ -61505,11 +61453,11 @@ module.exports = function(Chart) {
 		},
 
 		/**
-		 * Updates dataset at index unless a plugin returns `false` to the `beforeDatasetUpdate`
-		 * hook, in which case, plugins will not be called on `afterDatasetUpdate`.
-		 * @private
-		 */
-		updateDataset: function(index) {
+   * Updates dataset at index unless a plugin returns `false` to the `beforeDatasetUpdate`
+   * hook, in which case, plugins will not be called on `afterDatasetUpdate`.
+   * @private
+   */
+		updateDataset: function updateDataset(index) {
 			var me = this;
 			var meta = me.getDatasetMeta(index);
 			var args = {
@@ -61526,10 +61474,10 @@ module.exports = function(Chart) {
 			plugins.notify(me, 'afterDatasetUpdate', [args]);
 		},
 
-		render: function(config) {
+		render: function render(config) {
 			var me = this;
 
-			if (!config || typeof config !== 'object') {
+			if (!config || (typeof config === 'undefined' ? 'undefined' : _typeof(config)) !== 'object') {
 				// backwards compatibility
 				config = {
 					duration: config,
@@ -61545,17 +61493,17 @@ module.exports = function(Chart) {
 			}
 
 			var animationOptions = me.options.animation;
-			var onComplete = function(animation) {
+			var onComplete = function onComplete(animation) {
 				plugins.notify(me, 'afterRender');
 				helpers.callback(animationOptions && animationOptions.onComplete, [animation], me);
 			};
 
-			if (animationOptions && ((typeof duration !== 'undefined' && duration !== 0) || (typeof duration === 'undefined' && animationOptions.duration !== 0))) {
+			if (animationOptions && (typeof duration !== 'undefined' && duration !== 0 || typeof duration === 'undefined' && animationOptions.duration !== 0)) {
 				var animation = new Chart.Animation({
 					numSteps: (duration || animationOptions.duration) / 16.66, // 60 fps
 					easing: config.easing || animationOptions.easing,
 
-					render: function(chart, animationObject) {
+					render: function render(chart, animationObject) {
 						var easingFunction = helpers.easing.effects[animationObject.easing];
 						var currentStep = animationObject.currentStep;
 						var stepDecimal = currentStep / animationObject.numSteps;
@@ -61572,13 +61520,13 @@ module.exports = function(Chart) {
 				me.draw();
 
 				// See https://github.com/chartjs/Chart.js/issues/3781
-				onComplete(new Chart.Animation({numSteps: 0, chart: me}));
+				onComplete(new Chart.Animation({ numSteps: 0, chart: me }));
 			}
 
 			return me;
 		},
 
-		draw: function(easingValue) {
+		draw: function draw(easingValue) {
 			var me = this;
 
 			me.clear();
@@ -61594,7 +61542,7 @@ module.exports = function(Chart) {
 			}
 
 			// Draw all the scales
-			helpers.each(me.boxes, function(box) {
+			helpers.each(me.boxes, function (box) {
 				box.draw(me.chartArea);
 			}, me);
 
@@ -61609,9 +61557,9 @@ module.exports = function(Chart) {
 		},
 
 		/**
-		 * @private
-		 */
-		transition: function(easingValue) {
+   * @private
+   */
+		transition: function transition(easingValue) {
 			var me = this;
 
 			for (var i = 0, ilen = (me.data.datasets || []).length; i < ilen; ++i) {
@@ -61624,11 +61572,11 @@ module.exports = function(Chart) {
 		},
 
 		/**
-		 * Draws all datasets unless a plugin returns `false` to the `beforeDatasetsDraw`
-		 * hook, in which case, plugins will not be called on `afterDatasetsDraw`.
-		 * @private
-		 */
-		drawDatasets: function(easingValue) {
+   * Draws all datasets unless a plugin returns `false` to the `beforeDatasetsDraw`
+   * hook, in which case, plugins will not be called on `afterDatasetsDraw`.
+   * @private
+   */
+		drawDatasets: function drawDatasets(easingValue) {
 			var me = this;
 
 			if (plugins.notify(me, 'beforeDatasetsDraw', [easingValue]) === false) {
@@ -61646,11 +61594,11 @@ module.exports = function(Chart) {
 		},
 
 		/**
-		 * Draws dataset at index unless a plugin returns `false` to the `beforeDatasetDraw`
-		 * hook, in which case, plugins will not be called on `afterDatasetDraw`.
-		 * @private
-		 */
-		drawDataset: function(index, easingValue) {
+   * Draws dataset at index unless a plugin returns `false` to the `beforeDatasetDraw`
+   * hook, in which case, plugins will not be called on `afterDatasetDraw`.
+   * @private
+   */
+		drawDataset: function drawDataset(index, easingValue) {
 			var me = this;
 			var meta = me.getDatasetMeta(index);
 			var args = {
@@ -61669,11 +61617,11 @@ module.exports = function(Chart) {
 		},
 
 		/**
-		 * Draws tooltip unless a plugin returns `false` to the `beforeTooltipDraw`
-		 * hook, in which case, plugins will not be called on `afterTooltipDraw`.
-		 * @private
-		 */
-		_drawTooltip: function(easingValue) {
+   * Draws tooltip unless a plugin returns `false` to the `beforeTooltipDraw`
+   * hook, in which case, plugins will not be called on `afterTooltipDraw`.
+   * @private
+   */
+		_drawTooltip: function _drawTooltip(easingValue) {
 			var me = this;
 			var tooltip = me.tooltip;
 			var args = {
@@ -61692,19 +61640,19 @@ module.exports = function(Chart) {
 
 		// Get the single element that was clicked on
 		// @return : An object containing the dataset index and element index of the matching element. Also contains the rectangle that was draw
-		getElementAtEvent: function(e) {
+		getElementAtEvent: function getElementAtEvent(e) {
 			return Interaction.modes.single(this, e);
 		},
 
-		getElementsAtEvent: function(e) {
-			return Interaction.modes.label(this, e, {intersect: true});
+		getElementsAtEvent: function getElementsAtEvent(e) {
+			return Interaction.modes.label(this, e, { intersect: true });
 		},
 
-		getElementsAtXAxis: function(e) {
-			return Interaction.modes['x-axis'](this, e, {intersect: true});
+		getElementsAtXAxis: function getElementsAtXAxis(e) {
+			return Interaction.modes['x-axis'](this, e, { intersect: true });
 		},
 
-		getElementsAtEventForMode: function(e, mode, options) {
+		getElementsAtEventForMode: function getElementsAtEventForMode(e, mode, options) {
 			var method = Interaction.modes[mode];
 			if (typeof method === 'function') {
 				return method(this, e, options);
@@ -61713,11 +61661,11 @@ module.exports = function(Chart) {
 			return [];
 		},
 
-		getDatasetAtEvent: function(e) {
-			return Interaction.modes.dataset(this, e, {intersect: true});
+		getDatasetAtEvent: function getDatasetAtEvent(e) {
+			return Interaction.modes.dataset(this, e, { intersect: true });
 		},
 
-		getDatasetMeta: function(datasetIndex) {
+		getDatasetMeta: function getDatasetMeta(datasetIndex) {
 			var me = this;
 			var dataset = me.data.datasets[datasetIndex];
 			if (!dataset._meta) {
@@ -61731,7 +61679,7 @@ module.exports = function(Chart) {
 					data: [],
 					dataset: null,
 					controller: null,
-					hidden: null,			// See isDatasetVisible() comment
+					hidden: null, // See isDatasetVisible() comment
 					xAxisID: null,
 					yAxisID: null
 				};
@@ -61740,7 +61688,7 @@ module.exports = function(Chart) {
 			return meta;
 		},
 
-		getVisibleDatasetCount: function() {
+		getVisibleDatasetCount: function getVisibleDatasetCount() {
 			var count = 0;
 			for (var i = 0, ilen = this.data.datasets.length; i < ilen; ++i) {
 				if (this.isDatasetVisible(i)) {
@@ -61750,7 +61698,7 @@ module.exports = function(Chart) {
 			return count;
 		},
 
-		isDatasetVisible: function(datasetIndex) {
+		isDatasetVisible: function isDatasetVisible(datasetIndex) {
 			var meta = this.getDatasetMeta(datasetIndex);
 
 			// meta.hidden is a per chart dataset hidden flag override with 3 states: if true or false,
@@ -61758,14 +61706,14 @@ module.exports = function(Chart) {
 			return typeof meta.hidden === 'boolean' ? !meta.hidden : !this.data.datasets[datasetIndex].hidden;
 		},
 
-		generateLegend: function() {
+		generateLegend: function generateLegend() {
 			return this.options.legendCallback(this);
 		},
 
 		/**
-		 * @private
-		 */
-		destroyDatasetMeta: function(datasetIndex) {
+   * @private
+   */
+		destroyDatasetMeta: function destroyDatasetMeta(datasetIndex) {
 			var id = this.id;
 			var dataset = this.data.datasets[datasetIndex];
 			var meta = dataset._meta && dataset._meta[id];
@@ -61776,7 +61724,7 @@ module.exports = function(Chart) {
 			}
 		},
 
-		destroy: function() {
+		destroy: function destroy() {
 			var me = this;
 			var canvas = me.canvas;
 			var i, ilen;
@@ -61801,11 +61749,11 @@ module.exports = function(Chart) {
 			delete Chart.instances[me.id];
 		},
 
-		toBase64Image: function() {
+		toBase64Image: function toBase64Image() {
 			return this.canvas.toDataURL.apply(this.canvas, arguments);
 		},
 
-		initToolTip: function() {
+		initToolTip: function initToolTip() {
 			var me = this;
 			me.tooltip = new Chart.Tooltip({
 				_chart: me,
@@ -61816,16 +61764,16 @@ module.exports = function(Chart) {
 		},
 
 		/**
-		 * @private
-		 */
-		bindEvents: function() {
+   * @private
+   */
+		bindEvents: function bindEvents() {
 			var me = this;
 			var listeners = me._listeners = {};
-			var listener = function() {
+			var listener = function listener() {
 				me.eventHandler.apply(me, arguments);
 			};
 
-			helpers.each(me.options.events, function(type) {
+			helpers.each(me.options.events, function (type) {
 				platform.addEventListener(me, type, listener);
 				listeners[type] = listener;
 			});
@@ -61833,7 +61781,7 @@ module.exports = function(Chart) {
 			// Elements used to detect size change should not be injected for non responsive charts.
 			// See https://github.com/chartjs/Chart.js/issues/2210
 			if (me.options.responsive) {
-				listener = function() {
+				listener = function listener() {
 					me.resize();
 				};
 
@@ -61843,9 +61791,9 @@ module.exports = function(Chart) {
 		},
 
 		/**
-		 * @private
-		 */
-		unbindEvents: function() {
+   * @private
+   */
+		unbindEvents: function unbindEvents() {
 			var me = this;
 			var listeners = me._listeners;
 			if (!listeners) {
@@ -61853,12 +61801,12 @@ module.exports = function(Chart) {
 			}
 
 			delete me._listeners;
-			helpers.each(listeners, function(listener, type) {
+			helpers.each(listeners, function (listener, type) {
 				platform.removeEventListener(me, type, listener);
 			});
 		},
 
-		updateHoverStyle: function(elements, mode, enabled) {
+		updateHoverStyle: function updateHoverStyle(elements, mode, enabled) {
 			var method = enabled ? 'setHoverStyle' : 'removeHoverStyle';
 			var element, i, ilen;
 
@@ -61871,9 +61819,9 @@ module.exports = function(Chart) {
 		},
 
 		/**
-		 * @private
-		 */
-		eventHandler: function(e) {
+   * @private
+   */
+		eventHandler: function eventHandler(e) {
 			var me = this;
 			var tooltip = me.tooltip;
 
@@ -61910,12 +61858,12 @@ module.exports = function(Chart) {
 		},
 
 		/**
-		 * Handle an event
-		 * @private
-		 * @param {IEvent} event the event to handle
-		 * @return {Boolean} true if the chart needs to re-render
-		 */
-		handleEvent: function(e) {
+   * Handle an event
+   * @private
+   * @param {IEvent} event the event to handle
+   * @return {Boolean} true if the chart needs to re-render
+   */
+		handleEvent: function handleEvent(e) {
 			var me = this;
 			var options = me.options || {};
 			var hoverOptions = options.hover;
@@ -61961,15 +61909,14 @@ module.exports = function(Chart) {
 	});
 
 	/**
-	 * Provided for backward compatibility, use Chart instead.
-	 * @class Chart.Controller
-	 * @deprecated since version 2.6.0
-	 * @todo remove at version 3
-	 * @private
-	 */
+  * Provided for backward compatibility, use Chart instead.
+  * @class Chart.Controller
+  * @deprecated since version 2.6.0
+  * @todo remove at version 3
+  * @private
+  */
 	Chart.Controller = Chart;
 };
-
 
 /***/ }),
 /* 750 */
@@ -61980,15 +61927,15 @@ module.exports = function(Chart) {
 
 var helpers = __webpack_require__(5);
 
-module.exports = function(Chart) {
+module.exports = function (Chart) {
 
 	var arrayEvents = ['push', 'pop', 'shift', 'splice', 'unshift'];
 
 	/**
-	 * Hooks the array methods that add or remove values ('push', pop', 'shift', 'splice',
-	 * 'unshift') and notify the listener AFTER the array has been altered. Listeners are
-	 * called on the 'onData*' callbacks (e.g. onDataPush, etc.) with same arguments.
-	 */
+  * Hooks the array methods that add or remove values ('push', pop', 'shift', 'splice',
+  * 'unshift') and notify the listener AFTER the array has been altered. Listeners are
+  * called on the 'onData*' callbacks (e.g. onDataPush, etc.) with same arguments.
+  */
 	function listenArrayEvents(array, listener) {
 		if (array._chartjs) {
 			array._chartjs.listeners.push(listener);
@@ -62003,18 +61950,18 @@ module.exports = function(Chart) {
 			}
 		});
 
-		arrayEvents.forEach(function(key) {
+		arrayEvents.forEach(function (key) {
 			var method = 'onData' + key.charAt(0).toUpperCase() + key.slice(1);
 			var base = array[key];
 
 			Object.defineProperty(array, key, {
 				configurable: true,
 				enumerable: false,
-				value: function() {
+				value: function value() {
 					var args = Array.prototype.slice.call(arguments);
 					var res = base.apply(this, args);
 
-					helpers.each(array._chartjs.listeners, function(object) {
+					helpers.each(array._chartjs.listeners, function (object) {
 						if (typeof object[method] === 'function') {
 							object[method].apply(object, args);
 						}
@@ -62027,9 +61974,9 @@ module.exports = function(Chart) {
 	}
 
 	/**
-	 * Removes the given array event listener and cleanup extra attached properties (such as
-	 * the _chartjs stub and overridden methods) if array doesn't have any more listeners.
-	 */
+  * Removes the given array event listener and cleanup extra attached properties (such as
+  * the _chartjs stub and overridden methods) if array doesn't have any more listeners.
+  */
 	function unlistenArrayEvents(array, listener) {
 		var stub = array._chartjs;
 		if (!stub) {
@@ -62046,7 +61993,7 @@ module.exports = function(Chart) {
 			return;
 		}
 
-		arrayEvents.forEach(function(key) {
+		arrayEvents.forEach(function (key) {
 			delete array[key];
 		});
 
@@ -62054,25 +62001,25 @@ module.exports = function(Chart) {
 	}
 
 	// Base class for all dataset controllers (line, bar, etc)
-	Chart.DatasetController = function(chart, datasetIndex) {
+	Chart.DatasetController = function (chart, datasetIndex) {
 		this.initialize(chart, datasetIndex);
 	};
 
 	helpers.extend(Chart.DatasetController.prototype, {
 
 		/**
-		 * Element type used to generate a meta dataset (e.g. Chart.element.Line).
-		 * @type {Chart.core.element}
-		 */
+   * Element type used to generate a meta dataset (e.g. Chart.element.Line).
+   * @type {Chart.core.element}
+   */
 		datasetElementType: null,
 
 		/**
-		 * Element type used to generate a meta data (e.g. Chart.element.Point).
-		 * @type {Chart.core.element}
-		 */
+   * Element type used to generate a meta data (e.g. Chart.element.Point).
+   * @type {Chart.core.element}
+   */
 		dataElementType: null,
 
-		initialize: function(chart, datasetIndex) {
+		initialize: function initialize(chart, datasetIndex) {
 			var me = this;
 			me.chart = chart;
 			me.index = datasetIndex;
@@ -62080,11 +62027,11 @@ module.exports = function(Chart) {
 			me.addElements();
 		},
 
-		updateIndex: function(datasetIndex) {
+		updateIndex: function updateIndex(datasetIndex) {
 			this.index = datasetIndex;
 		},
 
-		linkScales: function() {
+		linkScales: function linkScales() {
 			var me = this;
 			var meta = me.getMeta();
 			var dataset = me.getDataset();
@@ -62097,32 +62044,32 @@ module.exports = function(Chart) {
 			}
 		},
 
-		getDataset: function() {
+		getDataset: function getDataset() {
 			return this.chart.data.datasets[this.index];
 		},
 
-		getMeta: function() {
+		getMeta: function getMeta() {
 			return this.chart.getDatasetMeta(this.index);
 		},
 
-		getScaleForId: function(scaleID) {
+		getScaleForId: function getScaleForId(scaleID) {
 			return this.chart.scales[scaleID];
 		},
 
-		reset: function() {
+		reset: function reset() {
 			this.update(true);
 		},
 
 		/**
-		 * @private
-		 */
-		destroy: function() {
+   * @private
+   */
+		destroy: function destroy() {
 			if (this._data) {
 				unlistenArrayEvents(this._data, this);
 			}
 		},
 
-		createMetaDataset: function() {
+		createMetaDataset: function createMetaDataset() {
 			var me = this;
 			var type = me.datasetElementType;
 			return type && new type({
@@ -62131,7 +62078,7 @@ module.exports = function(Chart) {
 			});
 		},
 
-		createMetaData: function(index) {
+		createMetaData: function createMetaData(index) {
 			var me = this;
 			var type = me.dataElementType;
 			return type && new type({
@@ -62141,7 +62088,7 @@ module.exports = function(Chart) {
 			});
 		},
 
-		addElements: function() {
+		addElements: function addElements() {
 			var me = this;
 			var meta = me.getMeta();
 			var data = me.getDataset().data || [];
@@ -62155,13 +62102,13 @@ module.exports = function(Chart) {
 			meta.dataset = meta.dataset || me.createMetaDataset();
 		},
 
-		addElementAndReset: function(index) {
+		addElementAndReset: function addElementAndReset(index) {
 			var element = this.createMetaData(index);
 			this.getMeta().data.splice(index, 0, element);
 			this.updateElement(element, index, true);
 		},
 
-		buildOrUpdateElements: function() {
+		buildOrUpdateElements: function buildOrUpdateElements() {
 			var me = this;
 			var dataset = me.getDataset();
 			var data = dataset.data || (dataset.data = []);
@@ -62186,7 +62133,7 @@ module.exports = function(Chart) {
 
 		update: helpers.noop,
 
-		transition: function(easingValue) {
+		transition: function transition(easingValue) {
 			var meta = this.getMeta();
 			var elements = meta.data || [];
 			var ilen = elements.length;
@@ -62201,7 +62148,7 @@ module.exports = function(Chart) {
 			}
 		},
 
-		draw: function() {
+		draw: function draw() {
 			var meta = this.getMeta();
 			var elements = meta.data || [];
 			var ilen = elements.length;
@@ -62216,7 +62163,7 @@ module.exports = function(Chart) {
 			}
 		},
 
-		removeHoverStyle: function(element, elementOpts) {
+		removeHoverStyle: function removeHoverStyle(element, elementOpts) {
 			var dataset = this.chart.data.datasets[element._datasetIndex];
 			var index = element._index;
 			var custom = element.custom || {};
@@ -62228,7 +62175,7 @@ module.exports = function(Chart) {
 			model.borderWidth = custom.borderWidth ? custom.borderWidth : valueOrDefault(dataset.borderWidth, index, elementOpts.borderWidth);
 		},
 
-		setHoverStyle: function(element) {
+		setHoverStyle: function setHoverStyle(element) {
 			var dataset = this.chart.data.datasets[element._datasetIndex];
 			var index = element._index;
 			var custom = element.custom || {};
@@ -62242,9 +62189,9 @@ module.exports = function(Chart) {
 		},
 
 		/**
-		 * @private
-		 */
-		resyncElements: function() {
+   * @private
+   */
+		resyncElements: function resyncElements() {
 			var me = this;
 			var meta = me.getMeta();
 			var data = me.getDataset().data;
@@ -62259,54 +62206,53 @@ module.exports = function(Chart) {
 		},
 
 		/**
-		 * @private
-		 */
-		insertElements: function(start, count) {
+   * @private
+   */
+		insertElements: function insertElements(start, count) {
 			for (var i = 0; i < count; ++i) {
 				this.addElementAndReset(start + i);
 			}
 		},
 
 		/**
-		 * @private
-		 */
-		onDataPush: function() {
+   * @private
+   */
+		onDataPush: function onDataPush() {
 			this.insertElements(this.getDataset().data.length - 1, arguments.length);
 		},
 
 		/**
-		 * @private
-		 */
-		onDataPop: function() {
+   * @private
+   */
+		onDataPop: function onDataPop() {
 			this.getMeta().data.pop();
 		},
 
 		/**
-		 * @private
-		 */
-		onDataShift: function() {
+   * @private
+   */
+		onDataShift: function onDataShift() {
 			this.getMeta().data.shift();
 		},
 
 		/**
-		 * @private
-		 */
-		onDataSplice: function(start, count) {
+   * @private
+   */
+		onDataSplice: function onDataSplice(start, count) {
 			this.getMeta().data.splice(start, count);
 			this.insertElements(start, arguments.length - 2);
 		},
 
 		/**
-		 * @private
-		 */
-		onDataUnshift: function() {
+   * @private
+   */
+		onDataUnshift: function onDataUnshift() {
 			this.insertElements(0, arguments.length);
 		}
 	});
 
 	Chart.DatasetController.extend = helpers.inherits;
 };
-
 
 /***/ }),
 /* 751 */
@@ -62317,47 +62263,45 @@ module.exports = function(Chart) {
 
 var helpers = __webpack_require__(5);
 
-module.exports = function(Chart) {
+module.exports = function (Chart) {
 
 	function filterByPosition(array, position) {
-		return helpers.where(array, function(v) {
+		return helpers.where(array, function (v) {
 			return v.position === position;
 		});
 	}
 
 	function sortByWeight(array, reverse) {
-		array.forEach(function(v, i) {
+		array.forEach(function (v, i) {
 			v._tmpIndex_ = i;
 			return v;
 		});
-		array.sort(function(a, b) {
+		array.sort(function (a, b) {
 			var v0 = reverse ? b : a;
 			var v1 = reverse ? a : b;
-			return v0.weight === v1.weight ?
-				v0._tmpIndex_ - v1._tmpIndex_ :
-				v0.weight - v1.weight;
+			return v0.weight === v1.weight ? v0._tmpIndex_ - v1._tmpIndex_ : v0.weight - v1.weight;
 		});
-		array.forEach(function(v) {
+		array.forEach(function (v) {
 			delete v._tmpIndex_;
 		});
 	}
 
 	/**
-	 * @interface ILayoutItem
-	 * @prop {String} position - The position of the item in the chart layout. Possible values are
-	 * 'left', 'top', 'right', 'bottom', and 'chartArea'
-	 * @prop {Number} weight - The weight used to sort the item. Higher weights are further away from the chart area
-	 * @prop {Boolean} fullWidth - if true, and the item is horizontal, then push vertical boxes down
-	 * @prop {Function} isHorizontal - returns true if the layout item is horizontal (ie. top or bottom)
-	 * @prop {Function} update - Takes two parameters: width and height. Returns size of item
-	 * @prop {Function} getPadding -  Returns an object with padding on the edges
-	 * @prop {Number} width - Width of item. Must be valid after update()
-	 * @prop {Number} height - Height of item. Must be valid after update()
-	 * @prop {Number} left - Left edge of the item. Set by layout system and cannot be used in update
-	 * @prop {Number} top - Top edge of the item. Set by layout system and cannot be used in update
-	 * @prop {Number} right - Right edge of the item. Set by layout system and cannot be used in update
-	 * @prop {Number} bottom - Bottom edge of the item. Set by layout system and cannot be used in update
-	 */
+  * @interface ILayoutItem
+  * @prop {String} position - The position of the item in the chart layout. Possible values are
+  * 'left', 'top', 'right', 'bottom', and 'chartArea'
+  * @prop {Number} weight - The weight used to sort the item. Higher weights are further away from the chart area
+  * @prop {Boolean} fullWidth - if true, and the item is horizontal, then push vertical boxes down
+  * @prop {Function} isHorizontal - returns true if the layout item is horizontal (ie. top or bottom)
+  * @prop {Function} update - Takes two parameters: width and height. Returns size of item
+  * @prop {Function} getPadding -  Returns an object with padding on the edges
+  * @prop {Number} width - Width of item. Must be valid after update()
+  * @prop {Number} height - Height of item. Must be valid after update()
+  * @prop {Number} left - Left edge of the item. Set by layout system and cannot be used in update
+  * @prop {Number} top - Top edge of the item. Set by layout system and cannot be used in update
+  * @prop {Number} right - Right edge of the item. Set by layout system and cannot be used in update
+  * @prop {Number} bottom - Bottom edge of the item. Set by layout system and cannot be used in update
+  */
 
 	// The layout service is very self explanatory.  It's responsible for the layout within a chart.
 	// Scales, Legends and Plugins all rely on the layout service and can easily register to be placed anywhere they need
@@ -62366,12 +62310,12 @@ module.exports = function(Chart) {
 		defaults: {},
 
 		/**
-		 * Register a box to a chart.
-		 * A box is simply a reference to an object that requires layout. eg. Scales, Legend, Title.
-		 * @param {Chart} chart - the chart to use
-		 * @param {ILayoutItem} item - the item to add to be layed out
-		 */
-		addBox: function(chart, item) {
+   * Register a box to a chart.
+   * A box is simply a reference to an object that requires layout. eg. Scales, Legend, Title.
+   * @param {Chart} chart - the chart to use
+   * @param {ILayoutItem} item - the item to add to be layed out
+   */
+		addBox: function addBox(chart, item) {
 			if (!chart.boxes) {
 				chart.boxes = [];
 			}
@@ -62385,11 +62329,11 @@ module.exports = function(Chart) {
 		},
 
 		/**
-		 * Remove a layoutItem from a chart
-		 * @param {Chart} chart - the chart to remove the box from
-		 * @param {Object} layoutItem - the item to remove from the layout
-		 */
-		removeBox: function(chart, layoutItem) {
+   * Remove a layoutItem from a chart
+   * @param {Chart} chart - the chart to remove the box from
+   * @param {Object} layoutItem - the item to remove from the layout
+   */
+		removeBox: function removeBox(chart, layoutItem) {
 			var index = chart.boxes ? chart.boxes.indexOf(layoutItem) : -1;
 			if (index !== -1) {
 				chart.boxes.splice(index, 1);
@@ -62397,12 +62341,12 @@ module.exports = function(Chart) {
 		},
 
 		/**
-		 * Sets (or updates) options on the given `item`.
-		 * @param {Chart} chart - the chart in which the item lives (or will be added to)
-		 * @param {Object} item - the item to configure with the given options
-		 * @param {Object} options - the new item options.
-		 */
-		configure: function(chart, item, options) {
+   * Sets (or updates) options on the given `item`.
+   * @param {Chart} chart - the chart in which the item lives (or will be added to)
+   * @param {Object} item - the item to configure with the given options
+   * @param {Object} options - the new item options.
+   */
+		configure: function configure(chart, item, options) {
 			var props = ['fullWidth', 'position', 'weight'];
 			var ilen = props.length;
 			var i = 0;
@@ -62417,13 +62361,13 @@ module.exports = function(Chart) {
 		},
 
 		/**
-		 * Fits boxes of the given chart into the given size by having each box measure itself
-		 * then running a fitting algorithm
-		 * @param {Chart} chart - the chart
-		 * @param {Number} width - the width to fit into
-		 * @param {Number} height - the height to fit into
-		 */
-		update: function(chart, width, height) {
+   * Fits boxes of the given chart into the given size by having each box measure itself
+   * then running a fitting algorithm
+   * @param {Chart} chart - the chart
+   * @param {Number} width - the width to fit into
+   * @param {Number} height - the height to fit into
+   */
+		update: function update(chart, width, height) {
 			if (!chart) {
 				return;
 			}
@@ -62516,7 +62460,7 @@ module.exports = function(Chart) {
 				minBoxSizes.push({
 					horizontal: isHorizontal,
 					minSize: minSize,
-					box: box,
+					box: box
 				});
 			}
 
@@ -62528,7 +62472,7 @@ module.exports = function(Chart) {
 			var maxVerticalTopPadding = 0;
 			var maxVerticalBottomPadding = 0;
 
-			helpers.each(topBoxes.concat(bottomBoxes), function(horizontalBox) {
+			helpers.each(topBoxes.concat(bottomBoxes), function (horizontalBox) {
 				if (horizontalBox.getPadding) {
 					var boxPadding = horizontalBox.getPadding();
 					maxHorizontalLeftPadding = Math.max(maxHorizontalLeftPadding, boxPadding.left);
@@ -62536,7 +62480,7 @@ module.exports = function(Chart) {
 				}
 			});
 
-			helpers.each(leftBoxes.concat(rightBoxes), function(verticalBox) {
+			helpers.each(leftBoxes.concat(rightBoxes), function (verticalBox) {
 				if (verticalBox.getPadding) {
 					var boxPadding = verticalBox.getPadding();
 					maxVerticalTopPadding = Math.max(maxVerticalTopPadding, boxPadding.top);
@@ -62554,7 +62498,7 @@ module.exports = function(Chart) {
 
 			// Function to fit a box
 			function fitBox(box) {
-				var minBoxSize = helpers.findNextWhere(minBoxSizes, function(minBox) {
+				var minBoxSize = helpers.findNextWhere(minBoxSizes, function (minBox) {
 					return minBox.box === box;
 				});
 
@@ -62579,11 +62523,11 @@ module.exports = function(Chart) {
 			// Update, and calculate the left and right margins for the horizontal boxes
 			helpers.each(leftBoxes.concat(rightBoxes), fitBox);
 
-			helpers.each(leftBoxes, function(box) {
+			helpers.each(leftBoxes, function (box) {
 				totalLeftBoxesWidth += box.width;
 			});
 
-			helpers.each(rightBoxes, function(box) {
+			helpers.each(rightBoxes, function (box) {
 				totalRightBoxesWidth += box.width;
 			});
 
@@ -62591,16 +62535,16 @@ module.exports = function(Chart) {
 			helpers.each(topBoxes.concat(bottomBoxes), fitBox);
 
 			// Figure out how much margin is on the top and bottom of the vertical boxes
-			helpers.each(topBoxes, function(box) {
+			helpers.each(topBoxes, function (box) {
 				totalTopBoxesHeight += box.height;
 			});
 
-			helpers.each(bottomBoxes, function(box) {
+			helpers.each(bottomBoxes, function (box) {
 				totalBottomBoxesHeight += box.height;
 			});
 
 			function finalFitVerticalBox(box) {
-				var minBoxSize = helpers.findNextWhere(minBoxSizes, function(minSize) {
+				var minBoxSize = helpers.findNextWhere(minBoxSizes, function (minSize) {
 					return minSize.box === box;
 				});
 
@@ -62625,18 +62569,18 @@ module.exports = function(Chart) {
 			totalTopBoxesHeight = topPadding;
 			totalBottomBoxesHeight = bottomPadding;
 
-			helpers.each(leftBoxes, function(box) {
+			helpers.each(leftBoxes, function (box) {
 				totalLeftBoxesWidth += box.width;
 			});
 
-			helpers.each(rightBoxes, function(box) {
+			helpers.each(rightBoxes, function (box) {
 				totalRightBoxesWidth += box.width;
 			});
 
-			helpers.each(topBoxes, function(box) {
+			helpers.each(topBoxes, function (box) {
 				totalTopBoxesHeight += box.height;
 			});
-			helpers.each(bottomBoxes, function(box) {
+			helpers.each(bottomBoxes, function (box) {
 				totalBottomBoxesHeight += box.height;
 			});
 
@@ -62656,21 +62600,21 @@ module.exports = function(Chart) {
 			var newMaxChartAreaWidth = width - totalLeftBoxesWidth - totalRightBoxesWidth;
 
 			if (newMaxChartAreaWidth !== maxChartAreaWidth || newMaxChartAreaHeight !== maxChartAreaHeight) {
-				helpers.each(leftBoxes, function(box) {
+				helpers.each(leftBoxes, function (box) {
 					box.height = newMaxChartAreaHeight;
 				});
 
-				helpers.each(rightBoxes, function(box) {
+				helpers.each(rightBoxes, function (box) {
 					box.height = newMaxChartAreaHeight;
 				});
 
-				helpers.each(topBoxes, function(box) {
+				helpers.each(topBoxes, function (box) {
 					if (!box.fullWidth) {
 						box.width = newMaxChartAreaWidth;
 					}
 				});
 
-				helpers.each(bottomBoxes, function(box) {
+				helpers.each(bottomBoxes, function (box) {
 					if (!box.fullWidth) {
 						box.width = newMaxChartAreaWidth;
 					}
@@ -62693,7 +62637,6 @@ module.exports = function(Chart) {
 
 					// Move to next point
 					top = box.bottom;
-
 				} else {
 
 					box.left = left;
@@ -62724,7 +62667,7 @@ module.exports = function(Chart) {
 			};
 
 			// Step 9
-			helpers.each(chartAreaBoxes, function(box) {
+			helpers.each(chartAreaBoxes, function (box) {
 				box.left = chart.chartArea.left;
 				box.top = chart.chartArea.top;
 				box.right = chart.chartArea.right;
@@ -62736,7 +62679,6 @@ module.exports = function(Chart) {
 	};
 };
 
-
 /***/ }),
 /* 752 */
 /***/ (function(module, exports, __webpack_require__) {
@@ -62747,7 +62689,7 @@ module.exports = function(Chart) {
 var defaults = __webpack_require__(10);
 var helpers = __webpack_require__(5);
 
-module.exports = function(Chart) {
+module.exports = function (Chart) {
 
 	Chart.scaleService = {
 		// Scale registration object. Extensions can register new scale types (such as log or DB scales) and then
@@ -62758,26 +62700,26 @@ module.exports = function(Chart) {
 
 		// Scale config defaults
 		defaults: {},
-		registerScaleType: function(type, scaleConstructor, scaleDefaults) {
+		registerScaleType: function registerScaleType(type, scaleConstructor, scaleDefaults) {
 			this.constructors[type] = scaleConstructor;
 			this.defaults[type] = helpers.clone(scaleDefaults);
 		},
-		getScaleConstructor: function(type) {
+		getScaleConstructor: function getScaleConstructor(type) {
 			return this.constructors.hasOwnProperty(type) ? this.constructors[type] : undefined;
 		},
-		getScaleDefaults: function(type) {
+		getScaleDefaults: function getScaleDefaults(type) {
 			// Return the scale defaults merged with the global settings so that we always use the latest ones
 			return this.defaults.hasOwnProperty(type) ? helpers.merge({}, [defaults.scale, this.defaults[type]]) : {};
 		},
-		updateScaleDefaults: function(type, additions) {
+		updateScaleDefaults: function updateScaleDefaults(type, additions) {
 			var me = this;
 			if (me.defaults.hasOwnProperty(type)) {
 				me.defaults[type] = helpers.extend(me.defaults[type], additions);
 			}
 		},
-		addScalesToLayout: function(chart) {
+		addScalesToLayout: function addScalesToLayout(chart) {
 			// Adds each scale to the chart.boxes array to be sized accordingly
-			helpers.each(chart.scales, function(scale) {
+			helpers.each(chart.scales, function (scale) {
 				// Set ILayoutItem parameters for backwards compatibility
 				scale.fullWidth = scale.options.fullWidth;
 				scale.position = scale.options.position;
@@ -62787,7 +62729,6 @@ module.exports = function(Chart) {
 		}
 	};
 };
-
 
 /***/ }),
 /* 753 */
@@ -62885,12 +62826,10 @@ function getLineValue(scale, index, offsetGridLines) {
 	return lineValue;
 }
 
-module.exports = function(Chart) {
+module.exports = function (Chart) {
 
 	function computeTextSize(context, tick, font) {
-		return helpers.isArray(tick) ?
-			helpers.longestText(context, font, tick) :
-			context.measureText(tick).width;
+		return helpers.isArray(tick) ? helpers.longestText(context, font, tick) : context.measureText(tick).width;
 	}
 
 	function parseFontOptions(options) {
@@ -62909,19 +62848,17 @@ module.exports = function(Chart) {
 	}
 
 	function parseLineHeight(options) {
-		return helpers.options.toLineHeight(
-			helpers.valueOrDefault(options.lineHeight, 1.2),
-			helpers.valueOrDefault(options.fontSize, defaults.global.defaultFontSize));
+		return helpers.options.toLineHeight(helpers.valueOrDefault(options.lineHeight, 1.2), helpers.valueOrDefault(options.fontSize, defaults.global.defaultFontSize));
 	}
 
 	Chart.Scale = Element.extend({
 		/**
-		 * Get the padding needed for the scale
-		 * @method getPadding
-		 * @private
-		 * @returns {Padding} the necessary padding
-		 */
-		getPadding: function() {
+   * Get the padding needed for the scale
+   * @method getPadding
+   * @private
+   * @returns {Padding} the necessary padding
+   */
+		getPadding: function getPadding() {
 			var me = this;
 			return {
 				left: me.paddingLeft || 0,
@@ -62932,10 +62869,10 @@ module.exports = function(Chart) {
 		},
 
 		/**
-		 * Returns the scale tick objects ({label, major})
-		 * @since 2.7
-		 */
-		getTicks: function() {
+   * Returns the scale tick objects ({label, major})
+   * @since 2.7
+   */
+		getTicks: function getTicks() {
 			return this._ticks;
 		},
 
@@ -62943,7 +62880,7 @@ module.exports = function(Chart) {
 		// Any function defined here is inherited by all scale types.
 		// Any function can be extended by the scale type
 
-		mergeTicksOptions: function() {
+		mergeTicksOptions: function mergeTicksOptions() {
 			var ticks = this.options.ticks;
 			if (ticks.minor === false) {
 				ticks.minor = {
@@ -62966,10 +62903,10 @@ module.exports = function(Chart) {
 				}
 			}
 		},
-		beforeUpdate: function() {
+		beforeUpdate: function beforeUpdate() {
 			helpers.callback(this.options.beforeUpdate, [this]);
 		},
-		update: function(maxWidth, maxHeight, margins) {
+		update: function update(maxWidth, maxHeight, margins) {
 			var me = this;
 			var i, ilen, labels, label, ticks, tick;
 
@@ -63021,7 +62958,7 @@ module.exports = function(Chart) {
 
 			me.afterTickToLabelConversion();
 
-			me.ticks = labels;   // BACKWARD COMPATIBILITY
+			me.ticks = labels; // BACKWARD COMPATIBILITY
 
 			// IMPORTANT: from this point, we consider that `this.ticks` will NEVER change!
 
@@ -63053,18 +62990,17 @@ module.exports = function(Chart) {
 			me.afterUpdate();
 
 			return me.minSize;
-
 		},
-		afterUpdate: function() {
+		afterUpdate: function afterUpdate() {
 			helpers.callback(this.options.afterUpdate, [this]);
 		},
 
 		//
 
-		beforeSetDimensions: function() {
+		beforeSetDimensions: function beforeSetDimensions() {
 			helpers.callback(this.options.beforeSetDimensions, [this]);
 		},
-		setDimensions: function() {
+		setDimensions: function setDimensions() {
 			var me = this;
 			// Set the unconstrained dimension before label rotation
 			if (me.isHorizontal()) {
@@ -63086,47 +63022,47 @@ module.exports = function(Chart) {
 			me.paddingRight = 0;
 			me.paddingBottom = 0;
 		},
-		afterSetDimensions: function() {
+		afterSetDimensions: function afterSetDimensions() {
 			helpers.callback(this.options.afterSetDimensions, [this]);
 		},
 
 		// Data limits
-		beforeDataLimits: function() {
+		beforeDataLimits: function beforeDataLimits() {
 			helpers.callback(this.options.beforeDataLimits, [this]);
 		},
 		determineDataLimits: helpers.noop,
-		afterDataLimits: function() {
+		afterDataLimits: function afterDataLimits() {
 			helpers.callback(this.options.afterDataLimits, [this]);
 		},
 
 		//
-		beforeBuildTicks: function() {
+		beforeBuildTicks: function beforeBuildTicks() {
 			helpers.callback(this.options.beforeBuildTicks, [this]);
 		},
 		buildTicks: helpers.noop,
-		afterBuildTicks: function() {
+		afterBuildTicks: function afterBuildTicks() {
 			helpers.callback(this.options.afterBuildTicks, [this]);
 		},
 
-		beforeTickToLabelConversion: function() {
+		beforeTickToLabelConversion: function beforeTickToLabelConversion() {
 			helpers.callback(this.options.beforeTickToLabelConversion, [this]);
 		},
-		convertTicksToLabels: function() {
+		convertTicksToLabels: function convertTicksToLabels() {
 			var me = this;
 			// Convert ticks to strings
 			var tickOpts = me.options.ticks;
 			me.ticks = me.ticks.map(tickOpts.userCallback || tickOpts.callback, this);
 		},
-		afterTickToLabelConversion: function() {
+		afterTickToLabelConversion: function afterTickToLabelConversion() {
 			helpers.callback(this.options.afterTickToLabelConversion, [this]);
 		},
 
 		//
 
-		beforeCalculateTickRotation: function() {
+		beforeCalculateTickRotation: function beforeCalculateTickRotation() {
 			helpers.callback(this.options.beforeCalculateTickRotation, [this]);
 		},
-		calculateTickRotation: function() {
+		calculateTickRotation: function calculateTickRotation() {
 			var me = this;
 			var context = me.ctx;
 			var tickOpts = me.options.ticks;
@@ -63166,16 +63102,16 @@ module.exports = function(Chart) {
 
 			me.labelRotation = labelRotation;
 		},
-		afterCalculateTickRotation: function() {
+		afterCalculateTickRotation: function afterCalculateTickRotation() {
 			helpers.callback(this.options.afterCalculateTickRotation, [this]);
 		},
 
 		//
 
-		beforeFit: function() {
+		beforeFit: function beforeFit() {
 			helpers.callback(this.options.beforeFit, [this]);
 		},
-		fit: function() {
+		fit: function fit() {
 			var me = this;
 			// Reset
 			var minSize = me.minSize = {
@@ -63239,10 +63175,7 @@ module.exports = function(Chart) {
 					var sinRotation = Math.sin(angleRadians);
 
 					// TODO - improve this calculation
-					var labelHeight = (sinRotation * largestTextWidth)
-						+ (tickFont.size * tallestLabelHeightInLines)
-						+ (lineSpace * (tallestLabelHeightInLines - 1))
-						+ lineSpace; // padding
+					var labelHeight = sinRotation * largestTextWidth + tickFont.size * tallestLabelHeightInLines + lineSpace * (tallestLabelHeightInLines - 1) + lineSpace; // padding
 
 					minSize.height = Math.min(me.maxHeight, minSize.height + labelHeight + tickPadding);
 
@@ -63253,8 +63186,8 @@ module.exports = function(Chart) {
 					// Ensure that our ticks are always inside the canvas. When rotated, ticks are right aligned
 					// which means that the right padding is dominated by the font height
 					if (me.labelRotation !== 0) {
-						me.paddingLeft = opts.position === 'bottom' ? (cosRotation * firstLabelWidth) + 3 : (cosRotation * lineSpace) + 3; // add 3 px to move away from canvas edges
-						me.paddingRight = opts.position === 'bottom' ? (cosRotation * lineSpace) + 3 : (cosRotation * lastLabelWidth) + 3;
+						me.paddingLeft = opts.position === 'bottom' ? cosRotation * firstLabelWidth + 3 : cosRotation * lineSpace + 3; // add 3 px to move away from canvas edges
+						me.paddingRight = opts.position === 'bottom' ? cosRotation * lineSpace + 3 : cosRotation * lastLabelWidth + 3;
 					} else {
 						me.paddingLeft = firstLabelWidth / 2 + 3; // add 3 px to move away from canvas edges
 						me.paddingRight = lastLabelWidth / 2 + 3;
@@ -63284,10 +63217,10 @@ module.exports = function(Chart) {
 		},
 
 		/**
-		 * Handle margins and padding interactions
-		 * @private
-		 */
-		handleMargins: function() {
+   * Handle margins and padding interactions
+   * @private
+   */
+		handleMargins: function handleMargins() {
 			var me = this;
 			if (me.margins) {
 				me.paddingLeft = Math.max(me.paddingLeft - me.margins.left, 0);
@@ -63297,20 +63230,20 @@ module.exports = function(Chart) {
 			}
 		},
 
-		afterFit: function() {
+		afterFit: function afterFit() {
 			helpers.callback(this.options.afterFit, [this]);
 		},
 
 		// Shared Methods
-		isHorizontal: function() {
+		isHorizontal: function isHorizontal() {
 			return this.options.position === 'top' || this.options.position === 'bottom';
 		},
-		isFullWidth: function() {
-			return (this.options.fullWidth);
+		isFullWidth: function isFullWidth() {
+			return this.options.fullWidth;
 		},
 
 		// Get the correct value. NaN bad inputs, If the value type is object get the x or y based on whether we are horizontal or not
-		getRightValue: function(rawValue) {
+		getRightValue: function getRightValue(rawValue) {
 			// Null and undefined values first
 			if (helpers.isNullOrUndef(rawValue)) {
 				return NaN;
@@ -63335,39 +63268,39 @@ module.exports = function(Chart) {
 		},
 
 		/**
-		 * Used to get the value to display in the tooltip for the data at the given index
-		 * @param index
-		 * @param datasetIndex
-		 */
+   * Used to get the value to display in the tooltip for the data at the given index
+   * @param index
+   * @param datasetIndex
+   */
 		getLabelForIndex: helpers.noop,
 
 		/**
-		 * Returns the location of the given data point. Value can either be an index or a numerical value
-		 * The coordinate (0, 0) is at the upper-left corner of the canvas
-		 * @param value
-		 * @param index
-		 * @param datasetIndex
-		 */
+   * Returns the location of the given data point. Value can either be an index or a numerical value
+   * The coordinate (0, 0) is at the upper-left corner of the canvas
+   * @param value
+   * @param index
+   * @param datasetIndex
+   */
 		getPixelForValue: helpers.noop,
 
 		/**
-		 * Used to get the data value from a given pixel. This is the inverse of getPixelForValue
-		 * The coordinate (0, 0) is at the upper-left corner of the canvas
-		 * @param pixel
-		 */
+   * Used to get the data value from a given pixel. This is the inverse of getPixelForValue
+   * The coordinate (0, 0) is at the upper-left corner of the canvas
+   * @param pixel
+   */
 		getValueForPixel: helpers.noop,
 
 		/**
-		 * Returns the location of the tick at the given index
-		 * The coordinate (0, 0) is at the upper-left corner of the canvas
-		 */
-		getPixelForTick: function(index) {
+   * Returns the location of the tick at the given index
+   * The coordinate (0, 0) is at the upper-left corner of the canvas
+   */
+		getPixelForTick: function getPixelForTick(index) {
 			var me = this;
 			var offset = me.options.offset;
 			if (me.isHorizontal()) {
 				var innerWidth = me.width - (me.paddingLeft + me.paddingRight);
-				var tickWidth = innerWidth / Math.max((me._ticks.length - (offset ? 0 : 1)), 1);
-				var pixel = (tickWidth * index) + me.paddingLeft;
+				var tickWidth = innerWidth / Math.max(me._ticks.length - (offset ? 0 : 1), 1);
+				var pixel = tickWidth * index + me.paddingLeft;
 
 				if (offset) {
 					pixel += tickWidth / 2;
@@ -63378,50 +63311,47 @@ module.exports = function(Chart) {
 				return finalVal;
 			}
 			var innerHeight = me.height - (me.paddingTop + me.paddingBottom);
-			return me.top + (index * (innerHeight / (me._ticks.length - 1)));
+			return me.top + index * (innerHeight / (me._ticks.length - 1));
 		},
 
 		/**
-		 * Utility for getting the pixel location of a percentage of scale
-		 * The coordinate (0, 0) is at the upper-left corner of the canvas
-		 */
-		getPixelForDecimal: function(decimal) {
+   * Utility for getting the pixel location of a percentage of scale
+   * The coordinate (0, 0) is at the upper-left corner of the canvas
+   */
+		getPixelForDecimal: function getPixelForDecimal(decimal) {
 			var me = this;
 			if (me.isHorizontal()) {
 				var innerWidth = me.width - (me.paddingLeft + me.paddingRight);
-				var valueOffset = (innerWidth * decimal) + me.paddingLeft;
+				var valueOffset = innerWidth * decimal + me.paddingLeft;
 
 				var finalVal = me.left + Math.round(valueOffset);
 				finalVal += me.isFullWidth() ? me.margins.left : 0;
 				return finalVal;
 			}
-			return me.top + (decimal * me.height);
+			return me.top + decimal * me.height;
 		},
 
 		/**
-		 * Returns the pixel for the minimum chart value
-		 * The coordinate (0, 0) is at the upper-left corner of the canvas
-		 */
-		getBasePixel: function() {
+   * Returns the pixel for the minimum chart value
+   * The coordinate (0, 0) is at the upper-left corner of the canvas
+   */
+		getBasePixel: function getBasePixel() {
 			return this.getPixelForValue(this.getBaseValue());
 		},
 
-		getBaseValue: function() {
+		getBaseValue: function getBaseValue() {
 			var me = this;
 			var min = me.min;
 			var max = me.max;
 
-			return me.beginAtZero ? 0 :
-				min < 0 && max < 0 ? max :
-				min > 0 && max > 0 ? min :
-				0;
+			return me.beginAtZero ? 0 : min < 0 && max < 0 ? max : min > 0 && max > 0 ? min : 0;
 		},
 
 		/**
-		 * Returns a subset of ticks to be plotted to avoid overlapping labels.
-		 * @private
-		 */
-		_autoSkip: function(ticks) {
+   * Returns a subset of ticks to be plotted to avoid overlapping labels.
+   * @private
+   */
+		_autoSkip: function _autoSkip(ticks) {
 			var skipRatio;
 			var me = this;
 			var isHorizontal = me.isHorizontal();
@@ -63442,8 +63372,8 @@ module.exports = function(Chart) {
 			if (isHorizontal) {
 				skipRatio = false;
 
-				if ((longestRotatedLabel + optionTicks.autoSkipPadding) * tickCount > (me.width - (me.paddingLeft + me.paddingRight))) {
-					skipRatio = 1 + Math.floor(((longestRotatedLabel + optionTicks.autoSkipPadding) * tickCount) / (me.width - (me.paddingLeft + me.paddingRight)));
+				if ((longestRotatedLabel + optionTicks.autoSkipPadding) * tickCount > me.width - (me.paddingLeft + me.paddingRight)) {
+					skipRatio = 1 + Math.floor((longestRotatedLabel + optionTicks.autoSkipPadding) * tickCount / (me.width - (me.paddingLeft + me.paddingRight)));
 				}
 
 				// if they defined a max number of optionTicks,
@@ -63457,7 +63387,7 @@ module.exports = function(Chart) {
 				tick = ticks[i];
 
 				// Since we always show the last tick,we need may need to hide the last shown one before
-				shouldSkip = (skipRatio > 1 && i % skipRatio > 0) || (i % skipRatio === 0 && i + skipRatio >= tickCount);
+				shouldSkip = skipRatio > 1 && i % skipRatio > 0 || i % skipRatio === 0 && i + skipRatio >= tickCount;
 				if (shouldSkip && i !== tickCount - 1) {
 					// leave tick in place but make sure it's not displayed (#4635)
 					delete tick.label;
@@ -63469,7 +63399,7 @@ module.exports = function(Chart) {
 
 		// Actually draw the scale on the canvas
 		// @param {rectangle} chartArea : the area of the chart to draw full grid lines on
-		draw: function(chartArea) {
+		draw: function draw(chartArea) {
 			var me = this;
 			var options = me.options;
 			if (!options.display) {
@@ -63506,7 +63436,7 @@ module.exports = function(Chart) {
 			var yTickStart = options.position === 'bottom' ? me.top : me.bottom - tl;
 			var yTickEnd = options.position === 'bottom' ? me.top + tl : me.bottom;
 
-			helpers.each(ticks, function(tick, index) {
+			helpers.each(ticks, function (tick, index) {
 				// autoskipper skipped this tick (#4635)
 				if (helpers.isNullOrUndef(tick.label)) {
 					return;
@@ -63614,7 +63544,7 @@ module.exports = function(Chart) {
 			});
 
 			// Draw all of the tick labels, tick marks, and grid lines at the correct places
-			helpers.each(itemsToDraw, function(itemToDraw) {
+			helpers.each(itemsToDraw, function (itemToDraw) {
 				if (gridLines.display) {
 					context.save();
 					context.lineWidth = itemToDraw.glWidth;
@@ -63656,7 +63586,7 @@ module.exports = function(Chart) {
 							// We just make sure the multiline element is a string here..
 							context.fillText('' + label[i], 0, y);
 							// apply same lineSpacing as calculated @ L#320
-							y += (tickFont.size * 1.5);
+							y += tickFont.size * 1.5;
 						}
 					} else {
 						context.fillText(label, 0, 0);
@@ -63673,16 +63603,12 @@ module.exports = function(Chart) {
 				var halfLineHeight = parseLineHeight(scaleLabel) / 2;
 
 				if (isHorizontal) {
-					scaleLabelX = me.left + ((me.right - me.left) / 2); // midpoint of the width
-					scaleLabelY = options.position === 'bottom'
-						? me.bottom - halfLineHeight - scaleLabelPadding.bottom
-						: me.top + halfLineHeight + scaleLabelPadding.top;
+					scaleLabelX = me.left + (me.right - me.left) / 2; // midpoint of the width
+					scaleLabelY = options.position === 'bottom' ? me.bottom - halfLineHeight - scaleLabelPadding.bottom : me.top + halfLineHeight + scaleLabelPadding.top;
 				} else {
 					var isLeft = options.position === 'left';
-					scaleLabelX = isLeft
-						? me.left + halfLineHeight + scaleLabelPadding.top
-						: me.right - halfLineHeight - scaleLabelPadding.top;
-					scaleLabelY = me.top + ((me.bottom - me.top) / 2);
+					scaleLabelX = isLeft ? me.left + halfLineHeight + scaleLabelPadding.top : me.right - halfLineHeight - scaleLabelPadding.top;
+					scaleLabelY = me.top + (me.bottom - me.top) / 2;
 					rotation = isLeft ? -0.5 * Math.PI : 0.5 * Math.PI;
 				}
 
@@ -63725,7 +63651,6 @@ module.exports = function(Chart) {
 		}
 	});
 };
-
 
 /***/ }),
 /* 754 */
@@ -63771,7 +63696,7 @@ defaults._set('global', {
 		callbacks: {
 			// Args are: (tooltipItems, data)
 			beforeTitle: helpers.noop,
-			title: function(tooltipItems, data) {
+			title: function title(tooltipItems, data) {
 				// Pick first xLabel for now
 				var title = '';
 				var labels = data.labels;
@@ -63796,7 +63721,7 @@ defaults._set('global', {
 
 			// Args are: (tooltipItem, data)
 			beforeLabel: helpers.noop,
-			label: function(tooltipItem, data) {
+			label: function label(tooltipItem, data) {
 				var label = data.datasets[tooltipItem.datasetIndex].label || '';
 
 				if (label) {
@@ -63805,7 +63730,7 @@ defaults._set('global', {
 				label += tooltipItem.yLabel;
 				return label;
 			},
-			labelColor: function(tooltipItem, chart) {
+			labelColor: function labelColor(tooltipItem, chart) {
 				var meta = chart.getDatasetMeta(tooltipItem.datasetIndex);
 				var activeElement = meta.data[tooltipItem.index];
 				var view = activeElement._view;
@@ -63814,7 +63739,7 @@ defaults._set('global', {
 					backgroundColor: view.backgroundColor
 				};
 			},
-			labelTextColor: function() {
+			labelTextColor: function labelTextColor() {
 				return this._options.bodyFontColor;
 			},
 			afterLabel: helpers.noop,
@@ -63830,7 +63755,7 @@ defaults._set('global', {
 	}
 });
 
-module.exports = function(Chart) {
+module.exports = function (Chart) {
 
 	/**
  	 * Helper method to merge the opacity into a color
@@ -63874,9 +63799,9 @@ module.exports = function(Chart) {
 	}
 
 	/**
-	 * Helper to get the reset model for the tooltip
-	 * @param tooltipOpts {Object} the tooltip options
-	 */
+  * Helper to get the reset model for the tooltip
+  * @param tooltipOpts {Object} the tooltip options
+  */
 	function getBaseModel(tooltipOpts) {
 		var globalDefaults = defaults.global;
 		var valueOrDefault = helpers.valueOrDefault;
@@ -63927,8 +63852,8 @@ module.exports = function(Chart) {
 	}
 
 	/**
-	 * Get the size of the tooltip
-	 */
+  * Get the size of the tooltip
+  */
 	function getTooltipSize(tooltip, model) {
 		var ctx = tooltip._chart.ctx;
 
@@ -63937,7 +63862,7 @@ module.exports = function(Chart) {
 
 		// Count of all lines in the body
 		var body = model.body;
-		var combinedBodyLength = body.reduce(function(count, bodyItem) {
+		var combinedBodyLength = body.reduce(function (count, bodyItem) {
 			return count + bodyItem.before.length + bodyItem.lines.length + bodyItem.after.length;
 		}, 0);
 		combinedBodyLength += model.beforeBody.length + model.afterBody.length;
@@ -63954,12 +63879,12 @@ module.exports = function(Chart) {
 		height += combinedBodyLength * bodyFontSize; // Body Lines
 		height += combinedBodyLength ? (combinedBodyLength - 1) * model.bodySpacing : 0; // Body Line Spacing
 		height += footerLineCount ? model.footerMarginTop : 0; // Footer Margin
-		height += footerLineCount * (footerFontSize); // Footer Lines
+		height += footerLineCount * footerFontSize; // Footer Lines
 		height += footerLineCount ? (footerLineCount - 1) * model.footerSpacing : 0; // Footer Line Spacing
 
 		// Title width
 		var widthPadding = 0;
-		var maxLineWidth = function(line) {
+		var maxLineWidth = function maxLineWidth(line) {
 			width = Math.max(width, ctx.measureText(line).width + widthPadding);
 		};
 
@@ -63971,8 +63896,8 @@ module.exports = function(Chart) {
 		helpers.each(model.beforeBody.concat(model.afterBody), maxLineWidth);
 
 		// Body lines may include some extra width due to the color box
-		widthPadding = model.displayColors ? (bodyFontSize + 2) : 0;
-		helpers.each(body, function(bodyItem) {
+		widthPadding = model.displayColors ? bodyFontSize + 2 : 0;
+		helpers.each(body, function (bodyItem) {
 			helpers.each(bodyItem.before, maxLineWidth);
 			helpers.each(bodyItem.lines, maxLineWidth);
 			helpers.each(bodyItem.after, maxLineWidth);
@@ -63995,8 +63920,8 @@ module.exports = function(Chart) {
 	}
 
 	/**
-	 * Helper to get the alignment of a tooltip given the size
-	 */
+  * Helper to get the alignment of a tooltip given the size
+  */
 	function determineAlignment(tooltip, size) {
 		var model = tooltip._model;
 		var chart = tooltip._chart;
@@ -64006,7 +63931,7 @@ module.exports = function(Chart) {
 
 		if (model.y < size.height) {
 			yAlign = 'top';
-		} else if (model.y > (chart.height - size.height)) {
+		} else if (model.y > chart.height - size.height) {
 			yAlign = 'bottom';
 		}
 
@@ -64017,28 +63942,28 @@ module.exports = function(Chart) {
 		var midY = (chartArea.top + chartArea.bottom) / 2;
 
 		if (yAlign === 'center') {
-			lf = function(x) {
+			lf = function lf(x) {
 				return x <= midX;
 			};
-			rf = function(x) {
+			rf = function rf(x) {
 				return x > midX;
 			};
 		} else {
-			lf = function(x) {
-				return x <= (size.width / 2);
+			lf = function lf(x) {
+				return x <= size.width / 2;
 			};
-			rf = function(x) {
-				return x >= (chart.width - (size.width / 2));
+			rf = function rf(x) {
+				return x >= chart.width - size.width / 2;
 			};
 		}
 
-		olf = function(x) {
+		olf = function olf(x) {
 			return x + size.width > chart.width;
 		};
-		orf = function(x) {
+		orf = function orf(x) {
 			return x - size.width < 0;
 		};
-		yf = function(y) {
+		yf = function yf(y) {
 			return y <= midY ? 'top' : 'bottom';
 		};
 
@@ -64068,8 +63993,8 @@ module.exports = function(Chart) {
 	}
 
 	/**
-	 * @Helper to get the location a tooltip needs to be placed at given the initial position (via the vm) and the size and alignment
-	 */
+  * @Helper to get the location a tooltip needs to be placed at given the initial position (via the vm) and the size and alignment
+  */
 	function getBackgroundPoint(vm, size, alignment) {
 		// Background Position
 		var x = vm.x;
@@ -64086,7 +64011,7 @@ module.exports = function(Chart) {
 		if (xAlign === 'right') {
 			x -= size.width;
 		} else if (xAlign === 'center') {
-			x -= (size.width / 2);
+			x -= size.width / 2;
 		}
 
 		if (yAlign === 'top') {
@@ -64094,7 +64019,7 @@ module.exports = function(Chart) {
 		} else if (yAlign === 'bottom') {
 			y -= size.height + paddingAndSize;
 		} else {
-			y -= (size.height / 2);
+			y -= size.height / 2;
 		}
 
 		if (yAlign === 'center') {
@@ -64116,14 +64041,14 @@ module.exports = function(Chart) {
 	}
 
 	Chart.Tooltip = Element.extend({
-		initialize: function() {
+		initialize: function initialize() {
 			this._model = getBaseModel(this._options);
 			this._lastActive = [];
 		},
 
 		// Get the title
 		// Args are: (tooltipItem, data)
-		getTitle: function() {
+		getTitle: function getTitle() {
 			var me = this;
 			var opts = me._options;
 			var callbacks = opts.callbacks;
@@ -64141,18 +64066,18 @@ module.exports = function(Chart) {
 		},
 
 		// Args are: (tooltipItem, data)
-		getBeforeBody: function() {
+		getBeforeBody: function getBeforeBody() {
 			var lines = this._options.callbacks.beforeBody.apply(this, arguments);
 			return helpers.isArray(lines) ? lines : lines !== undefined ? [lines] : [];
 		},
 
 		// Args are: (tooltipItem, data)
-		getBody: function(tooltipItems, data) {
+		getBody: function getBody(tooltipItems, data) {
 			var me = this;
 			var callbacks = me._options.callbacks;
 			var bodyItems = [];
 
-			helpers.each(tooltipItems, function(tooltipItem) {
+			helpers.each(tooltipItems, function (tooltipItem) {
 				var bodyItem = {
 					before: [],
 					lines: [],
@@ -64169,14 +64094,14 @@ module.exports = function(Chart) {
 		},
 
 		// Args are: (tooltipItem, data)
-		getAfterBody: function() {
+		getAfterBody: function getAfterBody() {
 			var lines = this._options.callbacks.afterBody.apply(this, arguments);
 			return helpers.isArray(lines) ? lines : lines !== undefined ? [lines] : [];
 		},
 
 		// Get the footer and beforeFooter and afterFooter lines
 		// Args are: (tooltipItem, data)
-		getFooter: function() {
+		getFooter: function getFooter() {
 			var me = this;
 			var callbacks = me._options.callbacks;
 
@@ -64192,7 +64117,7 @@ module.exports = function(Chart) {
 			return lines;
 		},
 
-		update: function(changed) {
+		update: function update(changed) {
 			var me = this;
 			var opts = me._options;
 
@@ -64239,24 +64164,23 @@ module.exports = function(Chart) {
 
 				// If the user provided a filter function, use it to modify the tooltip items
 				if (opts.filter) {
-					tooltipItems = tooltipItems.filter(function(a) {
+					tooltipItems = tooltipItems.filter(function (a) {
 						return opts.filter(a, data);
 					});
 				}
 
 				// If the user provided a sorting function, use it to modify the tooltip items
 				if (opts.itemSort) {
-					tooltipItems = tooltipItems.sort(function(a, b) {
+					tooltipItems = tooltipItems.sort(function (a, b) {
 						return opts.itemSort(a, b, data);
 					});
 				}
 
 				// Determine colors for boxes
-				helpers.each(tooltipItems, function(tooltipItem) {
+				helpers.each(tooltipItems, function (tooltipItem) {
 					labelColors.push(opts.callbacks.labelColor.call(me, tooltipItem, me._chart));
 					labelTextColors.push(opts.callbacks.labelTextColor.call(me, tooltipItem, me._chart));
 				});
-
 
 				// Build the Text Lines
 				model.title = me.getTitle(tooltipItems, data);
@@ -64303,7 +64227,7 @@ module.exports = function(Chart) {
 
 			return me;
 		},
-		drawCaret: function(tooltipPoint, size) {
+		drawCaret: function drawCaret(tooltipPoint, size) {
 			var ctx = this._chart.ctx;
 			var vm = this._view;
 			var caretPosition = this.getCaretPosition(tooltipPoint, size, vm);
@@ -64312,7 +64236,7 @@ module.exports = function(Chart) {
 			ctx.lineTo(caretPosition.x2, caretPosition.y2);
 			ctx.lineTo(caretPosition.x3, caretPosition.y3);
 		},
-		getCaretPosition: function(tooltipPoint, size, vm) {
+		getCaretPosition: function getCaretPosition(tooltipPoint, size, vm) {
 			var x1, x2, x3, y1, y2, y3;
 			var caretSize = vm.caretSize;
 			var cornerRadius = vm.cornerRadius;
@@ -64324,7 +64248,7 @@ module.exports = function(Chart) {
 			var height = size.height;
 
 			if (yAlign === 'center') {
-				y2 = ptY + (height / 2);
+				y2 = ptY + height / 2;
 
 				if (xAlign === 'left') {
 					x1 = ptX;
@@ -64343,7 +64267,7 @@ module.exports = function(Chart) {
 				}
 			} else {
 				if (xAlign === 'left') {
-					x2 = ptX + cornerRadius + (caretSize);
+					x2 = ptX + cornerRadius + caretSize;
 					x1 = x2 - caretSize;
 					x3 = x2 + caretSize;
 				} else if (xAlign === 'right') {
@@ -64351,7 +64275,7 @@ module.exports = function(Chart) {
 					x1 = x2 - caretSize;
 					x3 = x2 + caretSize;
 				} else {
-					x2 = ptX + (width / 2);
+					x2 = ptX + width / 2;
 					x1 = x2 - caretSize;
 					x3 = x2 + caretSize;
 				}
@@ -64369,9 +64293,9 @@ module.exports = function(Chart) {
 					x1 = tmp;
 				}
 			}
-			return {x1: x1, x2: x2, x3: x3, y1: y1, y2: y2, y3: y3};
+			return { x1: x1, x2: x2, x3: x3, y1: y1, y2: y2, y3: y3 };
 		},
-		drawTitle: function(pt, vm, ctx, opacity) {
+		drawTitle: function drawTitle(pt, vm, ctx, opacity) {
 			var title = vm.title;
 
 			if (title.length) {
@@ -64395,7 +64319,7 @@ module.exports = function(Chart) {
 				}
 			}
 		},
-		drawBody: function(pt, vm, ctx, opacity) {
+		drawBody: function drawBody(pt, vm, ctx, opacity) {
 			var bodyFontSize = vm.bodyFontSize;
 			var bodySpacing = vm.bodySpacing;
 			var body = vm.body;
@@ -64406,7 +64330,7 @@ module.exports = function(Chart) {
 
 			// Before Body
 			var xLinePadding = 0;
-			var fillLineOfText = function(line) {
+			var fillLineOfText = function fillLineOfText(line) {
 				ctx.fillText(line, pt.x + xLinePadding, pt.y);
 				pt.y += bodyFontSize + bodySpacing;
 			};
@@ -64416,15 +64340,15 @@ module.exports = function(Chart) {
 			helpers.each(vm.beforeBody, fillLineOfText);
 
 			var drawColorBoxes = vm.displayColors;
-			xLinePadding = drawColorBoxes ? (bodyFontSize + 2) : 0;
+			xLinePadding = drawColorBoxes ? bodyFontSize + 2 : 0;
 
 			// Draw body lines now
-			helpers.each(body, function(bodyItem, i) {
+			helpers.each(body, function (bodyItem, i) {
 				var textColor = mergeOpacity(vm.labelTextColors[i], opacity);
 				ctx.fillStyle = textColor;
 				helpers.each(bodyItem.before, fillLineOfText);
 
-				helpers.each(bodyItem.lines, function(line) {
+				helpers.each(bodyItem.lines, function (line) {
 					// Draw Legend-like boxes if needed
 					if (drawColorBoxes) {
 						// Fill a white rect so that colours merge nicely if the opacity is < 1
@@ -64455,7 +64379,7 @@ module.exports = function(Chart) {
 			helpers.each(vm.afterBody, fillLineOfText);
 			pt.y -= bodySpacing; // Remove last body spacing
 		},
-		drawFooter: function(pt, vm, ctx, opacity) {
+		drawFooter: function drawFooter(pt, vm, ctx, opacity) {
 			var footer = vm.footer;
 
 			if (footer.length) {
@@ -64467,13 +64391,13 @@ module.exports = function(Chart) {
 				ctx.fillStyle = mergeOpacity(vm.footerFontColor, opacity);
 				ctx.font = helpers.fontString(vm.footerFontSize, vm._footerFontStyle, vm._footerFontFamily);
 
-				helpers.each(footer, function(line) {
+				helpers.each(footer, function (line) {
 					ctx.fillText(line, pt.x, pt.y);
 					pt.y += vm.footerFontSize + vm.footerSpacing;
 				});
 			}
 		},
-		drawBackground: function(pt, vm, ctx, tooltipSize, opacity) {
+		drawBackground: function drawBackground(pt, vm, ctx, tooltipSize, opacity) {
 			ctx.fillStyle = mergeOpacity(vm.backgroundColor, opacity);
 			ctx.strokeStyle = mergeOpacity(vm.borderColor, opacity);
 			ctx.lineWidth = vm.borderWidth;
@@ -64515,7 +64439,7 @@ module.exports = function(Chart) {
 				ctx.stroke();
 			}
 		},
-		draw: function() {
+		draw: function draw() {
 			var ctx = this._chart.ctx;
 			var vm = this._view;
 
@@ -64558,12 +64482,12 @@ module.exports = function(Chart) {
 		},
 
 		/**
-		 * Handle an event
-		 * @private
-		 * @param {IEvent} event - The event to handle
-		 * @returns {Boolean} true if the tooltip changed
-		 */
-		handleEvent: function(e) {
+   * Handle an event
+   * @private
+   * @param {IEvent} event - The event to handle
+   * @returns {Boolean} true if the tooltip changed
+   */
+		handleEvent: function handleEvent(e) {
 			var me = this;
 			var options = me._options;
 			var changed = false;
@@ -64598,7 +64522,7 @@ module.exports = function(Chart) {
 				me.pivot();
 
 				// See if our tooltip position changed
-				changed |= (model.x !== me._model.x) || (model.y !== me._model.y);
+				changed |= model.x !== me._model.x || model.y !== me._model.y;
 			}
 
 			return changed;
@@ -64606,16 +64530,16 @@ module.exports = function(Chart) {
 	});
 
 	/**
-	 * @namespace Chart.Tooltip.positioners
-	 */
+  * @namespace Chart.Tooltip.positioners
+  */
 	Chart.Tooltip.positioners = {
 		/**
-		 * Average mode places the tooltip at the average position of the elements shown
-		 * @function Chart.Tooltip.positioners.average
-		 * @param elements {ChartElement[]} the elements being displayed in the tooltip
-		 * @returns {Point} tooltip position
-		 */
-		average: function(elements) {
+   * Average mode places the tooltip at the average position of the elements shown
+   * @function Chart.Tooltip.positioners.average
+   * @param elements {ChartElement[]} the elements being displayed in the tooltip
+   * @returns {Point} tooltip position
+   */
+		average: function average(elements) {
 			if (!elements.length) {
 				return false;
 			}
@@ -64642,13 +64566,13 @@ module.exports = function(Chart) {
 		},
 
 		/**
-		 * Gets the tooltip position nearest of the item nearest to the event position
-		 * @function Chart.Tooltip.positioners.nearest
-		 * @param elements {Chart.Element[]} the tooltip elements
-		 * @param eventPosition {Point} the position of the event in canvas coordinates
-		 * @returns {Point} the tooltip position
-		 */
-		nearest: function(elements, eventPosition) {
+   * Gets the tooltip position nearest of the item nearest to the event position
+   * @function Chart.Tooltip.positioners.nearest
+   * @param elements {Chart.Element[]} the tooltip elements
+   * @param eventPosition {Point} the position of the event in canvas coordinates
+   * @returns {Point} the tooltip position
+   */
+		nearest: function nearest(elements, eventPosition) {
 			var x = eventPosition.x;
 			var y = eventPosition.y;
 			var minDistance = Number.POSITIVE_INFINITY;
@@ -64681,7 +64605,6 @@ module.exports = function(Chart) {
 	};
 };
 
-
 /***/ }),
 /* 755 */
 /***/ (function(module, exports, __webpack_require__) {
@@ -64692,19 +64615,19 @@ module.exports = function(Chart) {
 var helpers = __webpack_require__(5);
 var Ticks = __webpack_require__(85);
 
-module.exports = function(Chart) {
+module.exports = function (Chart) {
 
 	var noop = helpers.noop;
 
 	Chart.LinearScaleBase = Chart.Scale.extend({
-		getRightValue: function(value) {
+		getRightValue: function getRightValue(value) {
 			if (typeof value === 'string') {
 				return +value;
 			}
 			return Chart.Scale.prototype.getRightValue.call(this, value);
 		},
 
-		handleTickRangeOptions: function() {
+		handleTickRangeOptions: function handleTickRangeOptions() {
 			var me = this;
 			var opts = me.options;
 			var tickOpts = opts.ticks;
@@ -64773,7 +64696,7 @@ module.exports = function(Chart) {
 		getTickLimit: noop,
 		handleDirectionalChanges: noop,
 
-		buildTicks: function() {
+		buildTicks: function buildTicks() {
 			var me = this;
 			var opts = me.options;
 			var tickOpts = opts.ticks;
@@ -64810,7 +64733,7 @@ module.exports = function(Chart) {
 				me.end = me.max;
 			}
 		},
-		convertTicksToLabels: function() {
+		convertTicksToLabels: function convertTicksToLabels() {
 			var me = this;
 			me.ticksAsNumbers = me.ticks.slice();
 			me.zeroLineIndex = me.ticks.indexOf(0);
@@ -64820,7 +64743,6 @@ module.exports = function(Chart) {
 	});
 };
 
-
 /***/ }),
 /* 756 */
 /***/ (function(module, exports, __webpack_require__) {
@@ -64828,7 +64750,7 @@ module.exports = function(Chart) {
 "use strict";
 
 
-module.exports = function(Chart) {
+module.exports = function (Chart) {
 
 	// Default config for a category scale
 	var defaultConfig = {
@@ -64837,16 +64759,16 @@ module.exports = function(Chart) {
 
 	var DatasetScale = Chart.Scale.extend({
 		/**
-		* Internal function to get the correct labels. If data.xLabels or data.yLabels are defined, use those
-		* else fall back to data.labels
-		* @private
-		*/
-		getLabels: function() {
+  * Internal function to get the correct labels. If data.xLabels or data.yLabels are defined, use those
+  * else fall back to data.labels
+  * @private
+  */
+		getLabels: function getLabels() {
 			var data = this.chart.data;
 			return this.options.labels || (this.isHorizontal() ? data.xLabels : data.yLabels) || data.labels;
 		},
 
-		determineDataLimits: function() {
+		determineDataLimits: function determineDataLimits() {
 			var me = this;
 			var labels = me.getLabels();
 			me.minIndex = 0;
@@ -64869,14 +64791,14 @@ module.exports = function(Chart) {
 			me.max = labels[me.maxIndex];
 		},
 
-		buildTicks: function() {
+		buildTicks: function buildTicks() {
 			var me = this;
 			var labels = me.getLabels();
 			// If we are viewing some subset of labels, slice the original array
-			me.ticks = (me.minIndex === 0 && me.maxIndex === labels.length - 1) ? labels : labels.slice(me.minIndex, me.maxIndex + 1);
+			me.ticks = me.minIndex === 0 && me.maxIndex === labels.length - 1 ? labels : labels.slice(me.minIndex, me.maxIndex + 1);
 		},
 
-		getLabelForIndex: function(index, datasetIndex) {
+		getLabelForIndex: function getLabelForIndex(index, datasetIndex) {
 			var me = this;
 			var data = me.chart.data;
 			var isHorizontal = me.isHorizontal();
@@ -64888,11 +64810,11 @@ module.exports = function(Chart) {
 		},
 
 		// Used to get data value locations.  Value can either be an index or a numerical value
-		getPixelForValue: function(value, index) {
+		getPixelForValue: function getPixelForValue(value, index) {
 			var me = this;
 			var offset = me.options.offset;
 			// 1 is added because we need the length but we have the indexes
-			var offsetAmt = Math.max((me.maxIndex + 1 - me.minIndex - (offset ? 0 : 1)), 1);
+			var offsetAmt = Math.max(me.maxIndex + 1 - me.minIndex - (offset ? 0 : 1), 1);
 
 			// If value is a data object, then index is the index in the data array,
 			// not the index of the scale. We need to change that.
@@ -64900,7 +64822,7 @@ module.exports = function(Chart) {
 			if (value !== undefined && value !== null) {
 				valueCategory = me.isHorizontal() ? value.x : value.y;
 			}
-			if (valueCategory !== undefined || (value !== undefined && isNaN(index))) {
+			if (valueCategory !== undefined || value !== undefined && isNaN(index)) {
 				var labels = me.getLabels();
 				value = valueCategory || value;
 				var idx = labels.indexOf(value);
@@ -64909,38 +64831,38 @@ module.exports = function(Chart) {
 
 			if (me.isHorizontal()) {
 				var valueWidth = me.width / offsetAmt;
-				var widthOffset = (valueWidth * (index - me.minIndex));
+				var widthOffset = valueWidth * (index - me.minIndex);
 
 				if (offset) {
-					widthOffset += (valueWidth / 2);
+					widthOffset += valueWidth / 2;
 				}
 
 				return me.left + Math.round(widthOffset);
 			}
 			var valueHeight = me.height / offsetAmt;
-			var heightOffset = (valueHeight * (index - me.minIndex));
+			var heightOffset = valueHeight * (index - me.minIndex);
 
 			if (offset) {
-				heightOffset += (valueHeight / 2);
+				heightOffset += valueHeight / 2;
 			}
 
 			return me.top + Math.round(heightOffset);
 		},
-		getPixelForTick: function(index) {
+		getPixelForTick: function getPixelForTick(index) {
 			return this.getPixelForValue(this.ticks[index], index + this.minIndex, null);
 		},
-		getValueForPixel: function(pixel) {
+		getValueForPixel: function getValueForPixel(pixel) {
 			var me = this;
 			var offset = me.options.offset;
 			var value;
-			var offsetAmt = Math.max((me._ticks.length - (offset ? 0 : 1)), 1);
+			var offsetAmt = Math.max(me._ticks.length - (offset ? 0 : 1), 1);
 			var horz = me.isHorizontal();
 			var valueDimension = (horz ? me.width : me.height) / offsetAmt;
 
 			pixel -= horz ? me.left : me.top;
 
 			if (offset) {
-				pixel -= (valueDimension / 2);
+				pixel -= valueDimension / 2;
 			}
 
 			if (pixel <= 0) {
@@ -64951,15 +64873,13 @@ module.exports = function(Chart) {
 
 			return value + me.minIndex;
 		},
-		getBasePixel: function() {
+		getBasePixel: function getBasePixel() {
 			return this.bottom;
 		}
 	});
 
 	Chart.scaleService.registerScaleType('category', DatasetScale, defaultConfig);
-
 };
-
 
 /***/ }),
 /* 757 */
@@ -64972,7 +64892,7 @@ var defaults = __webpack_require__(10);
 var helpers = __webpack_require__(5);
 var Ticks = __webpack_require__(85);
 
-module.exports = function(Chart) {
+module.exports = function (Chart) {
 
 	var defaultConfig = {
 		position: 'left',
@@ -64983,7 +64903,7 @@ module.exports = function(Chart) {
 
 	var LinearScale = Chart.LinearScaleBase.extend({
 
-		determineDataLimits: function() {
+		determineDataLimits: function determineDataLimits() {
 			var me = this;
 			var opts = me.options;
 			var chart = me.chart;
@@ -65003,14 +64923,13 @@ module.exports = function(Chart) {
 
 			var hasStacks = opts.stacked;
 			if (hasStacks === undefined) {
-				helpers.each(datasets, function(dataset, datasetIndex) {
+				helpers.each(datasets, function (dataset, datasetIndex) {
 					if (hasStacks) {
 						return;
 					}
 
 					var meta = chart.getDatasetMeta(datasetIndex);
-					if (chart.isDatasetVisible(datasetIndex) && IDMatches(meta) &&
-						meta.stack !== undefined) {
+					if (chart.isDatasetVisible(datasetIndex) && IDMatches(meta) && meta.stack !== undefined) {
 						hasStacks = true;
 					}
 				});
@@ -65019,14 +64938,11 @@ module.exports = function(Chart) {
 			if (opts.stacked || hasStacks) {
 				var valuesPerStack = {};
 
-				helpers.each(datasets, function(dataset, datasetIndex) {
+				helpers.each(datasets, function (dataset, datasetIndex) {
 					var meta = chart.getDatasetMeta(datasetIndex);
-					var key = [
-						meta.type,
-						// we have a separate stack for stack=undefined datasets when the opts.stacked is undefined
-						((opts.stacked === undefined && meta.stack === undefined) ? datasetIndex : ''),
-						meta.stack
-					].join('.');
+					var key = [meta.type,
+					// we have a separate stack for stack=undefined datasets when the opts.stacked is undefined
+					opts.stacked === undefined && meta.stack === undefined ? datasetIndex : '', meta.stack].join('.');
 
 					if (valuesPerStack[key] === undefined) {
 						valuesPerStack[key] = {
@@ -65040,7 +64956,7 @@ module.exports = function(Chart) {
 					var negativeValues = valuesPerStack[key].negativeValues;
 
 					if (chart.isDatasetVisible(datasetIndex) && IDMatches(meta)) {
-						helpers.each(dataset.data, function(rawValue, index) {
+						helpers.each(dataset.data, function (rawValue, index) {
 							var value = +me.getRightValue(rawValue);
 							if (isNaN(value) || meta.data[index].hidden) {
 								return;
@@ -65060,19 +64976,18 @@ module.exports = function(Chart) {
 					}
 				});
 
-				helpers.each(valuesPerStack, function(valuesForType) {
+				helpers.each(valuesPerStack, function (valuesForType) {
 					var values = valuesForType.positiveValues.concat(valuesForType.negativeValues);
 					var minVal = helpers.min(values);
 					var maxVal = helpers.max(values);
 					me.min = me.min === null ? minVal : Math.min(me.min, minVal);
 					me.max = me.max === null ? maxVal : Math.max(me.max, maxVal);
 				});
-
 			} else {
-				helpers.each(datasets, function(dataset, datasetIndex) {
+				helpers.each(datasets, function (dataset, datasetIndex) {
 					var meta = chart.getDatasetMeta(datasetIndex);
 					if (chart.isDatasetVisible(datasetIndex) && IDMatches(meta)) {
-						helpers.each(dataset.data, function(rawValue, index) {
+						helpers.each(dataset.data, function (rawValue, index) {
 							var value = +me.getRightValue(rawValue);
 							if (isNaN(value) || meta.data[index].hidden) {
 								return;
@@ -65100,7 +65015,7 @@ module.exports = function(Chart) {
 			// Common base implementation to handle ticks.min, ticks.max, ticks.beginAtZero
 			this.handleTickRangeOptions();
 		},
-		getTickLimit: function() {
+		getTickLimit: function getTickLimit() {
 			var maxTicks;
 			var me = this;
 			var tickOpts = me.options.ticks;
@@ -65116,17 +65031,17 @@ module.exports = function(Chart) {
 			return maxTicks;
 		},
 		// Called after the ticks are built. We need
-		handleDirectionalChanges: function() {
+		handleDirectionalChanges: function handleDirectionalChanges() {
 			if (!this.isHorizontal()) {
 				// We are in a vertical orientation. The top value is the highest. So reverse the array
 				this.ticks.reverse();
 			}
 		},
-		getLabelForIndex: function(index, datasetIndex) {
+		getLabelForIndex: function getLabelForIndex(index, datasetIndex) {
 			return +this.getRightValue(this.chart.data.datasets[datasetIndex].data[index]);
 		},
 		// Utils
-		getPixelForValue: function(value) {
+		getPixelForValue: function getPixelForValue(value) {
 			// This must be called after fit has been run so that
 			// this.left, this.top, this.right, and this.bottom have been defined
 			var me = this;
@@ -65137,28 +65052,26 @@ module.exports = function(Chart) {
 			var range = me.end - start;
 
 			if (me.isHorizontal()) {
-				pixel = me.left + (me.width / range * (rightValue - start));
+				pixel = me.left + me.width / range * (rightValue - start);
 				return Math.round(pixel);
 			}
 
-			pixel = me.bottom - (me.height / range * (rightValue - start));
+			pixel = me.bottom - me.height / range * (rightValue - start);
 			return Math.round(pixel);
 		},
-		getValueForPixel: function(pixel) {
+		getValueForPixel: function getValueForPixel(pixel) {
 			var me = this;
 			var isHorizontal = me.isHorizontal();
 			var innerDimension = isHorizontal ? me.width : me.height;
 			var offset = (isHorizontal ? pixel - me.left : me.bottom - pixel) / innerDimension;
-			return me.start + ((me.end - me.start) * offset);
+			return me.start + (me.end - me.start) * offset;
 		},
-		getPixelForTick: function(index) {
+		getPixelForTick: function getPixelForTick(index) {
 			return this.getPixelForValue(this.ticksAsNumbers[index]);
 		}
 	});
 	Chart.scaleService.registerScaleType('linear', LinearScale, defaultConfig);
-
 };
-
 
 /***/ }),
 /* 758 */
@@ -65170,7 +65083,7 @@ module.exports = function(Chart) {
 var helpers = __webpack_require__(5);
 var Ticks = __webpack_require__(85);
 
-module.exports = function(Chart) {
+module.exports = function (Chart) {
 
 	var defaultConfig = {
 		position: 'left',
@@ -65182,7 +65095,7 @@ module.exports = function(Chart) {
 	};
 
 	var LogarithmicScale = Chart.Scale.extend({
-		determineDataLimits: function() {
+		determineDataLimits: function determineDataLimits() {
 			var me = this;
 			var opts = me.options;
 			var tickOpts = opts.ticks;
@@ -65202,14 +65115,13 @@ module.exports = function(Chart) {
 
 			var hasStacks = opts.stacked;
 			if (hasStacks === undefined) {
-				helpers.each(datasets, function(dataset, datasetIndex) {
+				helpers.each(datasets, function (dataset, datasetIndex) {
 					if (hasStacks) {
 						return;
 					}
 
 					var meta = chart.getDatasetMeta(datasetIndex);
-					if (chart.isDatasetVisible(datasetIndex) && IDMatches(meta) &&
-						meta.stack !== undefined) {
+					if (chart.isDatasetVisible(datasetIndex) && IDMatches(meta) && meta.stack !== undefined) {
 						hasStacks = true;
 					}
 				});
@@ -65218,21 +65130,18 @@ module.exports = function(Chart) {
 			if (opts.stacked || hasStacks) {
 				var valuesPerStack = {};
 
-				helpers.each(datasets, function(dataset, datasetIndex) {
+				helpers.each(datasets, function (dataset, datasetIndex) {
 					var meta = chart.getDatasetMeta(datasetIndex);
-					var key = [
-						meta.type,
-						// we have a separate stack for stack=undefined datasets when the opts.stacked is undefined
-						((opts.stacked === undefined && meta.stack === undefined) ? datasetIndex : ''),
-						meta.stack
-					].join('.');
+					var key = [meta.type,
+					// we have a separate stack for stack=undefined datasets when the opts.stacked is undefined
+					opts.stacked === undefined && meta.stack === undefined ? datasetIndex : '', meta.stack].join('.');
 
 					if (chart.isDatasetVisible(datasetIndex) && IDMatches(meta)) {
 						if (valuesPerStack[key] === undefined) {
 							valuesPerStack[key] = [];
 						}
 
-						helpers.each(dataset.data, function(rawValue, index) {
+						helpers.each(dataset.data, function (rawValue, index) {
 							var values = valuesPerStack[key];
 							var value = +me.getRightValue(rawValue);
 							if (isNaN(value) || meta.data[index].hidden) {
@@ -65251,18 +65160,17 @@ module.exports = function(Chart) {
 					}
 				});
 
-				helpers.each(valuesPerStack, function(valuesForType) {
+				helpers.each(valuesPerStack, function (valuesForType) {
 					var minVal = helpers.min(valuesForType);
 					var maxVal = helpers.max(valuesForType);
 					me.min = me.min === null ? minVal : Math.min(me.min, minVal);
 					me.max = me.max === null ? maxVal : Math.max(me.max, maxVal);
 				});
-
 			} else {
-				helpers.each(datasets, function(dataset, datasetIndex) {
+				helpers.each(datasets, function (dataset, datasetIndex) {
 					var meta = chart.getDatasetMeta(datasetIndex);
 					if (chart.isDatasetVisible(datasetIndex) && IDMatches(meta)) {
-						helpers.each(dataset.data, function(rawValue, index) {
+						helpers.each(dataset.data, function (rawValue, index) {
 							var value = +me.getRightValue(rawValue);
 							if (isNaN(value) || meta.data[index].hidden) {
 								return;
@@ -65301,7 +65209,7 @@ module.exports = function(Chart) {
 				}
 			}
 		},
-		buildTicks: function() {
+		buildTicks: function buildTicks() {
 			var me = this;
 			var opts = me.options;
 			var tickOpts = opts.ticks;
@@ -65332,19 +65240,19 @@ module.exports = function(Chart) {
 				me.end = me.max;
 			}
 		},
-		convertTicksToLabels: function() {
+		convertTicksToLabels: function convertTicksToLabels() {
 			this.tickValues = this.ticks.slice();
 
 			Chart.Scale.prototype.convertTicksToLabels.call(this);
 		},
 		// Get the correct tooltip label
-		getLabelForIndex: function(index, datasetIndex) {
+		getLabelForIndex: function getLabelForIndex(index, datasetIndex) {
 			return +this.getRightValue(this.chart.data.datasets[datasetIndex].data[index]);
 		},
-		getPixelForTick: function(index) {
+		getPixelForTick: function getPixelForTick(index) {
 			return this.getPixelForValue(this.tickValues[index]);
 		},
-		getPixelForValue: function(value) {
+		getPixelForValue: function getPixelForValue(value) {
 			var me = this;
 			var start = me.start;
 			var newVal = +me.getRightValue(value);
@@ -65358,7 +65266,7 @@ module.exports = function(Chart) {
 					pixel = me.left;
 				} else {
 					innerDimension = me.width;
-					pixel = me.left + (innerDimension / range * (helpers.log10(newVal) - helpers.log10(start)));
+					pixel = me.left + innerDimension / range * (helpers.log10(newVal) - helpers.log10(start));
 				}
 			} else {
 				// Bottom - top since pixels increase downward on a screen
@@ -65370,7 +65278,7 @@ module.exports = function(Chart) {
 					} else if (newVal === me.minNotZero) {
 						pixel = me.bottom - innerDimension * 0.02;
 					} else {
-						pixel = me.bottom - innerDimension * 0.02 - (innerDimension * 0.98 / range * (helpers.log10(newVal) - helpers.log10(me.minNotZero)));
+						pixel = me.bottom - innerDimension * 0.02 - innerDimension * 0.98 / range * (helpers.log10(newVal) - helpers.log10(me.minNotZero));
 					}
 				} else if (me.end === 0 && tickOpts.reverse) {
 					range = helpers.log10(me.start) - helpers.log10(me.minNotZero);
@@ -65379,19 +65287,19 @@ module.exports = function(Chart) {
 					} else if (newVal === me.minNotZero) {
 						pixel = me.top + innerDimension * 0.02;
 					} else {
-						pixel = me.top + innerDimension * 0.02 + (innerDimension * 0.98 / range * (helpers.log10(newVal) - helpers.log10(me.minNotZero)));
+						pixel = me.top + innerDimension * 0.02 + innerDimension * 0.98 / range * (helpers.log10(newVal) - helpers.log10(me.minNotZero));
 					}
 				} else if (newVal === 0) {
 					pixel = tickOpts.reverse ? me.top : me.bottom;
 				} else {
 					range = helpers.log10(me.end) - helpers.log10(start);
 					innerDimension = me.height;
-					pixel = me.bottom - (innerDimension / range * (helpers.log10(newVal) - helpers.log10(start)));
+					pixel = me.bottom - innerDimension / range * (helpers.log10(newVal) - helpers.log10(start));
 				}
 			}
 			return pixel;
 		},
-		getValueForPixel: function(pixel) {
+		getValueForPixel: function getValueForPixel(pixel) {
 			var me = this;
 			var range = helpers.log10(me.end) - helpers.log10(me.start);
 			var value, innerDimension;
@@ -65399,7 +65307,8 @@ module.exports = function(Chart) {
 			if (me.isHorizontal()) {
 				innerDimension = me.width;
 				value = me.start * Math.pow(10, (pixel - me.left) * range / innerDimension);
-			} else { // todo: if start === 0
+			} else {
+				// todo: if start === 0
 				innerDimension = me.height;
 				value = Math.pow(10, (me.bottom - pixel) * range / innerDimension) / me.start;
 			}
@@ -65407,9 +65316,7 @@ module.exports = function(Chart) {
 		}
 	});
 	Chart.scaleService.registerScaleType('logarithmic', LogarithmicScale, defaultConfig);
-
 };
-
 
 /***/ }),
 /* 759 */
@@ -65422,7 +65329,7 @@ var defaults = __webpack_require__(10);
 var helpers = __webpack_require__(5);
 var Ticks = __webpack_require__(85);
 
-module.exports = function(Chart) {
+module.exports = function (Chart) {
 
 	var globalDefaults = defaults.global;
 
@@ -65468,7 +65375,7 @@ module.exports = function(Chart) {
 			fontSize: 10,
 
 			// Function - Used to convert point labels
-			callback: function(label) {
+			callback: function callback(label) {
 				return label;
 			}
 		}
@@ -65498,7 +65405,7 @@ module.exports = function(Chart) {
 		if (helpers.isArray(label)) {
 			return {
 				w: helpers.longestText(ctx, ctx.font, label),
-				h: (label.length * fontSize) + ((label.length - 1) * 1.5 * fontSize)
+				h: label.length * fontSize + (label.length - 1) * 1.5 * fontSize
 			};
 		}
 
@@ -65511,8 +65418,8 @@ module.exports = function(Chart) {
 	function determineLimits(angle, pos, size, min, max) {
 		if (angle === min || angle === max) {
 			return {
-				start: pos - (size / 2),
-				end: pos + (size / 2)
+				start: pos - size / 2,
+				end: pos + size / 2
 			};
 		} else if (angle < min || angle > max) {
 			return {
@@ -65528,36 +65435,36 @@ module.exports = function(Chart) {
 	}
 
 	/**
-	 * Helper function to fit a radial linear scale with point labels
-	 */
+  * Helper function to fit a radial linear scale with point labels
+  */
 	function fitWithPointLabels(scale) {
 		/*
-		 * Right, this is really confusing and there is a lot of maths going on here
-		 * The gist of the problem is here: https://gist.github.com/nnnick/696cc9c55f4b0beb8fe9
-		 *
-		 * Reaction: https://dl.dropboxusercontent.com/u/34601363/toomuchscience.gif
-		 *
-		 * Solution:
-		 *
-		 * We assume the radius of the polygon is half the size of the canvas at first
-		 * at each index we check if the text overlaps.
-		 *
-		 * Where it does, we store that angle and that index.
-		 *
-		 * After finding the largest index and angle we calculate how much we need to remove
-		 * from the shape radius to move the point inwards by that x.
-		 *
-		 * We average the left and right distances to get the maximum shape radius that can fit in the box
-		 * along with labels.
-		 *
-		 * Once we have that, we can find the centre point for the chart, by taking the x text protrusion
-		 * on each side, removing that from the size, halving it and adding the left x protrusion width.
-		 *
-		 * This will mean we have a shape fitted to the canvas, as large as it can be with the labels
-		 * and position it in the most space efficient manner
-		 *
-		 * https://dl.dropboxusercontent.com/u/34601363/yeahscience.gif
-		 */
+   * Right, this is really confusing and there is a lot of maths going on here
+   * The gist of the problem is here: https://gist.github.com/nnnick/696cc9c55f4b0beb8fe9
+   *
+   * Reaction: https://dl.dropboxusercontent.com/u/34601363/toomuchscience.gif
+   *
+   * Solution:
+   *
+   * We assume the radius of the polygon is half the size of the canvas at first
+   * at each index we check if the text overlaps.
+   *
+   * Where it does, we store that angle and that index.
+   *
+   * After finding the largest index and angle we calculate how much we need to remove
+   * from the shape radius to move the point inwards by that x.
+   *
+   * We average the left and right distances to get the maximum shape radius that can fit in the box
+   * along with labels.
+   *
+   * Once we have that, we can find the centre point for the chart, by taking the x text protrusion
+   * on each side, removing that from the size, halving it and adding the left x protrusion width.
+   *
+   * This will mean we have a shape fitted to the canvas, as large as it can be with the labels
+   * and position it in the most space efficient manner
+   *
+   * https://dl.dropboxusercontent.com/u/34601363/yeahscience.gif
+   */
 
 		var plFont = getPointLabelFontOptions(scale);
 
@@ -65613,9 +65520,9 @@ module.exports = function(Chart) {
 	}
 
 	/**
-	 * Helper function to fit a radial linear scale with no point labels
-	 */
-	function fit(scale) {
+  * Helper function to fit a radial linear scale with no point labels
+  */
+	function _fit(scale) {
 		var largestPossibleRadius = Math.min(scale.height / 2, scale.width / 2);
 		scale.drawingArea = Math.round(largestPossibleRadius);
 		scale.setCenterPoint(0, 0, 0, 0);
@@ -65647,7 +65554,7 @@ module.exports = function(Chart) {
 
 	function adjustPointPositionForLabelHeight(angle, textSize, position) {
 		if (angle === 90 || angle === 270) {
-			position.y -= (textSize.h / 2);
+			position.y -= textSize.h / 2;
 		} else if (angle > 270 || angle < 90) {
 			position.y -= textSize.h;
 		}
@@ -65736,7 +65643,7 @@ module.exports = function(Chart) {
 	}
 
 	var LinearRadialScale = Chart.LinearScaleBase.extend({
-		setDimensions: function() {
+		setDimensions: function setDimensions() {
 			var me = this;
 			var opts = me.options;
 			var tickOpts = opts.ticks;
@@ -65748,19 +65655,19 @@ module.exports = function(Chart) {
 
 			var minSize = helpers.min([me.height, me.width]);
 			var tickFontSize = helpers.valueOrDefault(tickOpts.fontSize, globalDefaults.defaultFontSize);
-			me.drawingArea = opts.display ? (minSize / 2) - (tickFontSize / 2 + tickOpts.backdropPaddingY) : (minSize / 2);
+			me.drawingArea = opts.display ? minSize / 2 - (tickFontSize / 2 + tickOpts.backdropPaddingY) : minSize / 2;
 		},
-		determineDataLimits: function() {
+		determineDataLimits: function determineDataLimits() {
 			var me = this;
 			var chart = me.chart;
 			var min = Number.POSITIVE_INFINITY;
 			var max = Number.NEGATIVE_INFINITY;
 
-			helpers.each(chart.data.datasets, function(dataset, datasetIndex) {
+			helpers.each(chart.data.datasets, function (dataset, datasetIndex) {
 				if (chart.isDatasetVisible(datasetIndex)) {
 					var meta = chart.getDatasetMeta(datasetIndex);
 
-					helpers.each(dataset.data, function(rawValue, index) {
+					helpers.each(dataset.data, function (rawValue, index) {
 						var value = +me.getRightValue(rawValue);
 						if (isNaN(value) || meta.data[index].hidden) {
 							return;
@@ -65772,18 +65679,18 @@ module.exports = function(Chart) {
 				}
 			});
 
-			me.min = (min === Number.POSITIVE_INFINITY ? 0 : min);
-			me.max = (max === Number.NEGATIVE_INFINITY ? 0 : max);
+			me.min = min === Number.POSITIVE_INFINITY ? 0 : min;
+			me.max = max === Number.NEGATIVE_INFINITY ? 0 : max;
 
 			// Common base implementation to handle ticks.min, ticks.max, ticks.beginAtZero
 			me.handleTickRangeOptions();
 		},
-		getTickLimit: function() {
+		getTickLimit: function getTickLimit() {
 			var tickOpts = this.options.ticks;
 			var tickFontSize = helpers.valueOrDefault(tickOpts.fontSize, globalDefaults.defaultFontSize);
 			return Math.min(tickOpts.maxTicksLimit ? tickOpts.maxTicksLimit : 11, Math.ceil(this.drawingArea / (1.5 * tickFontSize)));
 		},
-		convertTicksToLabels: function() {
+		convertTicksToLabels: function convertTicksToLabels() {
 			var me = this;
 
 			Chart.LinearScaleBase.prototype.convertTicksToLabels.call(me);
@@ -65791,21 +65698,21 @@ module.exports = function(Chart) {
 			// Point labels
 			me.pointLabels = me.chart.data.labels.map(me.options.pointLabels.callback, me);
 		},
-		getLabelForIndex: function(index, datasetIndex) {
+		getLabelForIndex: function getLabelForIndex(index, datasetIndex) {
 			return +this.getRightValue(this.chart.data.datasets[datasetIndex].data[index]);
 		},
-		fit: function() {
+		fit: function fit() {
 			if (this.options.pointLabels.display) {
 				fitWithPointLabels(this);
 			} else {
-				fit(this);
+				_fit(this);
 			}
 		},
 		/**
-		 * Set radius reductions and determine new radius and center point
-		 * @private
-		 */
-		setReductions: function(largestPossibleRadius, furthestLimits, furthestAngles) {
+   * Set radius reductions and determine new radius and center point
+   * @private
+   */
+		setReductions: function setReductions(largestPossibleRadius, furthestLimits, furthestAngles) {
 			var me = this;
 			var radiusReductionLeft = furthestLimits.l / Math.sin(furthestAngles.l);
 			var radiusReductionRight = Math.max(furthestLimits.r - me.width, 0) / Math.sin(furthestAngles.r);
@@ -65817,34 +65724,30 @@ module.exports = function(Chart) {
 			radiusReductionTop = numberOrZero(radiusReductionTop);
 			radiusReductionBottom = numberOrZero(radiusReductionBottom);
 
-			me.drawingArea = Math.min(
-				Math.round(largestPossibleRadius - (radiusReductionLeft + radiusReductionRight) / 2),
-				Math.round(largestPossibleRadius - (radiusReductionTop + radiusReductionBottom) / 2));
+			me.drawingArea = Math.min(Math.round(largestPossibleRadius - (radiusReductionLeft + radiusReductionRight) / 2), Math.round(largestPossibleRadius - (radiusReductionTop + radiusReductionBottom) / 2));
 			me.setCenterPoint(radiusReductionLeft, radiusReductionRight, radiusReductionTop, radiusReductionBottom);
 		},
-		setCenterPoint: function(leftMovement, rightMovement, topMovement, bottomMovement) {
+		setCenterPoint: function setCenterPoint(leftMovement, rightMovement, topMovement, bottomMovement) {
 			var me = this;
 			var maxRight = me.width - rightMovement - me.drawingArea;
 			var maxLeft = leftMovement + me.drawingArea;
 			var maxTop = topMovement + me.drawingArea;
 			var maxBottom = me.height - bottomMovement - me.drawingArea;
 
-			me.xCenter = Math.round(((maxLeft + maxRight) / 2) + me.left);
-			me.yCenter = Math.round(((maxTop + maxBottom) / 2) + me.top);
+			me.xCenter = Math.round((maxLeft + maxRight) / 2 + me.left);
+			me.yCenter = Math.round((maxTop + maxBottom) / 2 + me.top);
 		},
 
-		getIndexAngle: function(index) {
-			var angleMultiplier = (Math.PI * 2) / getValueCount(this);
-			var startAngle = this.chart.options && this.chart.options.startAngle ?
-				this.chart.options.startAngle :
-				0;
+		getIndexAngle: function getIndexAngle(index) {
+			var angleMultiplier = Math.PI * 2 / getValueCount(this);
+			var startAngle = this.chart.options && this.chart.options.startAngle ? this.chart.options.startAngle : 0;
 
 			var startAngleRadians = startAngle * Math.PI * 2 / 360;
 
 			// Start from the top instead of right, so remove a quarter of the circle
 			return index * angleMultiplier + startAngleRadians;
 		},
-		getDistanceFromCenterForValue: function(value) {
+		getDistanceFromCenterForValue: function getDistanceFromCenterForValue(value) {
 			var me = this;
 
 			if (value === null) {
@@ -65858,31 +65761,27 @@ module.exports = function(Chart) {
 			}
 			return (value - me.min) * scalingFactor;
 		},
-		getPointPosition: function(index, distanceFromCenter) {
+		getPointPosition: function getPointPosition(index, distanceFromCenter) {
 			var me = this;
-			var thisAngle = me.getIndexAngle(index) - (Math.PI / 2);
+			var thisAngle = me.getIndexAngle(index) - Math.PI / 2;
 			return {
 				x: Math.round(Math.cos(thisAngle) * distanceFromCenter) + me.xCenter,
 				y: Math.round(Math.sin(thisAngle) * distanceFromCenter) + me.yCenter
 			};
 		},
-		getPointPositionForValue: function(index, value) {
+		getPointPositionForValue: function getPointPositionForValue(index, value) {
 			return this.getPointPosition(index, this.getDistanceFromCenterForValue(value));
 		},
 
-		getBasePosition: function() {
+		getBasePosition: function getBasePosition() {
 			var me = this;
 			var min = me.min;
 			var max = me.max;
 
-			return me.getPointPositionForValue(0,
-				me.beginAtZero ? 0 :
-				min < 0 && max < 0 ? max :
-				min > 0 && max > 0 ? min :
-				0);
+			return me.getPointPositionForValue(0, me.beginAtZero ? 0 : min < 0 && max < 0 ? max : min > 0 && max > 0 ? min : 0);
 		},
 
-		draw: function() {
+		draw: function draw() {
 			var me = this;
 			var opts = me.options;
 			var gridLineOpts = opts.gridLines;
@@ -65899,7 +65798,7 @@ module.exports = function(Chart) {
 				var tickFontFamily = valueOrDefault(tickOpts.fontFamily, globalDefaults.defaultFontFamily);
 				var tickLabelFont = helpers.fontString(tickFontSize, tickFontStyle, tickFontFamily);
 
-				helpers.each(me.ticks, function(label, index) {
+				helpers.each(me.ticks, function (label, index) {
 					// Don't draw a centre value (if it is minimum)
 					if (index > 0 || tickOpts.reverse) {
 						var yCenterOffset = me.getDistanceFromCenterForValue(me.ticksAsNumbers[index]);
@@ -65920,12 +65819,7 @@ module.exports = function(Chart) {
 							if (tickOpts.showLabelBackdrop) {
 								var labelWidth = ctx.measureText(label).width;
 								ctx.fillStyle = tickOpts.backdropColor;
-								ctx.fillRect(
-									-labelWidth / 2 - tickOpts.backdropPaddingX,
-									-yCenterOffset - tickFontSize / 2 - tickOpts.backdropPaddingY,
-									labelWidth + tickOpts.backdropPaddingX * 2,
-									tickFontSize + tickOpts.backdropPaddingY * 2
-								);
+								ctx.fillRect(-labelWidth / 2 - tickOpts.backdropPaddingX, -yCenterOffset - tickFontSize / 2 - tickOpts.backdropPaddingY, labelWidth + tickOpts.backdropPaddingX * 2, tickFontSize + tickOpts.backdropPaddingY * 2);
 							}
 
 							ctx.textAlign = 'center';
@@ -65944,9 +65838,7 @@ module.exports = function(Chart) {
 		}
 	});
 	Chart.scaleService.registerScaleType('radialLinear', LinearRadialScale, defaultConfig);
-
 };
-
 
 /***/ }),
 /* 760 */
@@ -66052,10 +65944,7 @@ function arrayUnique(items) {
  */
 function buildLookupTable(timestamps, min, max, distribution) {
 	if (distribution === 'linear' || !timestamps.length) {
-		return [
-			{time: min, pos: 0},
-			{time: max, pos: 1}
-		];
+		return [{ time: min, pos: 0 }, { time: max, pos: 1 }];
 	}
 
 	var table = [];
@@ -66078,7 +65967,7 @@ function buildLookupTable(timestamps, min, max, distribution) {
 
 		// only add points that breaks the scale linearity
 		if (prev === undefined || next === undefined || Math.round((next + prev) / 2) !== curr) {
-			table.push({time: curr, pos: i / (ilen - 1)});
+			table.push({ time: curr, pos: i / (ilen - 1) });
 		}
 	}
 
@@ -66092,24 +65981,24 @@ function lookup(table, key, value) {
 	var mid, i0, i1;
 
 	while (lo >= 0 && lo <= hi) {
-		mid = (lo + hi) >> 1;
+		mid = lo + hi >> 1;
 		i0 = table[mid - 1] || null;
 		i1 = table[mid];
 
 		if (!i0) {
 			// given value is outside table (before first item)
-			return {lo: null, hi: i1};
+			return { lo: null, hi: i1 };
 		} else if (i1[key] < value) {
 			lo = mid + 1;
 		} else if (i0[key] > value) {
 			hi = mid - 1;
 		} else {
-			return {lo: i0, hi: i1};
+			return { lo: i0, hi: i1 };
 		}
 	}
 
 	// given value is outside table (after last item)
-	return {lo: i1, hi: null};
+	return { lo: i1, hi: null };
 }
 
 /**
@@ -66323,22 +66212,16 @@ function computeOffsets(table, ticks, min, max, options) {
 		if (!options.time.min) {
 			upper = ticks.length > 1 ? ticks[1] : max;
 			lower = ticks[0];
-			left = (
-				interpolate(table, 'time', upper, 'pos') -
-				interpolate(table, 'time', lower, 'pos')
-			) / 2;
+			left = (interpolate(table, 'time', upper, 'pos') - interpolate(table, 'time', lower, 'pos')) / 2;
 		}
 		if (!options.time.max) {
 			upper = ticks[ticks.length - 1];
 			lower = ticks.length > 1 ? ticks[ticks.length - 2] : min;
-			right = (
-				interpolate(table, 'time', upper, 'pos') -
-				interpolate(table, 'time', lower, 'pos')
-			) / 2;
+			right = (interpolate(table, 'time', upper, 'pos') - interpolate(table, 'time', lower, 'pos')) / 2;
 		}
 	}
 
-	return {left: left, right: right};
+	return { left: left, right: right };
 }
 
 function ticksFromTimestamps(values, majorUnit) {
@@ -66358,27 +66241,27 @@ function ticksFromTimestamps(values, majorUnit) {
 	return ticks;
 }
 
-module.exports = function(Chart) {
+module.exports = function (Chart) {
 
 	var defaultConfig = {
 		position: 'bottom',
 
 		/**
-		 * Data distribution along the scale:
-		 * - 'linear': data are spread according to their time (distances can vary),
-		 * - 'series': data are spread at the same distance from each other.
-		 * @see https://github.com/chartjs/Chart.js/pull/4507
-		 * @since 2.7.0
-		 */
+   * Data distribution along the scale:
+   * - 'linear': data are spread according to their time (distances can vary),
+   * - 'series': data are spread at the same distance from each other.
+   * @see https://github.com/chartjs/Chart.js/pull/4507
+   * @since 2.7.0
+   */
 		distribution: 'linear',
 
 		/**
-		 * Scale boundary strategy (bypassed by min/max time options)
-		 * - `data`: make sure data are fully visible, ticks outside are removed
-		 * - `ticks`: make sure ticks are fully visible, data outside are truncated
-		 * @see https://github.com/chartjs/Chart.js/pull/4556
-		 * @since 2.7.0
-		 */
+   * Scale boundary strategy (bypassed by min/max time options)
+   * - `data`: make sure data are fully visible, ticks outside are removed
+   * - `ticks`: make sure ticks are fully visible, data outside are truncated
+   * @see https://github.com/chartjs/Chart.js/pull/4556
+   * @since 2.7.0
+   */
 		bounds: 'data',
 
 		time: {
@@ -66401,19 +66284,19 @@ module.exports = function(Chart) {
 				month: 'MMM YYYY', // Sept 2015
 				quarter: '[Q]Q - YYYY', // Q3
 				year: 'YYYY' // 2015
-			},
+			}
 		},
 		ticks: {
 			autoSkip: false,
 
 			/**
-			 * Ticks generation input values:
-			 * - 'auto': generates "optimal" ticks based on scale size and time options.
-			 * - 'data': generates ticks from data (including labels from data {t|x|y} objects).
-			 * - 'labels': generates ticks from user given `data.labels` values ONLY.
-			 * @see https://github.com/chartjs/Chart.js/pull/4507
-			 * @since 2.7.0
-			 */
+    * Ticks generation input values:
+    * - 'auto': generates "optimal" ticks based on scale size and time options.
+    * - 'data': generates ticks from data (including labels from data {t|x|y} objects).
+    * - 'labels': generates ticks from user given `data.labels` values ONLY.
+    * @see https://github.com/chartjs/Chart.js/pull/4507
+    * @since 2.7.0
+    */
 			source: 'auto',
 
 			major: {
@@ -66423,7 +66306,7 @@ module.exports = function(Chart) {
 	};
 
 	var TimeScale = Chart.Scale.extend({
-		initialize: function() {
+		initialize: function initialize() {
 			if (!moment) {
 				throw new Error('Chart.js - Moment.js could not be found! You must include it before Chart.js to use the time scale. Download at https://momentjs.com');
 			}
@@ -66433,7 +66316,7 @@ module.exports = function(Chart) {
 			Chart.Scale.prototype.initialize.call(this);
 		},
 
-		update: function() {
+		update: function update() {
 			var me = this;
 			var options = me.options;
 
@@ -66446,16 +66329,16 @@ module.exports = function(Chart) {
 		},
 
 		/**
-		 * Allows data to be referenced via 't' attribute
-		 */
-		getRightValue: function(rawValue) {
+   * Allows data to be referenced via 't' attribute
+   */
+		getRightValue: function getRightValue(rawValue) {
 			if (rawValue && rawValue.t !== undefined) {
 				rawValue = rawValue.t;
 			}
 			return Chart.Scale.prototype.getRightValue.call(this, rawValue);
 		},
 
-		determineDataLimits: function() {
+		determineDataLimits: function determineDataLimits() {
 			var me = this;
 			var chart = me.chart;
 			var timeOpts = me.options.time;
@@ -66528,7 +66411,7 @@ module.exports = function(Chart) {
 			};
 		},
 
-		buildTicks: function() {
+		buildTicks: function buildTicks() {
 			var me = this;
 			var min = me.min;
 			var max = me.max;
@@ -66539,15 +66422,15 @@ module.exports = function(Chart) {
 			var i, ilen, timestamp;
 
 			switch (options.ticks.source) {
-			case 'data':
-				timestamps = me._timestamps.data;
-				break;
-			case 'labels':
-				timestamps = me._timestamps.labels;
-				break;
-			case 'auto':
-			default:
-				timestamps = generate(min, max, me.getLabelCapacity(min), options);
+				case 'data':
+					timestamps = me._timestamps.data;
+					break;
+				case 'labels':
+					timestamps = me._timestamps.labels;
+					break;
+				case 'auto':
+				default:
+					timestamps = generate(min, max, me.getLabelCapacity(min), options);
 			}
 
 			if (options.bounds === 'ticks' && timestamps.length) {
@@ -66579,7 +66462,7 @@ module.exports = function(Chart) {
 			return ticksFromTimestamps(ticks, me._majorUnit);
 		},
 
-		getLabelForIndex: function(index, datasetIndex) {
+		getLabelForIndex: function getLabelForIndex(index, datasetIndex) {
 			var me = this;
 			var data = me.chart.data;
 			var timeOpts = me.options.time;
@@ -66597,10 +66480,10 @@ module.exports = function(Chart) {
 		},
 
 		/**
-		 * Function to format an individual tick mark
-		 * @private
-		 */
-		tickFormatFunction: function(tick, index, ticks, formatOverride) {
+   * Function to format an individual tick mark
+   * @private
+   */
+		tickFormatFunction: function tickFormatFunction(tick, index, ticks, formatOverride) {
 			var me = this;
 			var options = me.options;
 			var time = tick.valueOf();
@@ -66618,7 +66501,7 @@ module.exports = function(Chart) {
 			return formatter ? formatter(label, index, ticks) : label;
 		},
 
-		convertTicksToLabels: function(ticks) {
+		convertTicksToLabels: function convertTicksToLabels(ticks) {
 			var labels = [];
 			var i, ilen;
 
@@ -66630,9 +66513,9 @@ module.exports = function(Chart) {
 		},
 
 		/**
-		 * @private
-		 */
-		getPixelForOffset: function(time) {
+   * @private
+   */
+		getPixelForOffset: function getPixelForOffset(time) {
 			var me = this;
 			var size = me._horizontal ? me.width : me.height;
 			var start = me._horizontal ? me.left : me.top;
@@ -66641,7 +66524,7 @@ module.exports = function(Chart) {
 			return start + size * (me._offsets.left + pos) / (me._offsets.left + 1 + me._offsets.right);
 		},
 
-		getPixelForValue: function(value, index, datasetIndex) {
+		getPixelForValue: function getPixelForValue(value, index, datasetIndex) {
 			var me = this;
 			var time = null;
 
@@ -66658,14 +66541,12 @@ module.exports = function(Chart) {
 			}
 		},
 
-		getPixelForTick: function(index) {
+		getPixelForTick: function getPixelForTick(index) {
 			var ticks = this.getTicks();
-			return index >= 0 && index < ticks.length ?
-				this.getPixelForOffset(ticks[index].value) :
-				null;
+			return index >= 0 && index < ticks.length ? this.getPixelForOffset(ticks[index].value) : null;
 		},
 
-		getValueForPixel: function(pixel) {
+		getValueForPixel: function getValueForPixel(pixel) {
 			var me = this;
 			var size = me._horizontal ? me.width : me.height;
 			var start = me._horizontal ? me.left : me.top;
@@ -66676,10 +66557,10 @@ module.exports = function(Chart) {
 		},
 
 		/**
-		 * Crude approximation of what the label width might be
-		 * @private
-		 */
-		getLabelWidth: function(label) {
+   * Crude approximation of what the label width might be
+   * @private
+   */
+		getLabelWidth: function getLabelWidth(label) {
 			var me = this;
 			var ticksOpts = me.options.ticks;
 			var tickLabelWidth = me.ctx.measureText(label).width;
@@ -66688,16 +66569,16 @@ module.exports = function(Chart) {
 			var sinRotation = Math.sin(angle);
 			var tickFontSize = helpers.valueOrDefault(ticksOpts.fontSize, defaults.global.defaultFontSize);
 
-			return (tickLabelWidth * cosRotation) + (tickFontSize * sinRotation);
+			return tickLabelWidth * cosRotation + tickFontSize * sinRotation;
 		},
 
 		/**
-		 * @private
-		 */
-		getLabelCapacity: function(exampleTime) {
+   * @private
+   */
+		getLabelCapacity: function getLabelCapacity(exampleTime) {
 			var me = this;
 
-			var formatOverride = me.options.time.displayFormats.millisecond;	// Pick the longest format for guestimation
+			var formatOverride = me.options.time.displayFormats.millisecond; // Pick the longest format for guestimation
 
 			var exampleLabel = me.tickFormatFunction(moment(exampleTime), 0, [], formatOverride);
 			var tickLabelWidth = me.getLabelWidth(exampleLabel);
@@ -66709,7 +66590,6 @@ module.exports = function(Chart) {
 
 	Chart.scaleService.registerScaleType('time', TimeScale, defaultConfig);
 };
-
 
 /***/ }),
 /* 761 */
@@ -67040,7 +66920,7 @@ defaults._set('horizontalBar', {
 
 	tooltips: {
 		callbacks: {
-			title: function(item, data) {
+			title: function title(item, data) {
 				// Pick first xLabel for now
 				var title = '';
 
@@ -67055,7 +66935,7 @@ defaults._set('horizontalBar', {
 				return title;
 			},
 
-			label: function(item, data) {
+			label: function label(item, data) {
 				var datasetLabel = data.datasets[item.datasetIndex].label || '';
 				return datasetLabel + ': ' + item.xLabel;
 			}
@@ -67065,13 +66945,13 @@ defaults._set('horizontalBar', {
 	}
 });
 
-module.exports = function(Chart) {
+module.exports = function (Chart) {
 
 	Chart.controllers.bar = Chart.DatasetController.extend({
 
 		dataElementType: elements.Rectangle,
 
-		initialize: function() {
+		initialize: function initialize() {
 			var me = this;
 			var meta;
 
@@ -67082,7 +66962,7 @@ module.exports = function(Chart) {
 			meta.bar = true;
 		},
 
-		update: function(reset) {
+		update: function update(reset) {
 			var me = this;
 			var rects = me.getMeta().data;
 			var i, ilen;
@@ -67094,7 +66974,7 @@ module.exports = function(Chart) {
 			}
 		},
 
-		updateElement: function(rectangle, index, reset) {
+		updateElement: function updateElement(rectangle, index, reset) {
 			var me = this;
 			var chart = me.chart;
 			var meta = me.getMeta();
@@ -67122,9 +67002,9 @@ module.exports = function(Chart) {
 		},
 
 		/**
-		 * @private
-		 */
-		updateElementGeometry: function(rectangle, index, reset) {
+   * @private
+   */
+		updateElementGeometry: function updateElementGeometry(rectangle, index, reset) {
 			var me = this;
 			var model = rectangle._model;
 			var vscale = me.getValueScale();
@@ -67143,38 +67023,38 @@ module.exports = function(Chart) {
 		},
 
 		/**
-		 * @private
-		 */
-		getValueScaleId: function() {
+   * @private
+   */
+		getValueScaleId: function getValueScaleId() {
 			return this.getMeta().yAxisID;
 		},
 
 		/**
-		 * @private
-		 */
-		getIndexScaleId: function() {
+   * @private
+   */
+		getIndexScaleId: function getIndexScaleId() {
 			return this.getMeta().xAxisID;
 		},
 
 		/**
-		 * @private
-		 */
-		getValueScale: function() {
+   * @private
+   */
+		getValueScale: function getValueScale() {
 			return this.getScaleForId(this.getValueScaleId());
 		},
 
 		/**
-		 * @private
-		 */
-		getIndexScale: function() {
+   * @private
+   */
+		getIndexScale: function getIndexScale() {
 			return this.getScaleForId(this.getIndexScaleId());
 		},
 
 		/**
-		 * Returns the effective number of stacks based on groups and bar visibility.
-		 * @private
-		 */
-		getStackCount: function(last) {
+   * Returns the effective number of stacks based on groups and bar visibility.
+   * @private
+   */
+		getStackCount: function getStackCount(last) {
 			var me = this;
 			var chart = me.chart;
 			var scale = me.getIndexScale();
@@ -67185,10 +67065,7 @@ module.exports = function(Chart) {
 
 			for (i = 0; i < ilen; ++i) {
 				meta = chart.getDatasetMeta(i);
-				if (meta.bar && chart.isDatasetVisible(i) &&
-					(stacked === false ||
-					(stacked === true && stacks.indexOf(meta.stack) === -1) ||
-					(stacked === undefined && (meta.stack === undefined || stacks.indexOf(meta.stack) === -1)))) {
+				if (meta.bar && chart.isDatasetVisible(i) && (stacked === false || stacked === true && stacks.indexOf(meta.stack) === -1 || stacked === undefined && (meta.stack === undefined || stacks.indexOf(meta.stack) === -1))) {
 					stacks.push(meta.stack);
 				}
 			}
@@ -67197,17 +67074,17 @@ module.exports = function(Chart) {
 		},
 
 		/**
-		 * Returns the stack index for the given dataset based on groups and bar visibility.
-		 * @private
-		 */
-		getStackIndex: function(datasetIndex) {
+   * Returns the stack index for the given dataset based on groups and bar visibility.
+   * @private
+   */
+		getStackIndex: function getStackIndex(datasetIndex) {
 			return this.getStackCount(datasetIndex) - 1;
 		},
 
 		/**
-		 * @private
-		 */
-		getRuler: function() {
+   * @private
+   */
+		getRuler: function getRuler() {
 			var me = this;
 			var scale = me.getIndexScale();
 			var stackCount = me.getStackCount();
@@ -67232,10 +67109,10 @@ module.exports = function(Chart) {
 		},
 
 		/**
-		 * Note: pixel values are not clamped to the scale area.
-		 * @private
-		 */
-		calculateBarValuePixels: function(datasetIndex, index) {
+   * Note: pixel values are not clamped to the scale area.
+   * @private
+   */
+		calculateBarValuePixels: function calculateBarValuePixels(datasetIndex, index) {
 			var me = this;
 			var chart = me.chart;
 			var meta = me.getMeta();
@@ -67247,17 +67124,14 @@ module.exports = function(Chart) {
 			var start = 0;
 			var i, imeta, ivalue, base, head, size;
 
-			if (stacked || (stacked === undefined && stack !== undefined)) {
+			if (stacked || stacked === undefined && stack !== undefined) {
 				for (i = 0; i < datasetIndex; ++i) {
 					imeta = chart.getDatasetMeta(i);
 
-					if (imeta.bar &&
-						imeta.stack === stack &&
-						imeta.controller.getValueScaleId() === scale.id &&
-						chart.isDatasetVisible(i)) {
+					if (imeta.bar && imeta.stack === stack && imeta.controller.getValueScaleId() === scale.id && chart.isDatasetVisible(i)) {
 
 						ivalue = scale.getRightValue(datasets[i].data[index]);
-						if ((value < 0 && ivalue < 0) || (value >= 0 && ivalue > 0)) {
+						if (value < 0 && ivalue < 0 || value >= 0 && ivalue > 0) {
 							start += ivalue;
 						}
 					}
@@ -67277,9 +67151,9 @@ module.exports = function(Chart) {
 		},
 
 		/**
-		 * @private
-		 */
-		calculateBarIndexPixels: function(datasetIndex, index, ruler) {
+   * @private
+   */
+		calculateBarIndexPixels: function calculateBarIndexPixels(datasetIndex, index, ruler) {
 			var me = this;
 			var options = ruler.scale.options;
 			var stackIndex = me.getStackIndex(datasetIndex);
@@ -67313,9 +67187,7 @@ module.exports = function(Chart) {
 			fullBarSize = (leftCategorySize + rightCategorySize) / ruler.stackCount;
 			size = fullBarSize * options.barPercentage;
 
-			size = Math.min(
-				helpers.valueOrDefault(options.barThickness, size),
-				helpers.valueOrDefault(options.maxBarThickness, Infinity));
+			size = Math.min(helpers.valueOrDefault(options.barThickness, size), helpers.valueOrDefault(options.maxBarThickness, Infinity));
 
 			base -= leftCategorySize;
 			base += fullBarSize * stackIndex;
@@ -67329,7 +67201,7 @@ module.exports = function(Chart) {
 			};
 		},
 
-		draw: function() {
+		draw: function draw() {
 			var me = this;
 			var chart = me.chart;
 			var scale = me.getValueScale();
@@ -67349,7 +67221,7 @@ module.exports = function(Chart) {
 			helpers.canvas.unclipArea(chart.ctx);
 		},
 
-		setHoverStyle: function(rectangle) {
+		setHoverStyle: function setHoverStyle(rectangle) {
 			var dataset = this.chart.data.datasets[rectangle._datasetIndex];
 			var index = rectangle._index;
 			var custom = rectangle.custom || {};
@@ -67360,7 +67232,7 @@ module.exports = function(Chart) {
 			model.borderWidth = custom.hoverBorderWidth ? custom.hoverBorderWidth : helpers.valueAtIndexOrDefault(dataset.hoverBorderWidth, index, model.borderWidth);
 		},
 
-		removeHoverStyle: function(rectangle) {
+		removeHoverStyle: function removeHoverStyle(rectangle) {
 			var dataset = this.chart.data.datasets[rectangle._datasetIndex];
 			var index = rectangle._index;
 			var custom = rectangle.custom || {};
@@ -67375,21 +67247,20 @@ module.exports = function(Chart) {
 
 	Chart.controllers.horizontalBar = Chart.controllers.bar.extend({
 		/**
-		 * @private
-		 */
-		getValueScaleId: function() {
+   * @private
+   */
+		getValueScaleId: function getValueScaleId() {
 			return this.getMeta().xAxisID;
 		},
 
 		/**
-		 * @private
-		 */
-		getIndexScaleId: function() {
+   * @private
+   */
+		getIndexScaleId: function getIndexScaleId() {
 			return this.getMeta().yAxisID;
 		}
 	});
 };
-
 
 /***/ }),
 /* 763 */
@@ -67397,6 +67268,8 @@ module.exports = function(Chart) {
 
 "use strict";
 
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
 var defaults = __webpack_require__(10);
 var elements = __webpack_require__(50);
@@ -67422,11 +67295,11 @@ defaults._set('bubble', {
 
 	tooltips: {
 		callbacks: {
-			title: function() {
+			title: function title() {
 				// Title doesn't make sense for scatter since we format the data as a point
 				return '';
 			},
-			label: function(item, data) {
+			label: function label(item, data) {
 				var datasetLabel = data.datasets[item.datasetIndex].label || '';
 				var dataPoint = data.datasets[item.datasetIndex].data[item.index];
 				return datasetLabel + ': (' + item.xLabel + ', ' + item.yLabel + ', ' + dataPoint.r + ')';
@@ -67435,33 +67308,32 @@ defaults._set('bubble', {
 	}
 });
 
-
-module.exports = function(Chart) {
+module.exports = function (Chart) {
 
 	Chart.controllers.bubble = Chart.DatasetController.extend({
 		/**
-		 * @protected
-		 */
+   * @protected
+   */
 		dataElementType: elements.Point,
 
 		/**
-		 * @protected
-		 */
-		update: function(reset) {
+   * @protected
+   */
+		update: function update(reset) {
 			var me = this;
 			var meta = me.getMeta();
 			var points = meta.data;
 
 			// Update Points
-			helpers.each(points, function(point, index) {
+			helpers.each(points, function (point, index) {
 				me.updateElement(point, index, reset);
 			});
 		},
 
 		/**
-		 * @protected
-		 */
-		updateElement: function(point, index, reset) {
+   * @protected
+   */
+		updateElement: function updateElement(point, index, reset) {
 			var me = this;
 			var meta = me.getMeta();
 			var custom = point.custom || {};
@@ -67471,7 +67343,7 @@ module.exports = function(Chart) {
 			var data = me.getDataset().data[index];
 			var dsIndex = me.index;
 
-			var x = reset ? xScale.getPixelForDecimal(0.5) : xScale.getPixelForValue(typeof data === 'object' ? data : NaN, index, dsIndex);
+			var x = reset ? xScale.getPixelForDecimal(0.5) : xScale.getPixelForValue((typeof data === 'undefined' ? 'undefined' : _typeof(data)) === 'object' ? data : NaN, index, dsIndex);
 			var y = reset ? yScale.getBasePixel() : yScale.getPixelForValue(data, index, dsIndex);
 
 			point._xScale = xScale;
@@ -67488,16 +67360,16 @@ module.exports = function(Chart) {
 				radius: reset ? 0 : options.radius,
 				skip: custom.skip || isNaN(x) || isNaN(y),
 				x: x,
-				y: y,
+				y: y
 			};
 
 			point.pivot();
 		},
 
 		/**
-		 * @protected
-		 */
-		setHoverStyle: function(point) {
+   * @protected
+   */
+		setHoverStyle: function setHoverStyle(point) {
 			var model = point._model;
 			var options = point._options;
 
@@ -67508,9 +67380,9 @@ module.exports = function(Chart) {
 		},
 
 		/**
-		 * @protected
-		 */
-		removeHoverStyle: function(point) {
+   * @protected
+   */
+		removeHoverStyle: function removeHoverStyle(point) {
 			var model = point._model;
 			var options = point._options;
 
@@ -67521,9 +67393,9 @@ module.exports = function(Chart) {
 		},
 
 		/**
-		 * @private
-		 */
-		_resolveElementOptions: function(point, index) {
+   * @private
+   */
+		_resolveElementOptions: function _resolveElementOptions(point, index) {
 			var me = this;
 			var chart = me.chart;
 			var datasets = chart.data.datasets;
@@ -67543,40 +67415,20 @@ module.exports = function(Chart) {
 				datasetIndex: me.index
 			};
 
-			var keys = [
-				'backgroundColor',
-				'borderColor',
-				'borderWidth',
-				'hoverBackgroundColor',
-				'hoverBorderColor',
-				'hoverBorderWidth',
-				'hoverRadius',
-				'hitRadius',
-				'pointStyle'
-			];
+			var keys = ['backgroundColor', 'borderColor', 'borderWidth', 'hoverBackgroundColor', 'hoverBorderColor', 'hoverBorderWidth', 'hoverRadius', 'hitRadius', 'pointStyle'];
 
 			for (i = 0, ilen = keys.length; i < ilen; ++i) {
 				key = keys[i];
-				values[key] = resolve([
-					custom[key],
-					dataset[key],
-					options[key]
-				], context, index);
+				values[key] = resolve([custom[key], dataset[key], options[key]], context, index);
 			}
 
 			// Custom radius resolution
-			values.radius = resolve([
-				custom.radius,
-				data ? data.r : undefined,
-				dataset.radius,
-				options.radius
-			], context, index);
+			values.radius = resolve([custom.radius, data ? data.r : undefined, dataset.radius, options.radius], context, index);
 
 			return values;
 		}
 	});
 };
-
 
 /***/ }),
 /* 764 */
@@ -67599,7 +67451,7 @@ defaults._set('doughnut', {
 	hover: {
 		mode: 'single'
 	},
-	legendCallback: function(chart) {
+	legendCallback: function legendCallback(chart) {
 		var text = [];
 		text.push('<ul class="' + chart.id + '-legend">');
 
@@ -67622,10 +67474,10 @@ defaults._set('doughnut', {
 	},
 	legend: {
 		labels: {
-			generateLabels: function(chart) {
+			generateLabels: function generateLabels(chart) {
 				var data = chart.data;
 				if (data.labels.length && data.datasets.length) {
-					return data.labels.map(function(label, i) {
+					return data.labels.map(function (label, i) {
 						var meta = chart.getDatasetMeta(0);
 						var ds = data.datasets[0];
 						var arc = meta.data[i];
@@ -67652,7 +67504,7 @@ defaults._set('doughnut', {
 			}
 		},
 
-		onClick: function(e, legendItem) {
+		onClick: function onClick(e, legendItem) {
 			var index = legendItem.index;
 			var chart = this.chart;
 			var i, ilen, meta;
@@ -67681,10 +67533,10 @@ defaults._set('doughnut', {
 	// Need to override these to give a nice default
 	tooltips: {
 		callbacks: {
-			title: function() {
+			title: function title() {
 				return '';
 			},
-			label: function(tooltipItem, data) {
+			label: function label(tooltipItem, data) {
 				var dataLabel = data.labels[tooltipItem.index];
 				var value = ': ' + data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index];
 
@@ -67708,7 +67560,7 @@ defaults._set('pie', {
 	cutoutPercentage: 0
 });
 
-module.exports = function(Chart) {
+module.exports = function (Chart) {
 
 	Chart.controllers.doughnut = Chart.controllers.pie = Chart.DatasetController.extend({
 
@@ -67717,7 +67569,7 @@ module.exports = function(Chart) {
 		linkScales: helpers.noop,
 
 		// Get index of the dataset in relation to the visible datasets. This allows determining the inner and outer radius correctly
-		getRingIndex: function(datasetIndex) {
+		getRingIndex: function getRingIndex(datasetIndex) {
 			var ringIndex = 0;
 
 			for (var j = 0; j < datasetIndex; ++j) {
@@ -67729,7 +67581,7 @@ module.exports = function(Chart) {
 			return ringIndex;
 		},
 
-		update: function(reset) {
+		update: function update(reset) {
 			var me = this;
 			var chart = me.chart;
 			var chartArea = chart.chartArea;
@@ -67738,7 +67590,7 @@ module.exports = function(Chart) {
 			var availableWidth = chartArea.right - chartArea.left - arcOpts.borderWidth;
 			var availableHeight = chartArea.bottom - chartArea.top - arcOpts.borderWidth;
 			var minSize = Math.min(availableWidth, availableHeight);
-			var offset = {x: 0, y: 0};
+			var offset = { x: 0, y: 0 };
 			var meta = me.getMeta();
 			var cutoutPercentage = opts.cutoutPercentage;
 			var circumference = opts.circumference;
@@ -67748,38 +67600,38 @@ module.exports = function(Chart) {
 				var startAngle = opts.rotation % (Math.PI * 2.0);
 				startAngle += Math.PI * 2.0 * (startAngle >= Math.PI ? -1 : startAngle < -Math.PI ? 1 : 0);
 				var endAngle = startAngle + circumference;
-				var start = {x: Math.cos(startAngle), y: Math.sin(startAngle)};
-				var end = {x: Math.cos(endAngle), y: Math.sin(endAngle)};
-				var contains0 = (startAngle <= 0 && endAngle >= 0) || (startAngle <= Math.PI * 2.0 && Math.PI * 2.0 <= endAngle);
-				var contains90 = (startAngle <= Math.PI * 0.5 && Math.PI * 0.5 <= endAngle) || (startAngle <= Math.PI * 2.5 && Math.PI * 2.5 <= endAngle);
-				var contains180 = (startAngle <= -Math.PI && -Math.PI <= endAngle) || (startAngle <= Math.PI && Math.PI <= endAngle);
-				var contains270 = (startAngle <= -Math.PI * 0.5 && -Math.PI * 0.5 <= endAngle) || (startAngle <= Math.PI * 1.5 && Math.PI * 1.5 <= endAngle);
+				var start = { x: Math.cos(startAngle), y: Math.sin(startAngle) };
+				var end = { x: Math.cos(endAngle), y: Math.sin(endAngle) };
+				var contains0 = startAngle <= 0 && endAngle >= 0 || startAngle <= Math.PI * 2.0 && Math.PI * 2.0 <= endAngle;
+				var contains90 = startAngle <= Math.PI * 0.5 && Math.PI * 0.5 <= endAngle || startAngle <= Math.PI * 2.5 && Math.PI * 2.5 <= endAngle;
+				var contains180 = startAngle <= -Math.PI && -Math.PI <= endAngle || startAngle <= Math.PI && Math.PI <= endAngle;
+				var contains270 = startAngle <= -Math.PI * 0.5 && -Math.PI * 0.5 <= endAngle || startAngle <= Math.PI * 1.5 && Math.PI * 1.5 <= endAngle;
 				var cutout = cutoutPercentage / 100.0;
-				var min = {x: contains180 ? -1 : Math.min(start.x * (start.x < 0 ? 1 : cutout), end.x * (end.x < 0 ? 1 : cutout)), y: contains270 ? -1 : Math.min(start.y * (start.y < 0 ? 1 : cutout), end.y * (end.y < 0 ? 1 : cutout))};
-				var max = {x: contains0 ? 1 : Math.max(start.x * (start.x > 0 ? 1 : cutout), end.x * (end.x > 0 ? 1 : cutout)), y: contains90 ? 1 : Math.max(start.y * (start.y > 0 ? 1 : cutout), end.y * (end.y > 0 ? 1 : cutout))};
-				var size = {width: (max.x - min.x) * 0.5, height: (max.y - min.y) * 0.5};
+				var min = { x: contains180 ? -1 : Math.min(start.x * (start.x < 0 ? 1 : cutout), end.x * (end.x < 0 ? 1 : cutout)), y: contains270 ? -1 : Math.min(start.y * (start.y < 0 ? 1 : cutout), end.y * (end.y < 0 ? 1 : cutout)) };
+				var max = { x: contains0 ? 1 : Math.max(start.x * (start.x > 0 ? 1 : cutout), end.x * (end.x > 0 ? 1 : cutout)), y: contains90 ? 1 : Math.max(start.y * (start.y > 0 ? 1 : cutout), end.y * (end.y > 0 ? 1 : cutout)) };
+				var size = { width: (max.x - min.x) * 0.5, height: (max.y - min.y) * 0.5 };
 				minSize = Math.min(availableWidth / size.width, availableHeight / size.height);
-				offset = {x: (max.x + min.x) * -0.5, y: (max.y + min.y) * -0.5};
+				offset = { x: (max.x + min.x) * -0.5, y: (max.y + min.y) * -0.5 };
 			}
 
 			chart.borderWidth = me.getMaxBorderWidth(meta.data);
 			chart.outerRadius = Math.max((minSize - chart.borderWidth) / 2, 0);
-			chart.innerRadius = Math.max(cutoutPercentage ? (chart.outerRadius / 100) * (cutoutPercentage) : 0, 0);
+			chart.innerRadius = Math.max(cutoutPercentage ? chart.outerRadius / 100 * cutoutPercentage : 0, 0);
 			chart.radiusLength = (chart.outerRadius - chart.innerRadius) / chart.getVisibleDatasetCount();
 			chart.offsetX = offset.x * chart.outerRadius;
 			chart.offsetY = offset.y * chart.outerRadius;
 
 			meta.total = me.calculateTotal();
 
-			me.outerRadius = chart.outerRadius - (chart.radiusLength * me.getRingIndex(me.index));
+			me.outerRadius = chart.outerRadius - chart.radiusLength * me.getRingIndex(me.index);
 			me.innerRadius = Math.max(me.outerRadius - chart.radiusLength, 0);
 
-			helpers.each(meta.data, function(arc, index) {
+			helpers.each(meta.data, function (arc, index) {
 				me.updateElement(arc, index, reset);
 			});
 		},
 
-		updateElement: function(arc, index, reset) {
+		updateElement: function updateElement(arc, index, reset) {
 			var me = this;
 			var chart = me.chart;
 			var chartArea = chart.chartArea;
@@ -67831,17 +67683,17 @@ module.exports = function(Chart) {
 			arc.pivot();
 		},
 
-		removeHoverStyle: function(arc) {
+		removeHoverStyle: function removeHoverStyle(arc) {
 			Chart.DatasetController.prototype.removeHoverStyle.call(this, arc, this.chart.options.elements.arc);
 		},
 
-		calculateTotal: function() {
+		calculateTotal: function calculateTotal() {
 			var dataset = this.getDataset();
 			var meta = this.getMeta();
 			var total = 0;
 			var value;
 
-			helpers.each(meta.data, function(element, index) {
+			helpers.each(meta.data, function (element, index) {
 				value = dataset.data[index];
 				if (!isNaN(value) && !element.hidden) {
 					total += Math.abs(value);
@@ -67849,22 +67701,22 @@ module.exports = function(Chart) {
 			});
 
 			/* if (total === 0) {
-				total = NaN;
-			}*/
+   	total = NaN;
+   }*/
 
 			return total;
 		},
 
-		calculateCircumference: function(value) {
+		calculateCircumference: function calculateCircumference(value) {
 			var total = this.getMeta().total;
 			if (total > 0 && !isNaN(value)) {
-				return (Math.PI * 2.0) * (value / total);
+				return Math.PI * 2.0 * (value / total);
 			}
 			return 0;
 		},
 
 		// gets the max border or hover width to properly scale pie charts
-		getMaxBorderWidth: function(arcs) {
+		getMaxBorderWidth: function getMaxBorderWidth(arcs) {
 			var max = 0;
 			var index = this.index;
 			var length = arcs.length;
@@ -67883,13 +67735,14 @@ module.exports = function(Chart) {
 	});
 };
 
-
 /***/ }),
 /* 765 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
 var defaults = __webpack_require__(10);
 var elements = __webpack_require__(50);
@@ -67915,7 +67768,7 @@ defaults._set('line', {
 	}
 });
 
-module.exports = function(Chart) {
+module.exports = function (Chart) {
 
 	function lineEnabled(dataset, options) {
 		return helpers.valueOrDefault(dataset.showLine, options.showLines);
@@ -67927,7 +67780,7 @@ module.exports = function(Chart) {
 
 		dataElementType: elements.Point,
 
-		update: function(reset) {
+		update: function update(reset) {
 			var me = this;
 			var meta = me.getMeta();
 			var line = meta.dataset;
@@ -67944,7 +67797,7 @@ module.exports = function(Chart) {
 				custom = line.custom || {};
 
 				// Compatibility: If the properties are defined with only the old name, use those values
-				if ((dataset.tension !== undefined) && (dataset.lineTension === undefined)) {
+				if (dataset.tension !== undefined && dataset.lineTension === undefined) {
 					dataset.lineTension = dataset.tension;
 				}
 
@@ -67961,16 +67814,16 @@ module.exports = function(Chart) {
 					// This option gives lines the ability to span gaps
 					spanGaps: dataset.spanGaps ? dataset.spanGaps : options.spanGaps,
 					tension: custom.tension ? custom.tension : helpers.valueOrDefault(dataset.lineTension, lineElementOptions.tension),
-					backgroundColor: custom.backgroundColor ? custom.backgroundColor : (dataset.backgroundColor || lineElementOptions.backgroundColor),
-					borderWidth: custom.borderWidth ? custom.borderWidth : (dataset.borderWidth || lineElementOptions.borderWidth),
-					borderColor: custom.borderColor ? custom.borderColor : (dataset.borderColor || lineElementOptions.borderColor),
-					borderCapStyle: custom.borderCapStyle ? custom.borderCapStyle : (dataset.borderCapStyle || lineElementOptions.borderCapStyle),
-					borderDash: custom.borderDash ? custom.borderDash : (dataset.borderDash || lineElementOptions.borderDash),
-					borderDashOffset: custom.borderDashOffset ? custom.borderDashOffset : (dataset.borderDashOffset || lineElementOptions.borderDashOffset),
-					borderJoinStyle: custom.borderJoinStyle ? custom.borderJoinStyle : (dataset.borderJoinStyle || lineElementOptions.borderJoinStyle),
-					fill: custom.fill ? custom.fill : (dataset.fill !== undefined ? dataset.fill : lineElementOptions.fill),
+					backgroundColor: custom.backgroundColor ? custom.backgroundColor : dataset.backgroundColor || lineElementOptions.backgroundColor,
+					borderWidth: custom.borderWidth ? custom.borderWidth : dataset.borderWidth || lineElementOptions.borderWidth,
+					borderColor: custom.borderColor ? custom.borderColor : dataset.borderColor || lineElementOptions.borderColor,
+					borderCapStyle: custom.borderCapStyle ? custom.borderCapStyle : dataset.borderCapStyle || lineElementOptions.borderCapStyle,
+					borderDash: custom.borderDash ? custom.borderDash : dataset.borderDash || lineElementOptions.borderDash,
+					borderDashOffset: custom.borderDashOffset ? custom.borderDashOffset : dataset.borderDashOffset || lineElementOptions.borderDashOffset,
+					borderJoinStyle: custom.borderJoinStyle ? custom.borderJoinStyle : dataset.borderJoinStyle || lineElementOptions.borderJoinStyle,
+					fill: custom.fill ? custom.fill : dataset.fill !== undefined ? dataset.fill : lineElementOptions.fill,
 					steppedLine: custom.steppedLine ? custom.steppedLine : helpers.valueOrDefault(dataset.steppedLine, lineElementOptions.stepped),
-					cubicInterpolationMode: custom.cubicInterpolationMode ? custom.cubicInterpolationMode : helpers.valueOrDefault(dataset.cubicInterpolationMode, lineElementOptions.cubicInterpolationMode),
+					cubicInterpolationMode: custom.cubicInterpolationMode ? custom.cubicInterpolationMode : helpers.valueOrDefault(dataset.cubicInterpolationMode, lineElementOptions.cubicInterpolationMode)
 				};
 
 				line.pivot();
@@ -67991,7 +67844,7 @@ module.exports = function(Chart) {
 			}
 		},
 
-		getPointBackgroundColor: function(point, index) {
+		getPointBackgroundColor: function getPointBackgroundColor(point, index) {
 			var backgroundColor = this.chart.options.elements.point.backgroundColor;
 			var dataset = this.getDataset();
 			var custom = point.custom || {};
@@ -68007,7 +67860,7 @@ module.exports = function(Chart) {
 			return backgroundColor;
 		},
 
-		getPointBorderColor: function(point, index) {
+		getPointBorderColor: function getPointBorderColor(point, index) {
 			var borderColor = this.chart.options.elements.point.borderColor;
 			var dataset = this.getDataset();
 			var custom = point.custom || {};
@@ -68023,7 +67876,7 @@ module.exports = function(Chart) {
 			return borderColor;
 		},
 
-		getPointBorderWidth: function(point, index) {
+		getPointBorderWidth: function getPointBorderWidth(point, index) {
 			var borderWidth = this.chart.options.elements.point.borderWidth;
 			var dataset = this.getDataset();
 			var custom = point.custom || {};
@@ -68039,7 +67892,7 @@ module.exports = function(Chart) {
 			return borderWidth;
 		},
 
-		updateElement: function(point, index, reset) {
+		updateElement: function updateElement(point, index, reset) {
 			var me = this;
 			var meta = me.getMeta();
 			var custom = point.custom || {};
@@ -68052,14 +67905,14 @@ module.exports = function(Chart) {
 			var x, y;
 
 			// Compatibility: If the properties are defined with only the old name, use those values
-			if ((dataset.radius !== undefined) && (dataset.pointRadius === undefined)) {
+			if (dataset.radius !== undefined && dataset.pointRadius === undefined) {
 				dataset.pointRadius = dataset.radius;
 			}
-			if ((dataset.hitRadius !== undefined) && (dataset.pointHitRadius === undefined)) {
+			if (dataset.hitRadius !== undefined && dataset.pointHitRadius === undefined) {
 				dataset.pointHitRadius = dataset.hitRadius;
 			}
 
-			x = xScale.getPixelForValue(typeof value === 'object' ? value : NaN, index, datasetIndex);
+			x = xScale.getPixelForValue((typeof value === 'undefined' ? 'undefined' : _typeof(value)) === 'object' ? value : NaN, index, datasetIndex);
 			y = reset ? yScale.getBasePixel() : me.calculatePointY(value, index, datasetIndex);
 
 			// Utility
@@ -68086,7 +67939,7 @@ module.exports = function(Chart) {
 			};
 		},
 
-		calculatePointY: function(value, index, datasetIndex) {
+		calculatePointY: function calculatePointY(value, index, datasetIndex) {
 			var me = this;
 			var chart = me.chart;
 			var meta = me.getMeta();
@@ -68119,16 +67972,16 @@ module.exports = function(Chart) {
 			return yScale.getPixelForValue(value);
 		},
 
-		updateBezierControlPoints: function() {
+		updateBezierControlPoints: function updateBezierControlPoints() {
 			var me = this;
 			var meta = me.getMeta();
 			var area = me.chart.chartArea;
-			var points = (meta.data || []);
+			var points = meta.data || [];
 			var i, ilen, point, model, controlPoints;
 
 			// Only consider points that are drawn in case the spanGaps option is used
 			if (meta.dataset._model.spanGaps) {
-				points = points.filter(function(pt) {
+				points = points.filter(function (pt) {
 					return !pt._model.skip;
 				});
 			}
@@ -68143,12 +67996,7 @@ module.exports = function(Chart) {
 				for (i = 0, ilen = points.length; i < ilen; ++i) {
 					point = points[i];
 					model = point._model;
-					controlPoints = helpers.splineCurve(
-						helpers.previousItem(points, i)._model,
-						model,
-						helpers.nextItem(points, i)._model,
-						meta.dataset._model.tension
-					);
+					controlPoints = helpers.splineCurve(helpers.previousItem(points, i)._model, model, helpers.nextItem(points, i)._model, meta.dataset._model.tension);
 					model.controlPointPreviousX = controlPoints.previous.x;
 					model.controlPointPreviousY = controlPoints.previous.y;
 					model.controlPointNextX = controlPoints.next.x;
@@ -68167,7 +68015,7 @@ module.exports = function(Chart) {
 			}
 		},
 
-		draw: function() {
+		draw: function draw() {
 			var me = this;
 			var chart = me.chart;
 			var meta = me.getMeta();
@@ -68190,7 +68038,7 @@ module.exports = function(Chart) {
 			}
 		},
 
-		setHoverStyle: function(point) {
+		setHoverStyle: function setHoverStyle(point) {
 			// Point
 			var dataset = this.chart.data.datasets[point._datasetIndex];
 			var index = point._index;
@@ -68203,7 +68051,7 @@ module.exports = function(Chart) {
 			model.borderWidth = custom.hoverBorderWidth || helpers.valueAtIndexOrDefault(dataset.pointHoverBorderWidth, index, model.borderWidth);
 		},
 
-		removeHoverStyle: function(point) {
+		removeHoverStyle: function removeHoverStyle(point) {
 			var me = this;
 			var dataset = me.chart.data.datasets[point._datasetIndex];
 			var index = point._index;
@@ -68211,7 +68059,7 @@ module.exports = function(Chart) {
 			var model = point._model;
 
 			// Compatibility: If the properties are defined with only the old name, use those values
-			if ((dataset.radius !== undefined) && (dataset.pointRadius === undefined)) {
+			if (dataset.radius !== undefined && dataset.pointRadius === undefined) {
 				dataset.pointRadius = dataset.radius;
 			}
 
@@ -68222,7 +68070,6 @@ module.exports = function(Chart) {
 		}
 	});
 };
-
 
 /***/ }),
 /* 766 */
@@ -68259,7 +68106,7 @@ defaults._set('polarArea', {
 	},
 
 	startAngle: -0.5 * Math.PI,
-	legendCallback: function(chart) {
+	legendCallback: function legendCallback(chart) {
 		var text = [];
 		text.push('<ul class="' + chart.id + '-legend">');
 
@@ -68282,10 +68129,10 @@ defaults._set('polarArea', {
 	},
 	legend: {
 		labels: {
-			generateLabels: function(chart) {
+			generateLabels: function generateLabels(chart) {
 				var data = chart.data;
 				if (data.labels.length && data.datasets.length) {
-					return data.labels.map(function(label, i) {
+					return data.labels.map(function (label, i) {
 						var meta = chart.getDatasetMeta(0);
 						var ds = data.datasets[0];
 						var arc = meta.data[i];
@@ -68312,7 +68159,7 @@ defaults._set('polarArea', {
 			}
 		},
 
-		onClick: function(e, legendItem) {
+		onClick: function onClick(e, legendItem) {
 			var index = legendItem.index;
 			var chart = this.chart;
 			var i, ilen, meta;
@@ -68329,17 +68176,17 @@ defaults._set('polarArea', {
 	// Need to override these to give a nice default
 	tooltips: {
 		callbacks: {
-			title: function() {
+			title: function title() {
 				return '';
 			},
-			label: function(item, data) {
+			label: function label(item, data) {
 				return data.labels[item.index] + ': ' + item.yLabel;
 			}
 		}
 	}
 });
 
-module.exports = function(Chart) {
+module.exports = function (Chart) {
 
 	Chart.controllers.polarArea = Chart.DatasetController.extend({
 
@@ -68347,7 +68194,7 @@ module.exports = function(Chart) {
 
 		linkScales: helpers.noop,
 
-		update: function(reset) {
+		update: function update(reset) {
 			var me = this;
 			var chart = me.chart;
 			var chartArea = chart.chartArea;
@@ -68356,20 +68203,46 @@ module.exports = function(Chart) {
 			var arcOpts = opts.elements.arc;
 			var minSize = Math.min(chartArea.right - chartArea.left, chartArea.bottom - chartArea.top);
 			chart.outerRadius = Math.max((minSize - arcOpts.borderWidth / 2) / 2, 0);
-			chart.innerRadius = Math.max(opts.cutoutPercentage ? (chart.outerRadius / 100) * (opts.cutoutPercentage) : 1, 0);
+			chart.innerRadius = Math.max(opts.cutoutPercentage ? chart.outerRadius / 100 * opts.cutoutPercentage : 1, 0);
 			chart.radiusLength = (chart.outerRadius - chart.innerRadius) / chart.getVisibleDatasetCount();
 
-			me.outerRadius = chart.outerRadius - (chart.radiusLength * me.index);
+			me.outerRadius = chart.outerRadius - chart.radiusLength * me.index;
 			me.innerRadius = me.outerRadius - chart.radiusLength;
 
 			meta.count = me.countVisibleElements();
 
-			helpers.each(meta.data, function(arc, index) {
+			helpers.each(meta.data, function (arc, index) {
 				me.updateElement(arc, index, reset);
 			});
 		},
 
-		updateElement: function(arc, index, reset) {
+		getStartAngle: function getStartAngle(customAngles, dataSetData, metaData, datasetStartAngle, circumference, index) {
+
+			// If there is NaN data before us, we need to calculate the starting angle correctly.
+			// We could be way more efficient here, but its unlikely that the polar area chart will have a lot of data
+
+			var previousAngle = 0;
+			var visibleCount = 0;
+			var startAngle = 0;
+			var i = 0;
+
+			for (i = 0; i < index; ++i) {
+				if (customAngles !== undefined) {
+					previousAngle += customAngles[visibleCount];
+				}
+				if (!isNaN(dataSetData[i]) && !metaData[i].hidden) {
+					++visibleCount;
+				}
+			}
+			if (customAngles === undefined) {
+				startAngle = datasetStartAngle + circumference * visibleCount;
+			} else {
+				startAngle = datasetStartAngle + previousAngle;
+			}
+
+			return startAngle;
+		},
+		updateElement: function updateElement(arc, index, reset) {
 			var me = this;
 			var chart = me.chart;
 			var dataset = me.getDataset();
@@ -68377,25 +68250,18 @@ module.exports = function(Chart) {
 			var animationOpts = opts.animation;
 			var scale = chart.scale;
 			var labels = chart.data.labels;
+			var customAngles = opts.customAngles;
+			var meta = me.getMeta();
 
-			var circumference = me.calculateCircumference(dataset.data[index]);
+			var circumference = me.calculateCircumference(dataset.data[index], index);
 			var centerX = scale.xCenter;
 			var centerY = scale.yCenter;
-
-			// If there is NaN data before us, we need to calculate the starting angle correctly.
-			// We could be way more efficient here, but its unlikely that the polar area chart will have a lot of data
-			var visibleCount = 0;
-			var meta = me.getMeta();
-			for (var i = 0; i < index; ++i) {
-				if (!isNaN(dataset.data[i]) && !meta.data[i].hidden) {
-					++visibleCount;
-				}
-			}
 
 			// var negHalfPI = -0.5 * Math.PI;
 			var datasetStartAngle = opts.startAngle;
 			var distance = arc.hidden ? 0 : scale.getDistanceFromCenterForValue(dataset.data[index]);
-			var startAngle = datasetStartAngle + (circumference * visibleCount);
+
+			var startAngle = me.getStartAngle(customAngles, dataset.data, meta.data, datasetStartAngle, circumference, index);
 			var endAngle = startAngle + (arc.hidden ? 0 : circumference);
 
 			var resetRadius = animationOpts.animateScale ? 0 : scale.getDistanceFromCenterForValue(dataset.data[index]);
@@ -68424,16 +68290,16 @@ module.exports = function(Chart) {
 			arc.pivot();
 		},
 
-		removeHoverStyle: function(arc) {
+		removeHoverStyle: function removeHoverStyle(arc) {
 			Chart.DatasetController.prototype.removeHoverStyle.call(this, arc, this.chart.options.elements.arc);
 		},
 
-		countVisibleElements: function() {
+		countVisibleElements: function countVisibleElements() {
 			var dataset = this.getDataset();
 			var meta = this.getMeta();
 			var count = 0;
 
-			helpers.each(meta.data, function(element, index) {
+			helpers.each(meta.data, function (element, index) {
 				if (!isNaN(dataset.data[index]) && !element.hidden) {
 					count++;
 				}
@@ -68442,16 +68308,22 @@ module.exports = function(Chart) {
 			return count;
 		},
 
-		calculateCircumference: function(value) {
+		calculateCircumference: function calculateCircumference(value, index) {
+			var me = this;
+			var chart = me.chart;
+			var opts = chart.options;
+			var customAngles = opts.customAngles;
 			var count = this.getMeta().count;
 			if (count > 0 && !isNaN(value)) {
-				return (2 * Math.PI) / count;
+				if (customAngles === undefined) {
+					return 2 * Math.PI / count;
+				}
+				return count === 1 ? 2 * Math.PI : customAngles[index];
 			}
 			return 0;
 		}
 	});
 };
-
 
 /***/ }),
 /* 767 */
@@ -68475,7 +68347,7 @@ defaults._set('radar', {
 	}
 });
 
-module.exports = function(Chart) {
+module.exports = function (Chart) {
 
 	Chart.controllers.radar = Chart.DatasetController.extend({
 
@@ -68485,7 +68357,7 @@ module.exports = function(Chart) {
 
 		linkScales: helpers.noop,
 
-		update: function(reset) {
+		update: function update(reset) {
 			var me = this;
 			var meta = me.getMeta();
 			var line = meta.dataset;
@@ -68496,7 +68368,7 @@ module.exports = function(Chart) {
 			var scale = me.chart.scale;
 
 			// Compatibility: If the properties are defined with only the old name, use those values
-			if ((dataset.tension !== undefined) && (dataset.lineTension === undefined)) {
+			if (dataset.tension !== undefined && dataset.lineTension === undefined) {
 				dataset.lineTension = dataset.tension;
 			}
 
@@ -68511,28 +68383,28 @@ module.exports = function(Chart) {
 				_model: {
 					// Appearance
 					tension: custom.tension ? custom.tension : helpers.valueOrDefault(dataset.lineTension, lineElementOptions.tension),
-					backgroundColor: custom.backgroundColor ? custom.backgroundColor : (dataset.backgroundColor || lineElementOptions.backgroundColor),
-					borderWidth: custom.borderWidth ? custom.borderWidth : (dataset.borderWidth || lineElementOptions.borderWidth),
-					borderColor: custom.borderColor ? custom.borderColor : (dataset.borderColor || lineElementOptions.borderColor),
-					fill: custom.fill ? custom.fill : (dataset.fill !== undefined ? dataset.fill : lineElementOptions.fill),
-					borderCapStyle: custom.borderCapStyle ? custom.borderCapStyle : (dataset.borderCapStyle || lineElementOptions.borderCapStyle),
-					borderDash: custom.borderDash ? custom.borderDash : (dataset.borderDash || lineElementOptions.borderDash),
-					borderDashOffset: custom.borderDashOffset ? custom.borderDashOffset : (dataset.borderDashOffset || lineElementOptions.borderDashOffset),
-					borderJoinStyle: custom.borderJoinStyle ? custom.borderJoinStyle : (dataset.borderJoinStyle || lineElementOptions.borderJoinStyle),
+					backgroundColor: custom.backgroundColor ? custom.backgroundColor : dataset.backgroundColor || lineElementOptions.backgroundColor,
+					borderWidth: custom.borderWidth ? custom.borderWidth : dataset.borderWidth || lineElementOptions.borderWidth,
+					borderColor: custom.borderColor ? custom.borderColor : dataset.borderColor || lineElementOptions.borderColor,
+					fill: custom.fill ? custom.fill : dataset.fill !== undefined ? dataset.fill : lineElementOptions.fill,
+					borderCapStyle: custom.borderCapStyle ? custom.borderCapStyle : dataset.borderCapStyle || lineElementOptions.borderCapStyle,
+					borderDash: custom.borderDash ? custom.borderDash : dataset.borderDash || lineElementOptions.borderDash,
+					borderDashOffset: custom.borderDashOffset ? custom.borderDashOffset : dataset.borderDashOffset || lineElementOptions.borderDashOffset,
+					borderJoinStyle: custom.borderJoinStyle ? custom.borderJoinStyle : dataset.borderJoinStyle || lineElementOptions.borderJoinStyle
 				}
 			});
 
 			meta.dataset.pivot();
 
 			// Update Points
-			helpers.each(points, function(point, index) {
+			helpers.each(points, function (point, index) {
 				me.updateElement(point, index, reset);
 			}, me);
 
 			// Update bezier control points
 			me.updateBezierControlPoints();
 		},
-		updateElement: function(point, index, reset) {
+		updateElement: function updateElement(point, index, reset) {
 			var me = this;
 			var custom = point.custom || {};
 			var dataset = me.getDataset();
@@ -68541,10 +68413,10 @@ module.exports = function(Chart) {
 			var pointPosition = scale.getPointPositionForValue(index, dataset.data[index]);
 
 			// Compatibility: If the properties are defined with only the old name, use those values
-			if ((dataset.radius !== undefined) && (dataset.pointRadius === undefined)) {
+			if (dataset.radius !== undefined && dataset.pointRadius === undefined) {
 				dataset.pointRadius = dataset.radius;
 			}
-			if ((dataset.hitRadius !== undefined) && (dataset.pointHitRadius === undefined)) {
+			if (dataset.hitRadius !== undefined && dataset.pointHitRadius === undefined) {
 				dataset.pointHitRadius = dataset.hitRadius;
 			}
 
@@ -68572,20 +68444,15 @@ module.exports = function(Chart) {
 				}
 			});
 
-			point._model.skip = custom.skip ? custom.skip : (isNaN(point._model.x) || isNaN(point._model.y));
+			point._model.skip = custom.skip ? custom.skip : isNaN(point._model.x) || isNaN(point._model.y);
 		},
-		updateBezierControlPoints: function() {
+		updateBezierControlPoints: function updateBezierControlPoints() {
 			var chartArea = this.chart.chartArea;
 			var meta = this.getMeta();
 
-			helpers.each(meta.data, function(point, index) {
+			helpers.each(meta.data, function (point, index) {
 				var model = point._model;
-				var controlPoints = helpers.splineCurve(
-					helpers.previousItem(meta.data, index, true)._model,
-					model,
-					helpers.nextItem(meta.data, index, true)._model,
-					model.tension
-				);
+				var controlPoints = helpers.splineCurve(helpers.previousItem(meta.data, index, true)._model, model, helpers.nextItem(meta.data, index, true)._model, model.tension);
 
 				// Prevent the bezier going outside of the bounds of the graph
 				model.controlPointPreviousX = Math.max(Math.min(controlPoints.previous.x, chartArea.right), chartArea.left);
@@ -68599,7 +68466,7 @@ module.exports = function(Chart) {
 			});
 		},
 
-		setHoverStyle: function(point) {
+		setHoverStyle: function setHoverStyle(point) {
 			// Point
 			var dataset = this.chart.data.datasets[point._datasetIndex];
 			var custom = point.custom || {};
@@ -68612,7 +68479,7 @@ module.exports = function(Chart) {
 			model.borderWidth = custom.hoverBorderWidth ? custom.hoverBorderWidth : helpers.valueAtIndexOrDefault(dataset.pointHoverBorderWidth, index, model.borderWidth);
 		},
 
-		removeHoverStyle: function(point) {
+		removeHoverStyle: function removeHoverStyle(point) {
 			var dataset = this.chart.data.datasets[point._datasetIndex];
 			var custom = point.custom || {};
 			var index = point._index;
@@ -68626,7 +68493,6 @@ module.exports = function(Chart) {
 		}
 	});
 };
-
 
 /***/ }),
 /* 768 */
@@ -68644,8 +68510,8 @@ defaults._set('scatter', {
 
 	scales: {
 		xAxes: [{
-			id: 'x-axis-1',    // need an ID so datasets can reference the scale
-			type: 'linear',    // scatter should not use a category axis
+			id: 'x-axis-1', // need an ID so datasets can reference the scale
+			type: 'linear', // scatter should not use a category axis
 			position: 'bottom'
 		}],
 		yAxes: [{
@@ -68659,23 +68525,21 @@ defaults._set('scatter', {
 
 	tooltips: {
 		callbacks: {
-			title: function() {
-				return '';     // doesn't make sense for scatter since data are formatted as a point
+			title: function title() {
+				return ''; // doesn't make sense for scatter since data are formatted as a point
 			},
-			label: function(item) {
+			label: function label(item) {
 				return '(' + item.xLabel + ', ' + item.yLabel + ')';
 			}
 		}
 	}
 });
 
-module.exports = function(Chart) {
+module.exports = function (Chart) {
 
 	// Scatter charts use line controllers
 	Chart.controllers.scatter = Chart.controllers.line;
-
 };
-
 
 /***/ }),
 /* 769 */
@@ -68684,16 +68548,14 @@ module.exports = function(Chart) {
 "use strict";
 
 
-module.exports = function(Chart) {
+module.exports = function (Chart) {
 
-	Chart.Bar = function(context, config) {
+	Chart.Bar = function (context, config) {
 		config.type = 'bar';
 
 		return new Chart(context, config);
 	};
-
 };
-
 
 /***/ }),
 /* 770 */
@@ -68702,15 +68564,13 @@ module.exports = function(Chart) {
 "use strict";
 
 
-module.exports = function(Chart) {
+module.exports = function (Chart) {
 
-	Chart.Bubble = function(context, config) {
+	Chart.Bubble = function (context, config) {
 		config.type = 'bubble';
 		return new Chart(context, config);
 	};
-
 };
-
 
 /***/ }),
 /* 771 */
@@ -68719,16 +68579,14 @@ module.exports = function(Chart) {
 "use strict";
 
 
-module.exports = function(Chart) {
+module.exports = function (Chart) {
 
-	Chart.Doughnut = function(context, config) {
+	Chart.Doughnut = function (context, config) {
 		config.type = 'doughnut';
 
 		return new Chart(context, config);
 	};
-
 };
-
 
 /***/ }),
 /* 772 */
@@ -68737,16 +68595,14 @@ module.exports = function(Chart) {
 "use strict";
 
 
-module.exports = function(Chart) {
+module.exports = function (Chart) {
 
-	Chart.Line = function(context, config) {
+	Chart.Line = function (context, config) {
 		config.type = 'line';
 
 		return new Chart(context, config);
 	};
-
 };
-
 
 /***/ }),
 /* 773 */
@@ -68755,16 +68611,14 @@ module.exports = function(Chart) {
 "use strict";
 
 
-module.exports = function(Chart) {
+module.exports = function (Chart) {
 
-	Chart.PolarArea = function(context, config) {
+	Chart.PolarArea = function (context, config) {
 		config.type = 'polarArea';
 
 		return new Chart(context, config);
 	};
-
 };
-
 
 /***/ }),
 /* 774 */
@@ -68773,16 +68627,14 @@ module.exports = function(Chart) {
 "use strict";
 
 
-module.exports = function(Chart) {
+module.exports = function (Chart) {
 
-	Chart.Radar = function(context, config) {
+	Chart.Radar = function (context, config) {
 		config.type = 'radar';
 
 		return new Chart(context, config);
 	};
-
 };
-
 
 /***/ }),
 /* 775 */
@@ -68791,13 +68643,12 @@ module.exports = function(Chart) {
 "use strict";
 
 
-module.exports = function(Chart) {
-	Chart.Scatter = function(context, config) {
+module.exports = function (Chart) {
+	Chart.Scatter = function (context, config) {
 		config.type = 'scatter';
 		return new Chart(context, config);
 	};
 };
-
 
 /***/ }),
 /* 776 */
@@ -68824,31 +68675,31 @@ defaults._set('global', {
 	}
 });
 
-module.exports = function() {
+module.exports = function () {
 
 	var mappers = {
-		dataset: function(source) {
+		dataset: function dataset(source) {
 			var index = source.fill;
 			var chart = source.chart;
 			var meta = chart.getDatasetMeta(index);
 			var visible = meta && chart.isDatasetVisible(index);
-			var points = (visible && meta.dataset._children) || [];
+			var points = visible && meta.dataset._children || [];
 			var length = points.length || 0;
 
-			return !length ? null : function(point, i) {
-				return (i < length && points[i]._view) || null;
+			return !length ? null : function (point, i) {
+				return i < length && points[i]._view || null;
 			};
 		},
 
-		boundary: function(source) {
+		boundary: function boundary(source) {
 			var boundary = source.boundary;
 			var x = boundary ? boundary.x : null;
 			var y = boundary ? boundary.y : null;
 
-			return function(point) {
+			return function (point) {
 				return {
 					x: x === null ? point.x : x,
-					y: y === null ? point.y : y,
+					y: y === null ? point.y : y
 				};
 			};
 		}
@@ -68886,21 +68737,21 @@ module.exports = function() {
 		}
 
 		switch (fill) {
-		// compatibility
-		case 'bottom':
-			return 'start';
-		case 'top':
-			return 'end';
-		case 'zero':
-			return 'origin';
-		// supported boundaries
-		case 'origin':
-		case 'start':
-		case 'end':
-			return fill;
-		// invalid fill values
-		default:
-			return false;
+			// compatibility
+			case 'bottom':
+				return 'start';
+			case 'top':
+				return 'end';
+			case 'zero':
+				return 'origin';
+			// supported boundaries
+			case 'origin':
+			case 'start':
+			case 'end':
+				return fill;
+			// invalid fill values
+			default:
+				return false;
 		}
 	}
 
@@ -69031,7 +68882,7 @@ module.exports = function() {
 
 		ctx.beginPath();
 
-		for (i = 0, ilen = (count + !!loop); i < ilen; ++i) {
+		for (i = 0, ilen = count + !!loop; i < ilen; ++i) {
 			index = i % count;
 			p0 = points[index]._view;
 			p1 = mapper(p0, index, view);
@@ -69068,7 +68919,7 @@ module.exports = function() {
 	return {
 		id: 'filler',
 
-		afterDatasetsUpdate: function(chart, options) {
+		afterDatasetsUpdate: function afterDatasetsUpdate(chart, options) {
 			var count = (chart.data.datasets || []).length;
 			var propagate = options.propagate;
 			var sources = [];
@@ -69104,7 +68955,7 @@ module.exports = function() {
 			}
 		},
 
-		beforeDatasetDraw: function(chart, args) {
+		beforeDatasetDraw: function beforeDatasetDraw(chart, args) {
 			var meta = args.meta.$filler;
 			if (!meta) {
 				return;
@@ -69126,7 +68977,6 @@ module.exports = function() {
 	};
 };
 
-
 /***/ }),
 /* 777 */
 /***/ (function(module, exports, __webpack_require__) {
@@ -69147,7 +68997,7 @@ defaults._set('global', {
 		weight: 1000,
 
 		// a callback that will handle
-		onClick: function(e, legendItem) {
+		onClick: function onClick(e, legendItem) {
 			var index = legendItem.datasetIndex;
 			var ci = this.chart;
 			var meta = ci.getDatasetMeta(index);
@@ -69175,12 +69025,12 @@ defaults._set('global', {
 			// lineDashOffset :
 			// lineJoin :
 			// lineWidth :
-			generateLabels: function(chart) {
+			generateLabels: function generateLabels(chart) {
 				var data = chart.data;
-				return helpers.isArray(data.datasets) ? data.datasets.map(function(dataset, i) {
+				return helpers.isArray(data.datasets) ? data.datasets.map(function (dataset, i) {
 					return {
 						text: dataset.label,
-						fillStyle: (!helpers.isArray(dataset.backgroundColor) ? dataset.backgroundColor : dataset.backgroundColor[0]),
+						fillStyle: !helpers.isArray(dataset.backgroundColor) ? dataset.backgroundColor : dataset.backgroundColor[0],
 						hidden: !chart.isDatasetVisible(i),
 						lineCap: dataset.borderCapStyle,
 						lineDash: dataset.borderDash,
@@ -69198,7 +69048,7 @@ defaults._set('global', {
 		}
 	},
 
-	legendCallback: function(chart) {
+	legendCallback: function legendCallback(chart) {
 		var text = [];
 		text.push('<ul class="' + chart.id + '-legend">');
 		for (var i = 0; i < chart.data.datasets.length; i++) {
@@ -69213,26 +69063,24 @@ defaults._set('global', {
 	}
 });
 
-module.exports = function(Chart) {
+module.exports = function (Chart) {
 
 	var layout = Chart.layoutService;
 	var noop = helpers.noop;
 
 	/**
-	 * Helper function to get the box width based on the usePointStyle option
-	 * @param labelopts {Object} the label options on the legend
-	 * @param fontSize {Number} the label font size
-	 * @return {Number} width of the color box area
-	 */
+  * Helper function to get the box width based on the usePointStyle option
+  * @param labelopts {Object} the label options on the legend
+  * @param fontSize {Number} the label font size
+  * @return {Number} width of the color box area
+  */
 	function getBoxWidth(labelOpts, fontSize) {
-		return labelOpts.usePointStyle ?
-			fontSize * Math.SQRT2 :
-			labelOpts.boxWidth;
+		return labelOpts.usePointStyle ? fontSize * Math.SQRT2 : labelOpts.boxWidth;
 	}
 
 	Chart.Legend = Element.extend({
 
-		initialize: function(config) {
+		initialize: function initialize(config) {
 			helpers.extend(this, config);
 
 			// Contains hit boxes for each dataset (in dataset order)
@@ -69247,7 +69095,7 @@ module.exports = function(Chart) {
 		// Any function can be extended by the legend type
 
 		beforeUpdate: noop,
-		update: function(maxWidth, maxHeight, margins) {
+		update: function update(maxWidth, maxHeight, margins) {
 			var me = this;
 
 			// Update Lifecycle - Probably don't want to ever extend or overwrite this function ;)
@@ -69281,7 +69129,7 @@ module.exports = function(Chart) {
 		//
 
 		beforeSetDimensions: noop,
-		setDimensions: function() {
+		setDimensions: function setDimensions() {
 			var me = this;
 			// Set the unconstrained dimension before label rotation
 			if (me.isHorizontal()) {
@@ -69314,13 +69162,13 @@ module.exports = function(Chart) {
 		//
 
 		beforeBuildLabels: noop,
-		buildLabels: function() {
+		buildLabels: function buildLabels() {
 			var me = this;
 			var labelOpts = me.options.labels || {};
 			var legendItems = helpers.callback(labelOpts.generateLabels, [me.chart], me) || [];
 
 			if (labelOpts.filter) {
-				legendItems = legendItems.filter(function(item) {
+				legendItems = legendItems.filter(function (item) {
 					return labelOpts.filter(item, me.chart.data);
 				});
 			}
@@ -69336,7 +69184,7 @@ module.exports = function(Chart) {
 		//
 
 		beforeFit: noop,
-		fit: function() {
+		fit: function fit() {
 			var me = this;
 			var opts = me.options;
 			var labelOpts = opts.labels;
@@ -69374,17 +69222,17 @@ module.exports = function(Chart) {
 
 					// Width of each line of legend boxes. Labels wrap onto multiple lines when there are too many to fit on one
 					var lineWidths = me.lineWidths = [0];
-					var totalHeight = me.legendItems.length ? fontSize + (labelOpts.padding) : 0;
+					var totalHeight = me.legendItems.length ? fontSize + labelOpts.padding : 0;
 
 					ctx.textAlign = 'left';
 					ctx.textBaseline = 'top';
 
-					helpers.each(me.legendItems, function(legendItem, i) {
+					helpers.each(me.legendItems, function (legendItem, i) {
 						var boxWidth = getBoxWidth(labelOpts, fontSize);
-						var width = boxWidth + (fontSize / 2) + ctx.measureText(legendItem.text).width;
+						var width = boxWidth + fontSize / 2 + ctx.measureText(legendItem.text).width;
 
 						if (lineWidths[lineWidths.length - 1] + width + labelOpts.padding >= me.width) {
-							totalHeight += fontSize + (labelOpts.padding);
+							totalHeight += fontSize + labelOpts.padding;
 							lineWidths[lineWidths.length] = me.left;
 						}
 
@@ -69400,7 +69248,6 @@ module.exports = function(Chart) {
 					});
 
 					minSize.height += totalHeight;
-
 				} else {
 					var vPadding = labelOpts.padding;
 					var columnWidths = me.columnWidths = [];
@@ -69409,9 +69256,9 @@ module.exports = function(Chart) {
 					var currentColHeight = 0;
 					var itemHeight = fontSize + vPadding;
 
-					helpers.each(me.legendItems, function(legendItem, i) {
+					helpers.each(me.legendItems, function (legendItem, i) {
 						var boxWidth = getBoxWidth(labelOpts, fontSize);
-						var itemWidth = boxWidth + (fontSize / 2) + ctx.measureText(legendItem.text).width;
+						var itemWidth = boxWidth + fontSize / 2 + ctx.measureText(legendItem.text).width;
 
 						// If too tall, go to new column
 						if (currentColHeight + itemHeight > minSize.height) {
@@ -69447,12 +69294,12 @@ module.exports = function(Chart) {
 		afterFit: noop,
 
 		// Shared Methods
-		isHorizontal: function() {
+		isHorizontal: function isHorizontal() {
 			return this.options.position === 'top' || this.options.position === 'bottom';
 		},
 
 		// Actually draw the legend on the canvas
-		draw: function() {
+		draw: function draw() {
 			var me = this;
 			var opts = me.options;
 			var labelOpts = opts.labels;
@@ -69483,7 +69330,7 @@ module.exports = function(Chart) {
 				var hitboxes = me.legendHitBoxes;
 
 				// current position
-				var drawLegendBox = function(x, y, legendItem) {
+				var drawLegendBox = function drawLegendBox(x, y, legendItem) {
 					if (isNaN(boxWidth) || boxWidth <= 0) {
 						return;
 					}
@@ -69497,7 +69344,7 @@ module.exports = function(Chart) {
 					ctx.lineJoin = valueOrDefault(legendItem.lineJoin, lineDefault.borderJoinStyle);
 					ctx.lineWidth = valueOrDefault(legendItem.lineWidth, lineDefault.borderWidth);
 					ctx.strokeStyle = valueOrDefault(legendItem.strokeStyle, globalDefault.defaultColor);
-					var isLineWidthZero = (valueOrDefault(legendItem.lineWidth, lineDefault.borderWidth) === 0);
+					var isLineWidthZero = valueOrDefault(legendItem.lineWidth, lineDefault.borderWidth) === 0;
 
 					if (ctx.setLineDash) {
 						// IE 9 and 10 do not support line dash
@@ -69524,7 +69371,7 @@ module.exports = function(Chart) {
 
 					ctx.restore();
 				};
-				var fillText = function(x, y, legendItem, textWidth) {
+				var fillText = function fillText(x, y, legendItem, textWidth) {
 					var halfFontSize = fontSize / 2;
 					var xLeft = boxWidth + halfFontSize + x;
 					var yMiddle = y + halfFontSize;
@@ -69545,7 +69392,7 @@ module.exports = function(Chart) {
 				var isHorizontal = me.isHorizontal();
 				if (isHorizontal) {
 					cursor = {
-						x: me.left + ((legendWidth - lineWidths[0]) / 2),
+						x: me.left + (legendWidth - lineWidths[0]) / 2,
 						y: me.top + labelOpts.padding,
 						line: 0
 					};
@@ -69558,9 +69405,9 @@ module.exports = function(Chart) {
 				}
 
 				var itemHeight = fontSize + labelOpts.padding;
-				helpers.each(me.legendItems, function(legendItem, i) {
+				helpers.each(me.legendItems, function (legendItem, i) {
 					var textWidth = ctx.measureText(legendItem.text).width;
-					var width = boxWidth + (fontSize / 2) + textWidth;
+					var width = boxWidth + fontSize / 2 + textWidth;
 					var x = cursor.x;
 					var y = cursor.y;
 
@@ -69568,7 +69415,7 @@ module.exports = function(Chart) {
 						if (x + width >= legendWidth) {
 							y = cursor.y += itemHeight;
 							cursor.line++;
-							x = cursor.x = me.left + ((legendWidth - lineWidths[cursor.line]) / 2);
+							x = cursor.x = me.left + (legendWidth - lineWidths[cursor.line]) / 2;
 						}
 					} else if (y + itemHeight > me.bottom) {
 						x = cursor.x = x + me.columnWidths[cursor.line] + labelOpts.padding;
@@ -69585,22 +69432,21 @@ module.exports = function(Chart) {
 					fillText(x, y, legendItem, textWidth);
 
 					if (isHorizontal) {
-						cursor.x += width + (labelOpts.padding);
+						cursor.x += width + labelOpts.padding;
 					} else {
 						cursor.y += itemHeight;
 					}
-
 				});
 			}
 		},
 
 		/**
-		 * Handle an event
-		 * @private
-		 * @param {IEvent} event - The event to handle
-		 * @return {Boolean} true if a change occured
-		 */
-		handleEvent: function(e) {
+   * Handle an event
+   * @private
+   * @param {IEvent} event - The event to handle
+   * @return {Boolean} true if a change occured
+   */
+		handleEvent: function handleEvent(e) {
 			var me = this;
 			var opts = me.options;
 			var type = e.type === 'mouseup' ? 'click' : e.type;
@@ -69664,7 +69510,7 @@ module.exports = function(Chart) {
 	return {
 		id: 'legend',
 
-		beforeInit: function(chart) {
+		beforeInit: function beforeInit(chart) {
 			var legendOpts = chart.options.legend;
 
 			if (legendOpts) {
@@ -69672,7 +69518,7 @@ module.exports = function(Chart) {
 			}
 		},
 
-		beforeUpdate: function(chart) {
+		beforeUpdate: function beforeUpdate(chart) {
 			var legendOpts = chart.options.legend;
 			var legend = chart.legend;
 
@@ -69691,7 +69537,7 @@ module.exports = function(Chart) {
 			}
 		},
 
-		afterEvent: function(chart, e) {
+		afterEvent: function afterEvent(chart, e) {
 			var legend = chart.legend;
 			if (legend) {
 				legend.handleEvent(e);
@@ -69699,7 +69545,6 @@ module.exports = function(Chart) {
 		}
 	};
 };
-
 
 /***/ }),
 /* 778 */
@@ -69721,17 +69566,17 @@ defaults._set('global', {
 		padding: 10,
 		position: 'top',
 		text: '',
-		weight: 2000         // by default greater than legend (1000) to be above
+		weight: 2000 // by default greater than legend (1000) to be above
 	}
 });
 
-module.exports = function(Chart) {
+module.exports = function (Chart) {
 
 	var layout = Chart.layoutService;
 	var noop = helpers.noop;
 
 	Chart.Title = Element.extend({
-		initialize: function(config) {
+		initialize: function initialize(config) {
 			var me = this;
 			helpers.extend(me, config);
 
@@ -69742,7 +69587,7 @@ module.exports = function(Chart) {
 		// These methods are ordered by lifecycle. Utilities then follow.
 
 		beforeUpdate: noop,
-		update: function(maxWidth, maxHeight, margins) {
+		update: function update(maxWidth, maxHeight, margins) {
 			var me = this;
 
 			// Update Lifecycle - Probably don't want to ever extend or overwrite this function ;)
@@ -69770,14 +69615,13 @@ module.exports = function(Chart) {
 			me.afterUpdate();
 
 			return me.minSize;
-
 		},
 		afterUpdate: noop,
 
 		//
 
 		beforeSetDimensions: noop,
-		setDimensions: function() {
+		setDimensions: function setDimensions() {
 			var me = this;
 			// Set the unconstrained dimension before label rotation
 			if (me.isHorizontal()) {
@@ -69816,7 +69660,7 @@ module.exports = function(Chart) {
 		//
 
 		beforeFit: noop,
-		fit: function() {
+		fit: function fit() {
 			var me = this;
 			var valueOrDefault = helpers.valueOrDefault;
 			var opts = me.options;
@@ -69825,7 +69669,7 @@ module.exports = function(Chart) {
 			var minSize = me.minSize;
 			var lineCount = helpers.isArray(opts.text) ? opts.text.length : 1;
 			var lineHeight = helpers.options.toLineHeight(opts.lineHeight, fontSize);
-			var textSize = display ? (lineCount * lineHeight) + (opts.padding * 2) : 0;
+			var textSize = display ? lineCount * lineHeight + opts.padding * 2 : 0;
 
 			if (me.isHorizontal()) {
 				minSize.width = me.maxWidth; // fill all the width
@@ -69837,18 +69681,17 @@ module.exports = function(Chart) {
 
 			me.width = minSize.width;
 			me.height = minSize.height;
-
 		},
 		afterFit: noop,
 
 		// Shared Methods
-		isHorizontal: function() {
+		isHorizontal: function isHorizontal() {
 			var pos = this.options.position;
 			return pos === 'top' || pos === 'bottom';
 		},
 
 		// Actually draw the title block on the canvas
-		draw: function() {
+		draw: function draw() {
 			var me = this;
 			var ctx = me.ctx;
 			var valueOrDefault = helpers.valueOrDefault;
@@ -69874,12 +69717,12 @@ module.exports = function(Chart) {
 
 				// Horizontal
 				if (me.isHorizontal()) {
-					titleX = left + ((right - left) / 2); // midpoint of the width
+					titleX = left + (right - left) / 2; // midpoint of the width
 					titleY = top + offset;
 					maxWidth = right - left;
 				} else {
 					titleX = opts.position === 'left' ? left + offset : right - offset;
-					titleY = top + ((bottom - top) / 2);
+					titleY = top + (bottom - top) / 2;
 					maxWidth = bottom - top;
 					rotation = Math.PI * (opts.position === 'left' ? -0.5 : 0.5);
 				}
@@ -69921,7 +69764,7 @@ module.exports = function(Chart) {
 	return {
 		id: 'title',
 
-		beforeInit: function(chart) {
+		beforeInit: function beforeInit(chart) {
 			var titleOpts = chart.options.title;
 
 			if (titleOpts) {
@@ -69929,7 +69772,7 @@ module.exports = function(Chart) {
 			}
 		},
 
-		beforeUpdate: function(chart) {
+		beforeUpdate: function beforeUpdate(chart) {
 			var titleOpts = chart.options.title;
 			var titleBlock = chart.titleBlock;
 
@@ -69950,7 +69793,6 @@ module.exports = function(Chart) {
 	};
 };
 
-
 /***/ }),
 /* 779 */
 /***/ (function(module, exports) {
@@ -69959,4 +69801,4 @@ module.exports = function(Chart) {
 
 /***/ })
 /******/ ]);
-//# sourceMappingURL=bundle_76885607d228e2267787.js.map
+//# sourceMappingURL=bundle_2ba0dacd858b2a15cca9.js.map

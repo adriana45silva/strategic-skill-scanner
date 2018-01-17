@@ -3,7 +3,7 @@
 // -----------------------------------------------------
 
 import React, { Component } from 'react';
-import Chart from 'javascripts/chart.js/src/chart.js';
+import Chart from 'javascripts/chart.js/src/chart_.js';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { SKILLS as skillItems } from 'javascripts/helpers/constants';
