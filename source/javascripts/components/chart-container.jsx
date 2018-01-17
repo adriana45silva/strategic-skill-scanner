@@ -3,7 +3,7 @@
 // -----------------------------------------------------
 
 import React, { Component } from 'react';
-import Chart from 'chart.js';
+import Chart from 'javascripts/chart.js/src/chart.js';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { SKILLS as skillItems } from 'javascripts/helpers/constants';
@@ -38,6 +38,17 @@ class ChartContainer extends Component {
     
   }
 
+  calcAngles(constSkillsItems){
+    let arr = []
+    let sum = constSkillsItems.reduce((prev, next) => prev + next)  ;
+    let result = 360 / sum;
+
+    constSkillsItems.forEach(el => {
+      arr.push((result * el) / 100 * 1.75)
+    });
+    return arr;
+  }
+
   mountChart(props){
     let arr = []
 
@@ -50,10 +61,7 @@ class ChartContainer extends Component {
     };
 
     let userOptions = {
-      // startAngle: 3.6290811688020024,
-      // customAngles: [
-      //   0.9, 1.1, 0.6, 1.4, 1.3, 0.1, 0.1, 0.1, 0.1, 0.1
-      // ]
+      customAngles: this.calcAngles(props.skills.currentTabLabel.data)
     }
 
     let ctxUser = document.getElementById('userChart').getContext('2d');
