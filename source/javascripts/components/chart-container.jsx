@@ -46,12 +46,14 @@ class ChartContainer extends Component {
     });
 
     let options = {
-      percentageInnerCutout: 70,
       events: [ 'mousemove' ]
     };
 
     let userOptions = {
-      startAngle: 3.6290811688020024
+      // startAngle: 3.6290811688020024,
+      // customAngles: [
+      //   0.9, 1.1, 0.6, 1.4, 1.3, 0.1, 0.1, 0.1, 0.1, 0.1
+      // ]
     }
 
     let ctxUser = document.getElementById('userChart').getContext('2d');
@@ -103,24 +105,37 @@ class ChartContainer extends Component {
       ]
     }
 
-    if (props.skills.skillValues && props.skills.skillValues.length > 0 && props.skills.skillValues.indexOf(undefined) == -1 && currentTab.data){
-      this.userChart = new Chart(ctxUser,
-        {
-          type: 'polarArea',
-          data: userData,
-          options: Object.assign({}, options, userOptions)
-        });
 
-        this.roleChart = new Chart(ctxRole,
+    let createCharts = (type) => {
+      if (props.skills.skillValues && props.skills.skillValues.length > 0 && props.skills.skillValues.indexOf(undefined) == -1 && currentTab.data){
+        if (type == 'user') {
+          this.userChart = new Chart(ctxUser,
           {
-            type: 'pie',
-            data: roleData,
-            options
+            type: 'polarArea',
+            data: userData,
+            options: Object.assign({}, options, userOptions)
           });
+        } else {
+          this.roleChart =  new Chart(ctxRole,
+            {
+              type: 'pie',
+              data: roleData,
+              options
+            });
+        }
       }
-
-      console.log(this.roleChart)
     }
+
+    if (this.props.skills.currentTabLabel !=  props.skills.currentTabLabel && this.roleChart){
+      this.roleChart.destroy();
+      this.userChart.destroy();
+    }
+
+    createCharts('user');
+    createCharts();
+  }
+
+  
 
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

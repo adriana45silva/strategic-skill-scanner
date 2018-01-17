@@ -52,7 +52,7 @@ export default class Layout extends Component {
         <ChartContainer/>
 
         <footer className="ss__footer">
-          <h5>Feito com ❤️  por <a href="https://www.linkedin.com/in/adriana45silva/">Adriana Silva</a> -  {new Date().getFullYear()}</h5>
+          <h5>Feito com<span>️️️️️❤️</span> por <a href="https://www.linkedin.com/in/adriana45silva/">Adriana Silva</a> -  {new Date().getFullYear()}</h5>
         </footer>
       </div>
     );

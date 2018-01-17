@@ -113,6 +113,11 @@
   &__footer{
     margin-top: 60px;
     margin-bottom: 30px;
+
+    span {
+      display: inline-block;
+      margin: 0 5px;
+    }
   }
 }
 
