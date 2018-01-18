@@ -19,7 +19,9 @@ exports = pluginsProd = () => {
       }
     }),
     new UglifyJsPlugin({
-      ecma: 8
+      uglifyOptions: {
+        ecma: 8
+      }
     })
   ];
 };
