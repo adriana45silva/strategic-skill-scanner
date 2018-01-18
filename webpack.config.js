@@ -17,7 +17,20 @@ const { sassLoaderProd, pluginsProd } = require('./webpack.config.prod');
 
 const HtmlConfigs = {
   title: 'Webpage title',
-  template: resolve(__dirname, 'source/templates/index.html')
+  template: resolve(__dirname, 'source/templates/index.html'),
+  title: '#SkillScanner',
+  description:
+    'Ferramenta de autoconhecimento para te ajudar a pensar em seu momento de carreira, forças e fraquezas, e a se tornar um melhor profissional em Estratégia.',
+  keywords: '',
+  ogInfo: {
+    title: '#SkillScanner',
+    url: 'https://strategic-skill-scanner.herokuapp.com/',
+    image: 'https://res.cloudinary.com/adriana45silva/image/upload/skillscanner_zoi9ar.jpg',
+    description:
+      'Ferramenta de autoconhecimento para te ajudar a pensar em seu momento de carreira, forças e fraquezas, e a se tornar um melhor profissional em Estratégia.',
+    site_name: '#SkillScanner',
+    type: 'website'
+  }
 };
 
 // ------------------------------------------------------------------

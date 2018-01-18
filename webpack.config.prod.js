@@ -17,6 +17,9 @@ exports = pluginsProd = () => {
       'process.env': {
         NODE_ENV: JSON.stringify('production')
       }
+    }),
+    new UglifyJsPlugin({
+      ecma: 8
     })
   ];
 };
