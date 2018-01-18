@@ -25,7 +25,7 @@ const HtmlConfigs = {
   ogInfo: {
     title: '#SkillScanner',
     url: 'https://strategic-skill-scanner.herokuapp.com/',
-    image: 'https://res.cloudinary.com/adriana45silva/image/upload/skillscanner_zoi9ar.jpg',
+    image: 'https://res.cloudinary.com/adriana45silva/image/upload/skillscanner_zoi9ar.png',
     description:
       'Ferramenta de autoconhecimento para te ajudar a pensar em seu momento de carreira, forças e fraquezas, e a se tornar um melhor profissional em Estratégia.',
     site_name: '#SkillScanner',
