@@ -3,7 +3,7 @@
 // ------------------------------------------------------------------
 
 const webpack = require('webpack');
-let ExtractTextPlugin = require('extract-text-webpack-plugin');
+let MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { resolve } = require('path');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
@@ -11,7 +11,7 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 exports = pluginsProd = () => {
   return [
-    new ExtractTextPlugin('styles_[hash].css'),
+    new MiniCssExtractPlugin('styles_[hash].css'),
     new CleanWebpackPlugin(resolve(__dirname, 'dist')),
     new webpack.DefinePlugin({
       'process.env': {
@@ -29,25 +29,24 @@ exports = pluginsProd = () => {
 // ------------------------------------------------------------------
 
 exports = sassLoaderProd = () => {
-  return  ExtractTextPlugin.extract({
-    fallback: 'style-loader',
-    use: [
-      { loader: 'css-loader' },
-      {
-        loader: 'sass-loader',
-        options: {
-          includePaths: [
-            resolve(__dirname, 'src/stylesheets'),
-            resolve(__dirname, 'node_modules')
-          ]
-        }
-      },
-      { loader: 'postcss-loader' }
-    ]
-  });
+  let sassLoaderProd = [
+    MiniCssExtractPlugin.loader,
+    { loader: 'css-loader' },
+    {
+      loader: 'sass-loader',
+      options: {
+        includePaths: [
+          resolve(__dirname, 'src/stylesheets'),
+          resolve(__dirname, 'node_modules')
+        ]
+      }
+    },
+    { loader: 'postcss-loader' }
+  ]
 
-  // return sassLoaderProd;
+  return sassLoaderProd;
 };
+
 
 // ------------------------------------------------------------------
 
