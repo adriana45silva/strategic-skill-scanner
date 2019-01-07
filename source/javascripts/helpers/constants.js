@@ -46,27 +46,27 @@ export const SKILLS = [
   },
   {
     skill: 'research',
-    label: 'Pesquisa'
+    label: 'Pesquisa Quali/Quanti'
   },
   {
     skill: 'presentation',
-    label: 'Apresentação'
+    label: 'Storytelling'
   },
   {
     skill: 'strategicThinking',
-    label: 'Pensamento Estratégico'
+    label: 'Conceitos Estratégicos'
   },
   {
     skill: 'relationships',
-    label: 'Relacionamento'
+    label: 'Integração'
   },
   {
     skill: 'projectManagement',
-    label: 'Gerenc. de Projetos'
+    label: 'Gest. de Projetos'
   },
   {
     skill: 'peopleManagement',
-    label: 'Gerenc. de Pessoas'
+    label: 'Gest. de Pessoas'
   },
 ];
 

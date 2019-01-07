@@ -25,7 +25,7 @@ export default class Layout extends Component {
             <h2>Carreira em Estratégia - Autoconhecimento</h2>
 
             <p>
-              Seja bem-vindo(a) à SkillScanner! Essa ferramenta foi criada por nós, <a href="https://www.linkedin.com/in/nathalia-andrijic-3083088a/" target="_blank" rel="noopener noreferrer">Nathalia Andrijic</a> e <a href="https://www.linkedin.com/in/felipegavronski/" target="_blank" rel="noopener noreferrer">Felipe Gavronski</a>, Estrategistas da R/GA, pra te ajudar a pensar no seu momento de carreira, suas fortalezas e fraquezas, assim você saberá no que precisa evoluir. Acreditamos muito que o Autoconhecimento vai nos tornar melhores Estrategistas. O processo é simples, porém profundo:
+              Seja bem-vindo(a) à SkillScanner! Essa ferramenta foi criada por nós, <a href="https://www.linkedin.com/in/nathalia-andrijic-3083088a/" target="_blank" rel="noopener noreferrer">Nathalia Andrijic</a>, Estrategista e Designer de Serviços Sênior na HandMade, e <a href="https://www.linkedin.com/in/felipegavronski/" target="_blank" rel="noopener noreferrer">Felipe Gavronski</a>, Diretor de Estratégia na Tribal Worldwide, pra te ajudar a pensar no seu momento de carreira, suas fortalezas e fraquezas, assim você saberá no que precisa evoluir. Acreditamos muito que o Autoconhecimento vai nos tornar melhores Estrategistas. O processo é simples, porém profundo:
             </p>
           </div>
 

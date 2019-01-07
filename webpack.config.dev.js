@@ -3,7 +3,7 @@
 // ------------------------------------------------------------------
 
 const webpack = require('webpack');
-const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
+
 const { resolve } = require('path');
 // ------------------------------------------------------------------
 
@@ -15,8 +15,7 @@ exports = pluginsDev = () => {
         NODE_ENV: JSON.stringify(process.env.NODE_ENV)
       }
     }),
-    new webpack.NamedModulesPlugin(),
-    new ScriptExtHtmlWebpackPlugin({ defaultAttribute: 'async' })
+    new webpack.NamedModulesPlugin()
   ];
 };
 
