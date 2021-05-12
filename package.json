@@ -47,7 +47,7 @@
     "babel-preset-stage-3": "^6.24.1",
     "babel-register": "^6.26.0",
     "bowser": "^1.7.3",
-    "chart.js": "^2.7.1",
+    "chart.js": "^2.9.4",
     "classnames": "^2.2.5",
     "clean-webpack-plugin": "^0.1.17",
     "css-loader": "^0.28.7",
